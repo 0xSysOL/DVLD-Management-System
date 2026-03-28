@@ -86,12 +86,6 @@
     <Compile Include="Sub_Forms\Users Forms\Frm_ManageUsers.Designer.cs">
       <DependentUpon>Frm_ManageUsers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sub_Forms\People Forms\Frm_AddEditPerson_.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sub_Forms\People Forms\Frm_AddEditPerson_.Designer.cs">
-      <DependentUpon>Frm_AddEditPerson_.cs</DependentUpon>
-    </Compile>
     <Compile Include="Sub_Forms\People Forms\Frm_Person_Details.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,34 +116,16 @@
     <Compile Include="User_Controls\Filter.Designer.cs">
       <DependentUpon>Filter.cs</DependentUpon>
     </Compile>
-    <Compile Include="User_Controls\People User Control\Add_Edit_Person.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="User_Controls\People User Control\Add_Edit_Person.Designer.cs">
-      <DependentUpon>Add_Edit_Person.cs</DependentUpon>
-    </Compile>
-    <Compile Include="User_Controls\People User Control\GetRecordsDataWithFilter_UC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="User_Controls\People User Control\GetRecordsDataWithFilter_UC.Designer.cs">
-      <DependentUpon>GetRecordsDataWithFilter_UC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="User_Controls\People User Control\Person_Information.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="User_Controls\People User Control\Person_Information.Designer.cs">
-      <DependentUpon>Person_Information.cs</DependentUpon>
-    </Compile>
     <Compile Include="User_Controls\People User Control\UC_AddEditPerson.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="User_Controls\People User Control\UC_AddEditPerson.Designer.cs">
       <DependentUpon>UC_AddEditPerson.cs</DependentUpon>
     </Compile>
-    <Compile Include="User_Controls\UC_ShowPersonInfo.cs">
+    <Compile Include="User_Controls\People User Control\UC_ShowPersonInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User_Controls\UC_ShowPersonInfo.Designer.cs">
+    <Compile Include="User_Controls\People User Control\UC_ShowPersonInfo.Designer.cs">
       <DependentUpon>UC_ShowPersonInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\Users User Control\UC_LoginInfo.cs">
@@ -182,9 +158,6 @@
     <EmbeddedResource Include="Sub_Forms\Users Forms\Frm_ManageUsers.resx">
       <DependentUpon>Frm_ManageUsers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sub_Forms\People Forms\Frm_AddEditPerson_.resx">
-      <DependentUpon>Frm_AddEditPerson_.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\People Forms\Frm_Person_Details.resx">
       <DependentUpon>Frm_Person_Details.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,19 +170,10 @@
     <EmbeddedResource Include="User_Controls\Filter.resx">
       <DependentUpon>Filter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_Controls\People User Control\Add_Edit_Person.resx">
-      <DependentUpon>Add_Edit_Person.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="User_Controls\People User Control\GetRecordsDataWithFilter_UC.resx">
-      <DependentUpon>GetRecordsDataWithFilter_UC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="User_Controls\People User Control\Person_Information.resx">
-      <DependentUpon>Person_Information.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="User_Controls\People User Control\UC_AddEditPerson.resx">
       <DependentUpon>UC_AddEditPerson.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_Controls\UC_ShowPersonInfo.resx">
+    <EmbeddedResource Include="User_Controls\People User Control\UC_ShowPersonInfo.resx">
       <DependentUpon>UC_ShowPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User_Controls\Users User Control\UC_LoginInfo.resx">
