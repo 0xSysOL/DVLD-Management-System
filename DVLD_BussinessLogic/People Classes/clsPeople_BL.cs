@@ -40,7 +40,7 @@ namespace DVLD_BusinessLogic
 
             DataTable PersonInfo = clsPeople_DL.GetPersonByID(ID);
 
-            if (PersonInfo == null) return;
+            if (PersonInfo.Rows.Count <=0) return;
 
             PersonID = (int)PersonInfo.Rows[0]["PersonID"];
             NationalNo = PersonInfo.Rows[0]["NationalNo"].ToString();

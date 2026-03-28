@@ -15,7 +15,6 @@ namespace DVLD
         {
 
             Frm_LoginScreen frm_Login = new Frm_LoginScreen();
-
             frm_Login.ShowDialog();
 
             if (CurrentUser.GetUserID() != -1)

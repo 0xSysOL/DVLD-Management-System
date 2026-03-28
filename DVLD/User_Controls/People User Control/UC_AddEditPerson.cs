@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DVLD.Properties;
+using System;
 using System.Data;
 using System.Windows.Forms;
 
@@ -81,11 +82,37 @@ namespace DVLD.User_Controls.People_User_Control
             Utilities.Methods.FillComboBOX(dataTable, ComboBOX_Countries);
 
         }
-        public void InitializeData()
+        public void InitializeData(
+           string firstName,
+           string secondName,
+           string thirdName,
+           string lastName,
+           string nationalNo,
+           string phone,
+           string email,
+           string address,
+           short gender,
+            DateTime dateOfBirth,
+            string ImageLo
+       )
         {
-
+            TB_FirstName.Text = firstName;
+            TB_SecondName.Text = secondName;
+            TB_ThirdName.Text = thirdName;
+            TB_LastName.Text = lastName;
+            TB_NationalNo.Text = nationalNo;
+            TB_Phone.Text = phone;
+            TB_Email.Text = email;
+            TB_Address.Text = address;
+            DatePiker_DateOfBirth.Value = dateOfBirth;
+            Pic_PersonImage.ImageLocation = ImageLo;
+            SetGendor(gender);
+            mode = eMode.Update;
+            TB_NationalNo.Enabled = false;
+            LinkLabel_RemoveImage.Visible = (!string.IsNullOrEmpty(ImageLo) ? true : false);
 
         }
+
         private void _InitializeDateBox()
         {
             DatePiker_DateOfBirth.Value = DateTime.Now.AddYears(-18);
@@ -99,7 +126,7 @@ namespace DVLD.User_Controls.People_User_Control
         {
             InitializeComponent();
             _InitializeDateBox();
-            InitializeData();
+
         }
 
 
@@ -149,13 +176,22 @@ namespace DVLD.User_Controls.People_User_Control
 
         #endregion End
 
+        private void SetGendor(short Gendor)
+        {
 
+            if (Gendor == 0)
+                Radio_Male.Checked = true;
+            else
+                Radio_Female.Checked = true;
+
+        }
         public void SetImage(string ImagePath)
         {
 
             Pic_PersonImage.ImageLocation = ImagePath;
 
         }
+
 
         public void SetResponseForConfirmation_NationalNo(bool Message_YesNo)
         {
@@ -237,27 +273,46 @@ namespace DVLD.User_Controls.People_User_Control
         private void LinkLabel_SetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             GetImage(true);
-
+            LinkLabel_RemoveImage.Visible = true;
         }
 
         private void LinkLabel_RemoveImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
+            Pic_PersonImage.Image = (Radio_Male.Checked == true) ? Resources.man_Show : Resources.woman_Show;
+            Pic_PersonImage.ImageLocation = null;
+
         }
 
         private void Btn_Close_Click(object sender, EventArgs e)
         {
-            _SendMessageToClose(true);
+            SendMessageToClose();
 
         }
 
-        private void GroubBox_Enter(object sender, EventArgs e)
-        {
 
-        }   
-
-        private void Label_UserControlTitle_Click(object sender, EventArgs e)
+        private void ChooseDefaultImage(string Male_Female)
         {
+            if (!string.IsNullOrEmpty(Pic_PersonImage.ImageLocation))
+                return;
+
+
+            if (Male_Female == "Male")
+                Pic_PersonImage.Image = Resources.man_Show;
+            else if (Male_Female == "Female")
+                Pic_PersonImage.Image = Resources.woman_Show;
+            else
+                Pic_PersonImage.Image = Resources.unknown;
+
+        }
+        private void Radio_Female_CheckedChanged(object sender, EventArgs e)
+        {
+            ChooseDefaultImage("Female");
+        }
+
+        private void Radio_Male_CheckedChanged(object sender, EventArgs e)
+        {
+            ChooseDefaultImage("Male");
 
         }
     }

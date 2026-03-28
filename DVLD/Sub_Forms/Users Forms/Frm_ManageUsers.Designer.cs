@@ -35,7 +35,7 @@
             this._ContextMenuStrip_Users = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.addNewPersonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addNewUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,6 +45,8 @@
             this.Pic_FormImageTitle = new System.Windows.Forms.PictureBox();
             this.PicButton_AddNewPerson = new System.Windows.Forms.PictureBox();
             this.UC_Filter = new DVLD.User_Controls.UC_Filter();
+            this.Label_Variable_Records = new System.Windows.Forms.Label();
+            this.Label_Const_Records = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._DataGridView)).BeginInit();
             this._ContextMenuStrip_Users.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_FormImageTitle)).BeginInit();
@@ -82,7 +84,7 @@
             this._ContextMenuStrip_Users.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showDetailsToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.addNewPersonToolStripMenuItem,
+            this.addNewUserToolStripMenuItem,
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem,
             this.changePasswordToolStripMenuItem,
@@ -105,13 +107,13 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(181, 6);
             // 
-            // addNewPersonToolStripMenuItem
+            // addNewUserToolStripMenuItem
             // 
-            this.addNewPersonToolStripMenuItem.Image = global::DVLD.Properties.Resources.AddUser;
-            this.addNewPersonToolStripMenuItem.Name = "addNewPersonToolStripMenuItem";
-            this.addNewPersonToolStripMenuItem.Size = new System.Drawing.Size(184, 38);
-            this.addNewPersonToolStripMenuItem.Text = "Add New Person";
-            this.addNewPersonToolStripMenuItem.Click += new System.EventHandler(this.addNewPersonToolStripMenuItem_Click);
+            this.addNewUserToolStripMenuItem.Image = global::DVLD.Properties.Resources.AddUser;
+            this.addNewUserToolStripMenuItem.Name = "addNewUserToolStripMenuItem";
+            this.addNewUserToolStripMenuItem.Size = new System.Drawing.Size(184, 38);
+            this.addNewUserToolStripMenuItem.Text = "Add New User";
+            this.addNewUserToolStripMenuItem.Click += new System.EventHandler(this.addNewPersonToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -188,12 +190,35 @@
             this.UC_Filter.TabIndex = 5;
             this.UC_Filter.EvFilter += new System.Action<string, object>(this.Filter_EvFilter);
             this.UC_Filter.Ev_IsInt += new System.Action<int>(this.UC_Filter_EvGetAnswer);
+            this.UC_Filter.Load += new System.EventHandler(this.UC_Filter_Load);
+            // 
+            // Label_Variable_Records
+            // 
+            this.Label_Variable_Records.AutoSize = true;
+            this.Label_Variable_Records.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Variable_Records.Location = new System.Drawing.Point(104, 507);
+            this.Label_Variable_Records.Name = "Label_Variable_Records";
+            this.Label_Variable_Records.Size = new System.Drawing.Size(123, 24);
+            this.Label_Variable_Records.TabIndex = 16;
+            this.Label_Variable_Records.Text = "(No Records)";
+            // 
+            // Label_Const_Records
+            // 
+            this.Label_Const_Records.AutoSize = true;
+            this.Label_Const_Records.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Const_Records.Location = new System.Drawing.Point(12, 507);
+            this.Label_Const_Records.Name = "Label_Const_Records";
+            this.Label_Const_Records.Size = new System.Drawing.Size(86, 24);
+            this.Label_Const_Records.TabIndex = 15;
+            this.Label_Const_Records.Text = "Records:";
             // 
             // Frm_ManageUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(986, 540);
+            this.ClientSize = new System.Drawing.Size(986, 552);
+            this.Controls.Add(this.Label_Variable_Records);
+            this.Controls.Add(this.Label_Const_Records);
             this.Controls.Add(this.PicButton_AddNewPerson);
             this.Controls.Add(this.UC_Filter);
             this.Controls.Add(this._DataGridView);
@@ -219,7 +244,7 @@
         private System.Windows.Forms.ContextMenuStrip _ContextMenuStrip_Users;
         private System.Windows.Forms.ToolStripMenuItem showDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem addNewPersonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addNewUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
@@ -227,5 +252,7 @@
         private System.Windows.Forms.ToolStripMenuItem sendEmailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem phoneCallToolStripMenuItem;
         private System.Windows.Forms.PictureBox PicButton_AddNewPerson;
+        private System.Windows.Forms.Label Label_Variable_Records;
+        private System.Windows.Forms.Label Label_Const_Records;
     }
 }

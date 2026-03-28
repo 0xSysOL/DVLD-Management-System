@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 //using static System.Net.WebRequestMethods;
 namespace DVLD_BussinessLogic.Users_Classes
-{
+{ 
     public class clsUsers_BL
     {
         enum eMode { Update = 1, Add = 0 };

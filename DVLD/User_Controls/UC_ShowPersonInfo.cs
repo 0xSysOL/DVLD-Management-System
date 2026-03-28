@@ -20,8 +20,6 @@ namespace DVLD.User_Controls
         }
 
         public event Action<bool,string> SendRequestToGetImage;
-
-
         protected virtual void SendRequestImage(bool Request,string ImageKey)
         {
 
@@ -30,6 +28,18 @@ namespace DVLD.User_Controls
                 action(Request,ImageKey);
 
         }
+
+
+        public event Action SendEditEvent;
+
+        protected virtual void SendRequestEditPerson()
+        {
+            Action action = SendEditEvent;
+            if (action != null)
+                action();
+
+        }
+
 
        public enum eModeIsFull { Yes,No};
        public  eModeIsFull eMode = eModeIsFull.No;
@@ -109,6 +119,11 @@ namespace DVLD.User_Controls
         private void Person_Card_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void LinkLabel_EditPerson_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SendEditEvent();
         }
     }
 }

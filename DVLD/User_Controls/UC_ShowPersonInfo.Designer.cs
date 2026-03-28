@@ -120,6 +120,7 @@
             this.LinkLabel_EditPerson.TabIndex = 29;
             this.LinkLabel_EditPerson.TabStop = true;
             this.LinkLabel_EditPerson.Text = "Edit Person";
+            this.LinkLabel_EditPerson.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_EditPerson_LinkClicked);
             // 
             // Label_Const_DateOfBirth
             // 

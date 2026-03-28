@@ -154,7 +154,6 @@
             this.GroubBox.Size = new System.Drawing.Size(849, 289);
             this.GroubBox.TabIndex = 51;
             this.GroubBox.TabStop = false;
-            this.GroubBox.Enter += new System.EventHandler(this.GroubBox_Enter);
             // 
             // TB_FirstName
             // 
@@ -460,6 +459,7 @@
             this.Radio_Male.TabStop = true;
             this.Radio_Male.Text = "Male";
             this.Radio_Male.UseVisualStyleBackColor = true;
+            this.Radio_Male.CheckedChanged += new System.EventHandler(this.Radio_Male_CheckedChanged);
             // 
             // TB_NationalNo
             // 
@@ -480,6 +480,7 @@
             this.Radio_Female.TabIndex = 7;
             this.Radio_Female.Text = "Female";
             this.Radio_Female.UseVisualStyleBackColor = true;
+            this.Radio_Female.CheckedChanged += new System.EventHandler(this.Radio_Female_CheckedChanged);
             // 
             // Pic_PersonImage
             // 

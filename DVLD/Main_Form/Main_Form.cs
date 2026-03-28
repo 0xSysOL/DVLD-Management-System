@@ -1,4 +1,7 @@
 ﻿using DVLD.Sub_Forms;
+using DVLD.Sub_Forms.Users_Forms;
+using DVLD_BussinessLogic.Users_Classes;
+using DVLD_BussinessLogic.Users_Classes.User_Setting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,6 +38,37 @@ namespace DVLD
             Frm_ManageUsers Users_Form = new Frm_ManageUsers();
 
             Users_Form.ShowDialog();
+        }
+
+        private void changeUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int ID = Convert.ToInt32(CurrentUser.GetUserID());
+            Frm_ChangePassword frm_ChangePassword = new Frm_ChangePassword(ID);
+
+            frm_ChangePassword.ShowDialog();
+
+        }
+
+        private void signOut_SM_Click(object sender, EventArgs e)
+        {
+           
+            this.Close();
+            Application.Restart();
+
+        }
+
+        private void currentUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_UserInformation frm_User = new Frm_UserInformation(CurrentUser.GetUserID());
+
+
+            frm_User.ShowDialog();
+
+        }
+
+        private void Main_Form_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

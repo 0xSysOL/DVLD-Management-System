@@ -61,7 +61,7 @@ string address)
                 PersonData.PersonID.ToString(), FullName, PersonData.NationalNo,
                 (PersonData.Gendor == 0) ? "Male" : "Female", PersonData.Address, 
                 PersonData.DateOfBirth.ToShortDateString(),
-                PersonData.Phone, PersonData.CountryName, PersonData.Email,PersonData.ImagePath);
+                PersonData.Phone, PersonData.CountryName, PersonData.Email,PersonData.ImageKey);
 
 
             return true;
@@ -151,6 +151,15 @@ string address)
             
         }
 
+
+        public static void SetImage(UC_ShowPersonInfo User_Control,bool Request, string ImageKey)
+        {
+
+            if (Request != false)
+                User_Control.SetImage(clsPeople_BL.FindImagePath(ImageKey));
+
+
+        }
 
     }
 }

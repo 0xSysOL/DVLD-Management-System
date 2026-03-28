@@ -2,6 +2,7 @@
 using DVLD.User_Controls;
 using DVLD_BusinessLogic;
 using DVLD_BussinessLogic.Users_Classes;
+using DVLD_BussinessLogic.Users_Classes.User_Setting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,8 @@ namespace DVLD.Sub_Forms
         private void Fill_DataGridView(string FilterType = "", object Filter = null) 
         {
             _DataGridView.DataSource = clsUsers_BL.GetAllUsers(FilterType, Filter);
+            Label_Variable_Records.Text = _DataGridView.RowCount.ToString();
+
         }
 
 
@@ -58,14 +61,22 @@ namespace DVLD.Sub_Forms
         }
 
         #region Tool Strip Menue Item
+
+        // Task
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            int ID = Convert.ToInt32(_DataGridView.CurrentRow.Cells[0].Value);
+            Frm_UserInformation frm_User = new Frm_UserInformation(ID);
+
+
+            frm_User.ShowDialog();
 
         }
 
         private void addNewPersonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            PicButton_AddNewPerson_Click(sender, e);
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
@@ -94,16 +105,26 @@ namespace DVLD.Sub_Forms
             _RefreshTable();
         }
 
+        // Task
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            int ID = Convert.ToInt32(_DataGridView.CurrentRow.Cells[0].Value);
+            Frm_ChangePassword frm_ChangePassword = new Frm_ChangePassword(ID);
+            
+            frm_ChangePassword.ShowDialog();
+
 
         }
+        
 
+        // soon
         private void sendEmailToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
+
+        // soon
         private void phoneCallToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -116,11 +137,11 @@ namespace DVLD.Sub_Forms
 
 
         enum enColumnType {UserID=1,PersonID=2,Username=3,IsActive=4 }
-        private void UC_Filter_EvGetAnswer(int Column)
+        private void UC_Filter_EvGetAnswer(int Column )
         {
             UC_Filter.HideComboBox_YesNo();
 
-            switch ((enColumnType)Column)
+            switch ((enColumnType)Column - 1)
             {
 
                 case enColumnType.UserID:
@@ -147,22 +168,15 @@ namespace DVLD.Sub_Forms
         private void PicButton_AddNewPerson_Click(object sender, EventArgs e)
         {
 
-            //Frm_AddNewUser frm_AddNew = new Frm_AddNewUser();
-
-            //frm_AddNew.ShowDialog();
-
 
             Utilities.Methods.Show_AddEdit_NewUser(-1);
             _RefreshTable();
 
         }
 
+        private void UC_Filter_Load(object sender, EventArgs e)
+        {
 
-
-
-
-
-
-
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DVLD_BusinessLogic;
+﻿using DVLD.Properties;
+using DVLD_BusinessLogic;
 using DVLD_BussinessLogic;
 using System;
 using System.Windows.Forms;
@@ -14,20 +15,37 @@ namespace DVLD.Sub_Forms.People_Forms
             InitializeComponent();
         }
 
+        public Frm_Add_Edit_People(int ID) : this()
+        {
+            clsPeople = new clsPeople_BL(ID);
+
+            Label_Variable_PersonID.Text = clsPeople.PersonID.ToString();
+            UC_AddEditPerson.InitializeData
+                (
+                clsPeople.FirstName, clsPeople.SecondName,
+                clsPeople.ThirdName, clsPeople.LastName,
+                clsPeople.NationalNo, clsPeople.Phone,
+                clsPeople.Email, clsPeople.Address,
+                clsPeople.Gendor, clsPeople.DateOfBirth,
+                clsPeople.ImagePath
+                );
+            Label_FormTitle.Text = "Update Person";
+
+        }
         public delegate void RetrieveDate(clsPeople_BL clsPeople);
         public RetrieveDate Retrieve_1;
 
-       
+
         private void Frm_Add_Edit_People_Load(object sender, EventArgs e)
         {
             UC_AddEditPerson.InitializeComboBOX_Countries(clsCountries_BL.GetCountries());
-            
-                
+
         }
 
 
         private void UC_AddEditPerson_NeedImage(bool Response)
         {
+
 
             if (Response)
             {
@@ -36,7 +54,7 @@ namespace DVLD.Sub_Forms.People_Forms
                 UC_AddEditPerson.SetImage(ImagePath);
 
             }
-
+         
         }
 
         private void uC_AddEditPerson1_IsNationalNoExists(string NationalNo)
@@ -83,7 +101,6 @@ namespace DVLD.Sub_Forms.People_Forms
 
         }
 
-
         private void UC_AddEditPerson_SendMessageToClose()
         {
             /* If ID = -1 that's means the user  saved wrong Information 
@@ -100,5 +117,8 @@ namespace DVLD.Sub_Forms.People_Forms
         {
 
         }
+
+
+
     }
 }

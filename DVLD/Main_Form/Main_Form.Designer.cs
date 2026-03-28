@@ -36,9 +36,9 @@
             this.MS__Users = new System.Windows.Forms.ToolStripMenuItem();
             this.MS__AccountSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.currentUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changeUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeCurrUserPassdTSM = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.signOut_SM = new System.Windows.Forms.ToolStripMenuItem();
             this.MS_Main.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,9 +100,9 @@
             // 
             this.MS__AccountSetting.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.currentUserToolStripMenuItem,
-            this.changeUserToolStripMenuItem,
+            this.changeCurrUserPassdTSM,
             this.toolStripMenuItem2,
-            this.signOutToolStripMenuItem});
+            this.signOut_SM});
             this.MS__AccountSetting.Image = global::DVLD.Properties.Resources.user_7766858;
             this.MS__AccountSetting.Name = "MS__AccountSetting";
             this.MS__AccountSetting.Size = new System.Drawing.Size(221, 68);
@@ -114,25 +114,28 @@
             this.currentUserToolStripMenuItem.Name = "currentUserToolStripMenuItem";
             this.currentUserToolStripMenuItem.Size = new System.Drawing.Size(281, 70);
             this.currentUserToolStripMenuItem.Text = "Current User";
+            this.currentUserToolStripMenuItem.Click += new System.EventHandler(this.currentUserToolStripMenuItem_Click);
             // 
-            // changeUserToolStripMenuItem
+            // changeCurrUserPassdTSM
             // 
-            this.changeUserToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("changeUserToolStripMenuItem.Image")));
-            this.changeUserToolStripMenuItem.Name = "changeUserToolStripMenuItem";
-            this.changeUserToolStripMenuItem.Size = new System.Drawing.Size(281, 70);
-            this.changeUserToolStripMenuItem.Text = "Change Password";
+            this.changeCurrUserPassdTSM.Image = ((System.Drawing.Image)(resources.GetObject("changeCurrUserPassdTSM.Image")));
+            this.changeCurrUserPassdTSM.Name = "changeCurrUserPassdTSM";
+            this.changeCurrUserPassdTSM.Size = new System.Drawing.Size(281, 70);
+            this.changeCurrUserPassdTSM.Text = "Change Password";
+            this.changeCurrUserPassdTSM.Click += new System.EventHandler(this.changeUserToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(278, 6);
             // 
-            // signOutToolStripMenuItem
+            // signOut_SM
             // 
-            this.signOutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("signOutToolStripMenuItem.Image")));
-            this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
-            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(281, 70);
-            this.signOutToolStripMenuItem.Text = "Sign Out";
+            this.signOut_SM.Image = ((System.Drawing.Image)(resources.GetObject("signOut_SM.Image")));
+            this.signOut_SM.Name = "signOut_SM";
+            this.signOut_SM.Size = new System.Drawing.Size(281, 70);
+            this.signOut_SM.Text = "Sign Out";
+            this.signOut_SM.Click += new System.EventHandler(this.signOut_SM_Click);
             // 
             // Main_Form
             // 
@@ -149,6 +152,7 @@
             this.MainMenuStrip = this.MS_Main;
             this.Name = "Main_Form";
             this.Text = "Main";
+            this.Load += new System.EventHandler(this.Main_Form_Load);
             this.MS_Main.ResumeLayout(false);
             this.MS_Main.PerformLayout();
             this.ResumeLayout(false);
@@ -165,9 +169,9 @@
         private System.Windows.Forms.ToolStripMenuItem MS__Users;
         private System.Windows.Forms.ToolStripMenuItem MS__AccountSetting;
         private System.Windows.Forms.ToolStripMenuItem currentUserToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changeUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeCurrUserPassdTSM;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem signOut_SM;
     }
 }
 

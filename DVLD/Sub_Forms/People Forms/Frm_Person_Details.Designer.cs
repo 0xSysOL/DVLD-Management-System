@@ -30,7 +30,7 @@
         {
             this.Btn_Close = new System.Windows.Forms.Button();
             this.Form_Title = new System.Windows.Forms.Label();
-            this.PersonInfo_Form = new DVLD.User_Controls.UserControl_Person_Information();
+            this.uC_ShowPersonInfo1 = new DVLD.User_Controls.UC_ShowPersonInfo();
             this.SuspendLayout();
             // 
             // Btn_Close
@@ -57,21 +57,24 @@
             this.Form_Title.TabIndex = 32;
             this.Form_Title.Text = "Person Details ";
             // 
-            // PersonInfo_Form
+            // uC_ShowPersonInfo1
             // 
-            this.PersonInfo_Form.Location = new System.Drawing.Point(12, 91);
-            this.PersonInfo_Form.Name = "PersonInfo_Form";
-            this.PersonInfo_Form.Size = new System.Drawing.Size(751, 292);
-            this.PersonInfo_Form.TabIndex = 0;
+            this.uC_ShowPersonInfo1.Location = new System.Drawing.Point(12, 86);
+            this.uC_ShowPersonInfo1.Name = "uC_ShowPersonInfo1";
+            this.uC_ShowPersonInfo1.Size = new System.Drawing.Size(751, 297);
+            this.uC_ShowPersonInfo1.TabIndex = 33;
+            this.uC_ShowPersonInfo1.SendRequestToGetImage += new System.Action<bool, string>(this.uC_ShowPersonInfo1_SendRequestToGetImage);
+            this.uC_ShowPersonInfo1.SendEditEvent += new System.Action(this.uC_ShowPersonInfo1_SendEditEvent);
+            this.uC_ShowPersonInfo1.Load += new System.EventHandler(this.uC_ShowPersonInfo1_Load);
             // 
             // Frm_Person_Details
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(770, 430);
+            this.Controls.Add(this.uC_ShowPersonInfo1);
             this.Controls.Add(this.Form_Title);
             this.Controls.Add(this.Btn_Close);
-            this.Controls.Add(this.PersonInfo_Form);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Frm_Person_Details";
             this.Text = "Frm_Person_Details";
@@ -82,9 +85,8 @@
         }
 
         #endregion
-
-        private User_Controls.UserControl_Person_Information PersonInfo_Form;
         private System.Windows.Forms.Button Btn_Close;
         private System.Windows.Forms.Label Form_Title;
+        private User_Controls.UC_ShowPersonInfo uC_ShowPersonInfo1;
     }
 }

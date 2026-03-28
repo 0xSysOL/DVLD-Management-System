@@ -24,6 +24,8 @@ namespace DVLD.Sub_Forms.Users_Forms
 
         }
 
+
+        
         private void Initialization_UserData(int UserID = -1)
         {
             if (UserID != -1)
@@ -58,6 +60,8 @@ namespace DVLD.Sub_Forms.Users_Forms
 
 
         }
+      
+        
         public Frm_AddNewUser(int UserID = -1)
         {
             InitializeComponent();
@@ -145,7 +149,7 @@ namespace DVLD.Sub_Forms.Users_Forms
             clsPeople.FillPersonObject(Value);
             if (clsPeople.PersonID == -1)
             {
-                MessageBox.Show("Person Not Found");
+                MessageBox.Show("Person Not Found","Information",MessageBoxButtons.OK,MessageBoxIcon.Question);
                 return;
             }
             IsPersonLinked = clsUsers_BL.IsThePersonLinkedTableUsers(clsPeople.PersonID);
@@ -263,7 +267,7 @@ namespace DVLD.Sub_Forms.Users_Forms
 
             if (Utilities.Methods.Fill_UC_Controls(UC_ShowPersonInfo, clsPersonInfo))
             {
-                MessageBox.Show("Person Add", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Person Added", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Btn_Save.Enabled = true;
                 IsPersonLinked = false;
             }
