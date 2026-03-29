@@ -44,7 +44,7 @@
             this.Label_Const_Records = new System.Windows.Forms.Label();
             this.Label_Variable_Records = new System.Windows.Forms.Label();
             this.PicButton_AddNewPerson = new System.Windows.Forms.PictureBox();
-            this.uC_Filter1 = new DVLD.User_Controls.UC_Filter();
+            this.UC_Filter = new DVLD.User_Controls.UC_Filter();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_FormImageTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._DataGridView)).BeginInit();
             this._ContextMenuStrip_People.SuspendLayout();
@@ -148,6 +148,7 @@
             this.SendEmail_TSMI.Name = "SendEmail_TSMI";
             this.SendEmail_TSMI.Size = new System.Drawing.Size(178, 38);
             this.SendEmail_TSMI.Text = "Send Email";
+            this.SendEmail_TSMI.Click += new System.EventHandler(this.SendEmail_TSMI_Click);
             // 
             // PhoneCall_TSMI
             // 
@@ -155,6 +156,7 @@
             this.PhoneCall_TSMI.Name = "PhoneCall_TSMI";
             this.PhoneCall_TSMI.Size = new System.Drawing.Size(178, 38);
             this.PhoneCall_TSMI.Text = "Phone Call";
+            this.PhoneCall_TSMI.Click += new System.EventHandler(this.PhoneCall_TSMI_Click);
             // 
             // Label_Const_Records
             // 
@@ -188,19 +190,21 @@
             this.PicButton_AddNewPerson.TabStop = false;
             this.PicButton_AddNewPerson.Click += new System.EventHandler(this.PicButton_AddNewPerson_Click);
             // 
-            // uC_Filter1
+            // UC_Filter
             // 
-            this.uC_Filter1.Location = new System.Drawing.Point(18, 239);
-            this.uC_Filter1.Name = "uC_Filter1";
-            this.uC_Filter1.Size = new System.Drawing.Size(456, 45);
-            this.uC_Filter1.TabIndex = 15;
+            this.UC_Filter.Location = new System.Drawing.Point(18, 239);
+            this.UC_Filter.Name = "UC_Filter";
+            this.UC_Filter.Size = new System.Drawing.Size(456, 45);
+            this.UC_Filter.TabIndex = 15;
+            this.UC_Filter.EvFilter += new System.Action<string, object>(this.uC_Filter1_EvFilter);
+            this.UC_Filter.Ev_IsInt += new System.Action<int>(this.uC_Filter1_Ev_IsInt);
             // 
             // Frm_People
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1036, 597);
-            this.Controls.Add(this.uC_Filter1);
+            this.Controls.Add(this.UC_Filter);
             this.Controls.Add(this.Label_Variable_Records);
             this.Controls.Add(this.Label_Const_Records);
             this.Controls.Add(this.PicButton_AddNewPerson);
@@ -237,6 +241,6 @@
         private System.Windows.Forms.ToolStripMenuItem SendEmail_TSMI;
         private System.Windows.Forms.ToolStripMenuItem PhoneCall_TSMI;
         private System.Windows.Forms.PictureBox PicButton_AddNewPerson;
-        private User_Controls.UC_Filter uC_Filter1;
+        private User_Controls.UC_Filter UC_Filter;
     }
 }

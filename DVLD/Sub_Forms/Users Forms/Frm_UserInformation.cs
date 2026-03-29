@@ -1,4 +1,6 @@
-﻿using DVLD_BusinessLogic;
+﻿using DVLD.Sub_Forms.People_Forms;
+using DVLD.User_Controls;
+using DVLD_BusinessLogic;
 using DVLD_BussinessLogic.Users_Classes;
 using System;
 using System.Collections.Generic;
@@ -15,10 +17,10 @@ namespace DVLD.Sub_Forms.Users_Forms
     public partial class Frm_UserInformation : Form
     {
         clsUsers_BL clsUser;
-        
+        clsPeople_BL clsPerson;
         private void InitializePerson_S_User() 
         {
-            clsPeople_BL clsPerson = new clsPeople_BL(clsUser.PersonID);
+            clsPerson = new clsPeople_BL(clsUser.PersonID);
 
             Utilities.Methods.Fill_UC_Controls(UC_ShowPersonInfo_1,clsPerson);
         }
@@ -60,6 +62,23 @@ namespace DVLD.Sub_Forms.Users_Forms
         {
 
                 Utilities.Methods.SetImage(UC_ShowPersonInfo_1, Request, ImageKey);
+
+        }
+
+
+        private void SavePerson(clsPeople_BL PersonInfo)
+        {
+            clsPerson = PersonInfo;
+            clsPerson.Save();
+            Utilities.Methods.Fill_UC_Controls(UC_ShowPersonInfo_1, clsPerson);
+
+        }
+        private void UC_ShowPersonInfo_1_SendEditEvent()
+        {
+            Frm_Add_Edit_People frm_Add_Edit = new Frm_Add_Edit_People(clsUser.PersonID);
+            frm_Add_Edit.Retrieve_1 = SavePerson;
+            frm_Add_Edit.ShowDialog();
+
 
         }
     }

@@ -123,6 +123,7 @@ namespace DVLD.User_Controls
 
         private void LinkLabel_EditPerson_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            if(SendEditEvent != null)
             SendEditEvent();
         }
     }

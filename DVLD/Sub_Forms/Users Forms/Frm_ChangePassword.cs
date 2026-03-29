@@ -1,4 +1,5 @@
-﻿using DVLD.User_Controls;
+﻿using DVLD.Sub_Forms.People_Forms;
+using DVLD.User_Controls;
 using DVLD.User_Controls.Users_User_Control;
 using DVLD_BusinessLogic;
 using DVLD_BussinessLogic.Users_Classes;
@@ -18,6 +19,7 @@ namespace DVLD.Sub_Forms.Users_Forms
     {
 
         clsUsers_BL clsUser;
+        clsPeople_BL clsPerson;
         private int _InitializeUserDate(int ID)
         {
 
@@ -47,8 +49,8 @@ namespace DVLD.Sub_Forms.Users_Forms
                 return;
 
 
-            DataTable data = clsPeople_BL.GetPersonByID(clsUser.PersonID);
-            Utilities.Methods.Fill_UC_Controls(uC_ShowPersonInfo,data);
+            clsPerson = new clsPeople_BL(clsUser.PersonID);
+            Utilities.Methods.Fill_UC_Controls(uC_ShowPersonInfo,clsPerson);
 
 
         }
@@ -137,6 +139,20 @@ namespace DVLD.Sub_Forms.Users_Forms
         private void Btn_Close_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void SavePerson(clsPeople_BL PersonInfo)
+        {
+            clsPerson = PersonInfo;
+            clsPerson.Save();
+            Utilities.Methods.Fill_UC_Controls(uC_ShowPersonInfo, clsPerson);
+
+        }
+        private void uC_ShowPersonInfo_SendEditEvent()
+        {
+            Frm_Add_Edit_People frm_Add_Edit = new Frm_Add_Edit_People(clsUser.PersonID);
+            frm_Add_Edit.Retrieve_1 = SavePerson;
+            frm_Add_Edit.ShowDialog();
+
         }
     }
 }

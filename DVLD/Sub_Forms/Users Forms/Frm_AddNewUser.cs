@@ -9,6 +9,7 @@ namespace DVLD.Sub_Forms.Users_Forms
 {
     public partial class Frm_AddNewUser : Form
     {
+
         clsUsers_BL clsUser;
         clsPeople_BL clsPeople;
         bool IsPersonLinked = true;
@@ -51,9 +52,9 @@ namespace DVLD.Sub_Forms.Users_Forms
         {
             if (PersonID != -1)
             {
-
+                clsPeople = new clsPeople_BL(PersonID);
                 Utilities.Methods.Fill_UC_Controls
-                (UC_ShowPersonInfo, clsPeople_BL.GetPersonByID(PersonID));
+                (UC_ShowPersonInfo, clsPeople);
                 EnableControl_Save(true);
 
             }
@@ -144,12 +145,16 @@ namespace DVLD.Sub_Forms.Users_Forms
         private void UC_Filter_EvClickedSearchButton(string Value)
         {
 
+
+
             EnabledUserTextBox(false);
+            clsPeople = null;
             clsPeople = new clsPeople_BL();
-            clsPeople.FillPersonObject(Value);
+            clsPeople.LoadPersonDataNationalNo(Value);
             if (clsPeople.PersonID == -1)
             {
-                MessageBox.Show("Person Not Found","Information",MessageBoxButtons.OK,MessageBoxIcon.Question);
+                MessageBox.Show("Person Not Found","Information",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                UC_ShowPersonInfo.ResetControls();
                 return;
             }
             IsPersonLinked = clsUsers_BL.IsThePersonLinkedTableUsers(clsPeople.PersonID);
@@ -294,10 +299,27 @@ namespace DVLD.Sub_Forms.Users_Forms
 
         }
 
-      
+        private void SavePerson(clsPeople_BL PersonInfo)
+        {
+            clsPeople = PersonInfo;
+            clsPeople.Save();  
+            Utilities.Methods.Fill_UC_Controls(UC_ShowPersonInfo, clsPeople);
 
+        }
+        private void UC_ShowPersonInfo_SendEditEvent()
+        {
 
+            //MessageBox.Show("Soon");
+            if (clsPeople.PersonID == -1)
+                return;
 
+            Frm_Add_Edit_People frm_Add_Edit = new Frm_Add_Edit_People(clsPeople.PersonID);
+            frm_Add_Edit.Retrieve_1 = SavePerson;
+
+            frm_Add_Edit.ShowDialog();
+            
+
+        }
     }
 
 

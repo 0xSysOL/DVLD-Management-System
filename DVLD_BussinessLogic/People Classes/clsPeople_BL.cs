@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.IO;
 namespace DVLD_BusinessLogic
-{ 
+{
     public class clsPeople_BL
     {
         #region Members
@@ -35,12 +35,17 @@ namespace DVLD_BusinessLogic
 
         #region InitializeData
 
-        private void _LoadPersonData(int ID = -1)
+        private void _LoadPersonData(int ID = -1, string _NationalNo = null)
         {
 
-            DataTable PersonInfo = clsPeople_DL.GetPersonByID(ID);
+            DataTable PersonInfo = new DataTable();
+            if (ID != -1)
+                PersonInfo = GetPersonByID(ID);
+            else if (_NationalNo != null)
+                PersonInfo = GetPersonByNationalNo(_NationalNo);
 
-            if (PersonInfo.Rows.Count <=0) return;
+
+            if (PersonInfo.Rows.Count <= 0) return;
 
             PersonID = (int)PersonInfo.Rows[0]["PersonID"];
             NationalNo = PersonInfo.Rows[0]["NationalNo"].ToString();
@@ -59,6 +64,29 @@ namespace DVLD_BusinessLogic
             mode = eMode.Update;
             ImageKey = Path.GetFileNameWithoutExtension(ImagePath);
 
+
+
+        }
+        public void LoadPersonDataNationalNo(string _NationalNo)
+        {
+
+            _LoadPersonData(-1, _NationalNo);
+
+            //if (data.Rows.Count <= 0) return;
+            //PersonID = Convert.ToInt32(data.Rows[0]["PersonID"]);
+            //FirstName = (data.Rows[0]["FirstName"]).ToString();
+            //SecondName = (data.Rows[0]["SecondName"]).ToString();
+            //ThirdName = (data.Rows[0]["ThirdName"]).ToString();
+            //LastName = (data.Rows[0]["LastName"]).ToString();
+            //Address = (data.Rows[0]["Address"]).ToString();
+            //Phone = (data.Rows[0]["Phone"]).ToString();
+            //DateOfBirth = Convert.ToDateTime(data.Rows[0]["DateOfBirth"]);
+            //ImagePath = (data.Rows[0]["ImagePath"]).ToString();
+            //CountryName = data.Rows[0]["Nationality"].ToString();
+            //NationalNo = data.Rows[0]["NationalNo"].ToString();
+            //Email = data.Rows[0]["Email"].ToString();
+
+            //Gendor = (data.Rows[0]["Gendor"].ToString() == "Male") ? (short)0 : (short)1;
 
 
         }
@@ -233,19 +261,22 @@ namespace DVLD_BusinessLogic
             CountryID = clsCountries_DL.GetCountryID_ByName(CountryName);
         }
 
-
-
         public static bool IsNationalNoExists(string NationalNo)
         {
 
             return clsPeople_DL.IsNationalNoExists(NationalNo);
         }
 
+        public static bool IsPersonExists(int PersonID) 
+        {
+
+            return clsPeople_DL.IsPersonExists(PersonID);
+        }
         #endregion END
 
 
 
-        public static DataTable GetPersonByNationalNo(string NationalNo) 
+        public static DataTable GetPersonByNationalNo(string NationalNo)
         {
             if (NationalNo.Length < 50)
                 return clsPeople_DL.GetPersonByNationalNo(NationalNo);
@@ -264,28 +295,6 @@ namespace DVLD_BusinessLogic
 
             return clsPeople_DL.GetPersonByID(ID);
         }
-        public  void FillPersonObject(string _NationalNo)
-        {
-            DataTable data = GetPersonByNationalNo(_NationalNo);
-
-            if (data.Rows.Count <= 0) return;
-            PersonID = Convert.ToInt32(data.Rows[0]["PersonID"]);
-            FirstName = (data.Rows[0]["FirstName"]).ToString();
-            SecondName = (data.Rows[0]["SecondName"]).ToString();
-            ThirdName = (data.Rows[0]["ThirdName"]).ToString();
-            LastName = (data.Rows[0]["LastName"]).ToString();
-            Address = (data.Rows[0]["Address"]).ToString();
-            Phone = (data.Rows[0]["Phone"]).ToString();
-            DateOfBirth = Convert.ToDateTime(data.Rows[0]["DateOfBirth"]);
-            ImagePath = (data.Rows[0]["ImagePath"]).ToString();
-            CountryName = data.Rows[0]["Nationality"].ToString();
-            NationalNo = data.Rows[0]["NationalNo"].ToString();
-            Email = data.Rows[0]["Email"].ToString();
-
-            Gendor = (data.Rows[0]["Gendor"].ToString() == "Male") ? (short)0 : (short)1;
-            
-
-        }
 
         #region Delete Person
 
@@ -296,13 +305,13 @@ namespace DVLD_BusinessLogic
         }
         private static void _RemovePicture(string Key)
         {
-            
+
             if (string.IsNullOrEmpty(Key)) return;
 
             string Path = FindImagePath(Key);
             if (string.IsNullOrEmpty(Path)) return;
             File.Delete(Path);
-      
+
         }
         public static bool DeletePerson(int ID)
         {
@@ -314,7 +323,7 @@ namespace DVLD_BusinessLogic
                 _RemovePicture(ImagePath);
                 return true;
             }
-            
+
 
 
             return false;

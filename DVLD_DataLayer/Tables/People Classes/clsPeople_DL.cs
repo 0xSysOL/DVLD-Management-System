@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
  
 
 namespace DVLD_DataLayer
@@ -16,6 +16,15 @@ namespace DVLD_DataLayer
       
         internal static bool _Filter(ref SqlCommand command, string FilterColumn, object Value,string ModeType = "")
         {
+            if(FilterColumn == "Gendor")
+            {
+
+                command.CommandText = clsQ_People.ReturnMeleOrFemale;
+                command.Parameters.AddWithValue("@ColumnValue", Value);
+                return false;
+               
+            }
+
             if (FilterColumn != "" && ModeType == "")
             {
                 command.CommandText = clsQ_People.GetAllPeople + $" where [{FilterColumn}]  like @ColumnValue + '%' ";
@@ -125,7 +134,33 @@ namespace DVLD_DataLayer
             return result != null ? true : false;
 
         }
+        public static bool IsPersonExists(int PersonID)
+        {
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQ_People.IsPersonExists, connection);
 
+            command.Parameters.AddWithValue("@Value", PersonID);
+            object result = null;
+            try
+            {
+                connection.Open();
+
+                result = command.ExecuteScalar();
+
+            }
+            catch (Exception e)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+
+            return result != null ? true : false;
+
+        }
         public static DataTable GetPersonByNationalNo(string NationalNo)
         {
             SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);

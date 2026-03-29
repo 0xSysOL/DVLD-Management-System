@@ -9,7 +9,7 @@
         public const string GetOnePerson = "SELECT * FROM GetOnePerson ";
         public const string GetImagePath = @"Select ImagePath from People where PersonID = @PersonID";
         public const string GetPersonByNationalNo = "SELECT * FROM GetOnePerson WHERE NationalNo = @value";
-
+         
 
 
         public const string AddPerson = @"INSERT INTO People 
@@ -33,7 +33,16 @@ where PersonID = @PersonID
 ";
         public const string DeletePerson = "Delete from People where PersonID = @value";
         public const string FindNationalNo = @"select  NationalNo = 1 from People where NationalNo = @NationalNo";
-
+        public const string IsPersonExists = "Select Found=1 from People where PersonID = @Value";
+        public const string ReturnMeleOrFemale =
+             @"select PersonID,FirstName
+,SecondName,ThirdName,LastName,
+DateOfBirth,
+case when Gendor = 0 then 'Male' else 'Female' end as Gendor
+,Address,Phone,Email,ImagePath,Nationality,NationalNo from (
+select * from People
+where Gendor = @ColumnValue
+)R1";
 
     }
     #endregion

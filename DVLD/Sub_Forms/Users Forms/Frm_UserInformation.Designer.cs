@@ -48,6 +48,7 @@
             this.UC_ShowPersonInfo_1.Size = new System.Drawing.Size(751, 341);
             this.UC_ShowPersonInfo_1.TabIndex = 0;
             this.UC_ShowPersonInfo_1.SendRequestToGetImage += new System.Action<bool, string>(this.UC_ShowPersonInfo_1_SendRequestToGetImage);
+            this.UC_ShowPersonInfo_1.SendEditEvent += new System.Action(this.UC_ShowPersonInfo_1_SendEditEvent);
             this.UC_ShowPersonInfo_1.Load += new System.EventHandler(this.UC_ShowPersonInfo_1_Load);
             // 
             // Frm_UserInformation

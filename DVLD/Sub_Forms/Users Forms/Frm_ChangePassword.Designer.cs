@@ -169,6 +169,7 @@
             this.uC_ShowPersonInfo.Size = new System.Drawing.Size(751, 341);
             this.uC_ShowPersonInfo.TabIndex = 53;
             this.uC_ShowPersonInfo.SendRequestToGetImage += new System.Action<bool, string>(this.uC_ShowPersonInfo_SendRequestToGetImage);
+            this.uC_ShowPersonInfo.SendEditEvent += new System.Action(this.uC_ShowPersonInfo_SendEditEvent);
             // 
             // _UC_ChangeUserPassword
             // 

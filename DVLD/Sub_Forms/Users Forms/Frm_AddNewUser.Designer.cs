@@ -35,8 +35,6 @@
             this.TabPage_1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Btn_Next = new System.Windows.Forms.Button();
-            this.UC_ShowPersonInfo = new DVLD.User_Controls.UC_ShowPersonInfo();
-            this.UC_Filter = new DVLD.User_Controls.UC_Filter();
             this.TabPage_2 = new System.Windows.Forms.TabPage();
             this.CheckBox_Active = new System.Windows.Forms.CheckBox();
             this.TB_ConfirmPassword = new System.Windows.Forms.TextBox();
@@ -55,6 +53,8 @@
             this.Btn_Close = new System.Windows.Forms.Button();
             this.Btn_Save = new System.Windows.Forms.Button();
             this.ErrorProvider_Fail = new System.Windows.Forms.ErrorProvider(this.components);
+            this.UC_ShowPersonInfo = new DVLD.User_Controls.UC_ShowPersonInfo();
+            this.UC_Filter = new DVLD.User_Controls.UC_Filter();
             this.TabControl.SuspendLayout();
             this.TabPage_1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -128,28 +128,6 @@
             this.Btn_Next.Text = "Next";
             this.Btn_Next.UseVisualStyleBackColor = true;
             this.Btn_Next.Click += new System.EventHandler(this.Btn_Next_Click);
-            // 
-            // UC_ShowPersonInfo
-            // 
-            this.UC_ShowPersonInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UC_ShowPersonInfo.Location = new System.Drawing.Point(11, 45);
-            this.UC_ShowPersonInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.UC_ShowPersonInfo.Name = "UC_ShowPersonInfo";
-            this.UC_ShowPersonInfo.Size = new System.Drawing.Size(747, 287);
-            this.UC_ShowPersonInfo.TabIndex = 9;
-            this.UC_ShowPersonInfo.SendPersonID += new System.Action<int>(this.UC_ShowPersonInfo_SendPersonID);
-            this.UC_ShowPersonInfo.SendRequestToGetImage += new System.Action<bool, string>(this.UC_ShowPersonInfo_SendRequestToGetImage);
-            // 
-            // UC_Filter
-            // 
-            this.UC_Filter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UC_Filter.Location = new System.Drawing.Point(11, 7);
-            this.UC_Filter.Margin = new System.Windows.Forms.Padding(4);
-            this.UC_Filter.Name = "UC_Filter";
-            this.UC_Filter.Size = new System.Drawing.Size(380, 45);
-            this.UC_Filter.TabIndex = 8;
-            this.UC_Filter.Ev_IsInt += new System.Action<int>(this.UC_Filter_Ev_IsInt);
-            this.UC_Filter.EvClickedSearchButton += new System.Action<string>(this.UC_Filter_EvClickedSearchButton);
             // 
             // TabPage_2
             // 
@@ -349,6 +327,29 @@
             // 
             this.ErrorProvider_Fail.ContainerControl = this;
             this.ErrorProvider_Fail.Icon = ((System.Drawing.Icon)(resources.GetObject("ErrorProvider_Fail.Icon")));
+            // 
+            // UC_ShowPersonInfo
+            // 
+            this.UC_ShowPersonInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UC_ShowPersonInfo.Location = new System.Drawing.Point(11, 45);
+            this.UC_ShowPersonInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.UC_ShowPersonInfo.Name = "UC_ShowPersonInfo";
+            this.UC_ShowPersonInfo.Size = new System.Drawing.Size(747, 287);
+            this.UC_ShowPersonInfo.TabIndex = 9;
+            this.UC_ShowPersonInfo.SendPersonID += new System.Action<int>(this.UC_ShowPersonInfo_SendPersonID);
+            this.UC_ShowPersonInfo.SendRequestToGetImage += new System.Action<bool, string>(this.UC_ShowPersonInfo_SendRequestToGetImage);
+            this.UC_ShowPersonInfo.SendEditEvent += new System.Action(this.UC_ShowPersonInfo_SendEditEvent);
+            // 
+            // UC_Filter
+            // 
+            this.UC_Filter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UC_Filter.Location = new System.Drawing.Point(11, 7);
+            this.UC_Filter.Margin = new System.Windows.Forms.Padding(4);
+            this.UC_Filter.Name = "UC_Filter";
+            this.UC_Filter.Size = new System.Drawing.Size(380, 45);
+            this.UC_Filter.TabIndex = 8;
+            this.UC_Filter.Ev_IsInt += new System.Action<int>(this.UC_Filter_Ev_IsInt);
+            this.UC_Filter.EvClickedSearchButton += new System.Action<string>(this.UC_Filter_EvClickedSearchButton);
             // 
             // Frm_AddNewUser
             // 
