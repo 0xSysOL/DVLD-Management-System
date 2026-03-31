@@ -62,6 +62,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Sub_Forms\Application\ManageAppTypes\Frm_EditAppTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\ManageAppTypes\Frm_EditAppTypes.Designer.cs">
+      <DependentUpon>Frm_EditAppTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\ManageAppTypes\Frm_Manage_Application_Types_.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\ManageAppTypes\Frm_Manage_Application_Types_.Designer.cs">
+      <DependentUpon>Frm_Manage_Application_Types_.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sub_Forms\People Forms\Frm_Add_Edit_People.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +157,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Application\ManageAppTypes\Frm_EditAppTypes.resx">
+      <DependentUpon>Frm_EditAppTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Application\ManageAppTypes\Frm_Manage_Application_Types_.resx">
+      <DependentUpon>Frm_Manage_Application_Types_.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\People Forms\Frm_Add_Edit_People.resx">
       <DependentUpon>Frm_Add_Edit_People.cs</DependentUpon>

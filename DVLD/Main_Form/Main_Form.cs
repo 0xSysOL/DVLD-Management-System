@@ -1,4 +1,5 @@
 ﻿using DVLD.Sub_Forms;
+using DVLD.Sub_Forms.Application;
 using DVLD.Sub_Forms.Users_Forms;
 using DVLD_BussinessLogic.Users_Classes;
 using DVLD_BussinessLogic.Users_Classes.User_Setting;
@@ -66,7 +67,35 @@ namespace DVLD
 
         }
 
+        
         private void Main_Form_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void manageApplicationTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Manage_Application_Types_ Show_MAT = new Frm_Manage_Application_Types_();
+
+            Show_MAT.Show();
+        }
+
+        private void DrivingLS_ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void manageApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void detainLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void manageTestTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }

@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Application Classes\clsManageApplicationTypes_BL.cs" />
     <Compile Include="Countries Classes\clsCountries_BL.cs" />
     <Compile Include="People Classes\clsPeople_BL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

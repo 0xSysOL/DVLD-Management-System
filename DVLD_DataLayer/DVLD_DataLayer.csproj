@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application Classes\clsManageApplicationTypes_DL.cs" />
     <Compile Include="Tables\Users Classes\clsUsers_DL.cs" />
     <Compile Include="Tables\Countries Classes\clsCountries_DL.cs" />
     <Compile Include="Tables\People Classes\clsPeople_DL.cs" />
