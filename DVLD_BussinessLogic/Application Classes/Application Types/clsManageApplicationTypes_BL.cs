@@ -10,11 +10,11 @@ namespace DVLD_BussinessLogic.Application_Classes
 {
     public class clsManageApplicationTypes_BL
     {
-        enum eMode { Update=0,Add=1}
-        eMode mode;
-        int ID;
-        private string Title;
-        private decimal Fees;
+       protected enum eMode { Update=0,Add=1}
+       protected eMode mode;
+       protected int ID;
+       protected string Title;
+       protected decimal Fees;
 
         public void SetTitle(string Title) 
         {
@@ -42,19 +42,19 @@ namespace DVLD_BussinessLogic.Application_Classes
 
             return Fees;
         }
-        clsManageApplicationTypes_BL()
+        public clsManageApplicationTypes_BL()
         {
             ID = -1;
             Title = "";
             Fees = 0;
         }
-       public clsManageApplicationTypes_BL(int ID) :this()
+        public  clsManageApplicationTypes_BL(int ID) :this()
         {
 
            this.ID =  GetAppTypeByID(ID,ref Title,ref Fees);
 
         }
-        public static DataTable GetManageApplicationType() 
+        public virtual DataTable GetManageApplicationType() 
         {
             return clsManageApplicationTypes_DL.GetManageApplicationType();
         }
@@ -65,7 +65,7 @@ namespace DVLD_BussinessLogic.Application_Classes
             return clsManageApplicationTypes_DL.GetManageAppTypeByID(ID, ref Title, ref Fees);
 
         }
-        public bool Save() 
+        public virtual bool Save() 
         {
 
             switch (mode)

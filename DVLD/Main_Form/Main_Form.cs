@@ -1,5 +1,6 @@
 ﻿using DVLD.Sub_Forms;
 using DVLD.Sub_Forms.Application;
+using DVLD.Sub_Forms.Application.ManageTestTypes;
 using DVLD.Sub_Forms.Users_Forms;
 using DVLD_BussinessLogic.Users_Classes;
 using DVLD_BussinessLogic.Users_Classes.User_Setting;
@@ -97,6 +98,9 @@ namespace DVLD
 
         private void manageTestTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Frm_ManageTestTypes manageTestTypes = new Frm_ManageTestTypes();
+
+            manageTestTypes.ShowDialog();
 
         }
     }

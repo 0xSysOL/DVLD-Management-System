@@ -36,14 +36,15 @@ namespace DVLD.Sub_Forms.Application.ManageAppTypes
         private void Btn_Save_Click(object sender, EventArgs e)
         {
 
-            if (!TB_Fees.Text.All(c => char.IsDigit(c) || c == '.'))
+
+            if (!Utilities.Methods.IsDecimal(TB_Fees))
             {
-
-
                 ErrorProvider.SetError(TB_Fees, "Please Enter Number");
                 return;
-            }else
+            }
+            else
                 ErrorProvider.SetError(TB_Fees, "");
+
 
 
             RecordAppType.SetTitle(TB_Title.Text);

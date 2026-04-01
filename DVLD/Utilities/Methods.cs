@@ -1,9 +1,9 @@
 ﻿using DVLD.Sub_Forms.Users_Forms;
 using DVLD.User_Controls;
 using DVLD_BusinessLogic;
-using DVLD_BussinessLogic.Users_Classes;
 using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace DVLD.Utilities
@@ -51,17 +51,17 @@ string address)
             // If Object Null We will stop Processing
             if (PersonData == null)
                 return false;
-         
+
 
             // Collecting the Names
             string FullName = PersonData.FirstName + " " + PersonData.SecondName + " " + PersonData.ThirdName + " " + PersonData.LastName;
-            
+
             // Fill Controls And Will be Showing On Display.
             UC_Fill.FillControls(
                 PersonData.PersonID.ToString(), FullName, PersonData.NationalNo,
-                (PersonData.Gendor == 0) ? "Male" : "Female", PersonData.Address, 
+                (PersonData.Gendor == 0) ? "Male" : "Female", PersonData.Address,
                 PersonData.DateOfBirth.ToShortDateString(),
-                PersonData.Phone, PersonData.CountryName, PersonData.Email,PersonData.ImageKey);
+                PersonData.Phone, PersonData.CountryName, PersonData.Email, PersonData.ImageKey);
 
 
             return true;
@@ -101,7 +101,7 @@ string address)
 
             return true;
         }
-        
+
 
         public static void FillComboBOX(DataTable dataTable, ComboBox ComboBOX)
         {
@@ -148,15 +148,28 @@ string address)
             Frm_AddNewUser frm_AddNew = new Frm_AddNewUser(ID);
             frm_AddNew.ShowDialog();
 
-            
+
         }
 
 
-        public static void SetImage(UC_ShowPersonInfo User_Control,bool Request, string ImageKey)
+        public static void SetImage(UC_ShowPersonInfo User_Control, bool Request, string ImageKey)
         {
 
             if (Request != false)
                 User_Control.SetImage(clsPeople_BL.FindImagePath(ImageKey));
+
+
+        }
+
+
+        public static bool IsDecimal(TextBox TB)
+        {
+
+            if (TB.Text.All(c => char.IsDigit(c) || c == '.'))
+                return true;
+            else
+                return false;
+
 
 
         }

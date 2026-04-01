@@ -87,7 +87,7 @@ where Gendor = @ColumnValue
 
     #region Application Queries
 
-   internal static class clsQManage_Application_Types
+   internal static class clsQManage_Application_Types 
     {
 
 
@@ -106,6 +106,26 @@ where ApplicationTypeID = @ID
 
     }
 
+    internal static class clsQManage_Test_Types
+    {
+
+
+        public const string GetTestTypes = "select * from TestsType";
+        public const string GetOneRecord = "select * from TestsType where ID = @value";
+        public const string UpdateRecord =
+            @"
+
+update TestsType
+set Title = @Title ,
+Fees = @Fees,
+Description = @Description
+where ID = @ID
+            ";
+
+
+
+
+    }
 
     #endregion End
 

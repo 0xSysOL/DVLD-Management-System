@@ -74,6 +74,18 @@
     <Compile Include="Sub_Forms\Application\ManageAppTypes\Frm_Manage_Application_Types_.Designer.cs">
       <DependentUpon>Frm_Manage_Application_Types_.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sub_Forms\Application\ManageTestTypes\Frm_EditTestTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\ManageTestTypes\Frm_EditTestTypes.Designer.cs">
+      <DependentUpon>Frm_EditTestTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\ManageTestTypes\Frm_ManageTestTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\ManageTestTypes\Frm_ManageTestTypes.Designer.cs">
+      <DependentUpon>Frm_ManageTestTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sub_Forms\People Forms\Frm_Add_Edit_People.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,6 +175,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Application\ManageAppTypes\Frm_Manage_Application_Types_.resx">
       <DependentUpon>Frm_Manage_Application_Types_.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Application\ManageTestTypes\Frm_EditTestTypes.resx">
+      <DependentUpon>Frm_EditTestTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Application\ManageTestTypes\Frm_ManageTestTypes.resx">
+      <DependentUpon>Frm_ManageTestTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\People Forms\Frm_Add_Edit_People.resx">
       <DependentUpon>Frm_Add_Edit_People.cs</DependentUpon>

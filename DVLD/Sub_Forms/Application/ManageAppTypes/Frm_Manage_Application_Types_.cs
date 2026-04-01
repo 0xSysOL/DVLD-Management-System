@@ -7,15 +7,18 @@ namespace DVLD.Sub_Forms.Application
 {
     public partial class Frm_Manage_Application_Types_ : Form
     {
+        clsManageApplicationTypes_BL applicationTypes_BL;
         public Frm_Manage_Application_Types_()
         {
             InitializeComponent();
+            applicationTypes_BL = new clsManageApplicationTypes_BL();
         }
 
         private void LoadData()
         {
-            _DataGridView.DataSource = clsManageApplicationTypes_BL.GetManageApplicationType();
+            _DataGridView.DataSource = applicationTypes_BL.GetManageApplicationType();
             Label_Variable_Record.Text = _DataGridView.RowCount.ToString();
+            applicationTypes_BL = null;
         }
         private void Frm_Manage_Application_Types__Load(object sender, EventArgs e)
         {
