@@ -62,6 +62,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Sub_Forms\Application\Drving Licenses Services\New Driving License\Frm_NewLocalLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\Drving Licenses Services\New Driving License\Frm_NewLocalLicense.Designer.cs">
+      <DependentUpon>Frm_NewLocalLicense.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sub_Forms\Application\Manage Applications\Frm_LocalDrivingLicenseApplications.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,12 +97,6 @@
     </Compile>
     <Compile Include="Sub_Forms\Application\ManageTestTypes\Frm_ManageTestTypes.Designer.cs">
       <DependentUpon>Frm_ManageTestTypes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Sub_Forms\Application\New Driving License\Frm_NewLocalLicense.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sub_Forms\Application\New Driving License\Frm_NewLocalLicense.Designer.cs">
-      <DependentUpon>Frm_NewLocalLicense.cs</DependentUpon>
     </Compile>
     <Compile Include="Sub_Forms\People Forms\Frm_Add_Edit_People.cs">
       <SubType>Form</SubType>
@@ -194,6 +194,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Application\Drving Licenses Services\New Driving License\Frm_NewLocalLicense.resx">
+      <DependentUpon>Frm_NewLocalLicense.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Application\Manage Applications\Frm_LocalDrivingLicenseApplications.resx">
       <DependentUpon>Frm_LocalDrivingLicenseApplications.cs</DependentUpon>
     </EmbeddedResource>
@@ -208,9 +211,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Application\ManageTestTypes\Frm_ManageTestTypes.resx">
       <DependentUpon>Frm_ManageTestTypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Sub_Forms\Application\New Driving License\Frm_NewLocalLicense.resx">
-      <DependentUpon>Frm_NewLocalLicense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\People Forms\Frm_Add_Edit_People.resx">
       <DependentUpon>Frm_Add_Edit_People.cs</DependentUpon>
@@ -402,9 +402,61 @@
   <ItemGroup>
     <None Include="Resources\woman_Show.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Sub_Forms\Application\Sechdule Tests\Vision Test Appointment\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Users\3139256.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Application\app.png" />
+    <Content Include="Resources\Application\building %281%29.png" />
+    <Content Include="Resources\Application\building.png" />
+    <Content Include="Resources\Application\calendar.png" />
+    <Content Include="Resources\Application\clipboard.png" />
+    <Content Include="Resources\Application\close.png" />
+    <Content Include="Resources\Application\coin.png" />
+    <Content Include="Resources\Application\crumpled-blue-paper-textured-background.jpg" />
+    <Content Include="Resources\Application\driver-license.png" />
+    <Content Include="Resources\Application\driving-license %281%29.png" />
+    <Content Include="Resources\Application\driving-license %282%29.png" />
+    <Content Include="Resources\Application\driving-license.png" />
+    <Content Include="Resources\Application\editing %281%29.png" />
+    <Content Include="Resources\Application\editing.png" />
+    <Content Include="Resources\Application\exam.png" />
+    <Content Include="Resources\Application\eye-scan.png" />
+    <Content Include="Resources\Application\eye.png" />
+    <Content Include="Resources\Application\feature.png" />
+    <Content Include="Resources\Application\file.png" />
+    <Content Include="Resources\Application\form.png" />
+    <Content Include="Resources\Application\global.png" />
+    <Content Include="Resources\Application\history.png" />
+    <Content Include="Resources\Application\new-document.png" />
+    <Content Include="Resources\Application\notes.png" />
+    <Content Include="Resources\Application\paper.png" />
+    <Content Include="Resources\Application\planning.png" />
+    <Content Include="Resources\Application\remove-program.png" />
+    <Content Include="Resources\Application\school.png" />
+    <Content Include="Resources\Application\services.png" />
+    <Content Include="Resources\Application\Street Test\test.png" />
+    <Content Include="Resources\Application\test.png" />
+    <Content Include="Resources\Application\to-do-list.png" />
+    <Content Include="Resources\Application\unkown.png" />
+    <Content Include="Resources\Application\Vision Test\application.png" />
+    <Content Include="Resources\Application\Vision Test\appointment.png" />
+    <Content Include="Resources\Application\Vision Test\calendar.png" />
+    <Content Include="Resources\Application\Vision Test\certificate.png" />
+    <Content Include="Resources\Application\Vision Test\check.png" />
+    <Content Include="Resources\Application\Vision Test\coin.png" />
+    <Content Include="Resources\Application\Vision Test\eye-scan %281%29.png" />
+    <Content Include="Resources\Application\Vision Test\form.png" />
+    <Content Include="Resources\Application\Vision Test\id.png" />
+    <Content Include="Resources\Application\Vision Test\information.png" />
+    <Content Include="Resources\Application\Vision Test\loading-bar.png" />
+    <Content Include="Resources\Application\Vision Test\test.png" />
+    <Content Include="Resources\Application\Vision Test\upgrade.png" />
+    <Content Include="Resources\Application\working.png" />
+    <Content Include="Resources\Application\Written Test\writing.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

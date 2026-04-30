@@ -67,6 +67,10 @@ namespace DVLD_BusinessLogic
 
 
         }
+        public void LoadPersonByID(int ID) 
+        {
+            _LoadPersonData(ID);
+        }
         public void LoadPersonDataNationalNo(string _NationalNo)
         {
 
@@ -117,7 +121,7 @@ namespace DVLD_BusinessLogic
             mode = eMode.Add;
 
         }
-        public clsPeople_BL(int ID)
+        public clsPeople_BL(int ID) :this()
         {
             _LoadPersonData(ID);
 

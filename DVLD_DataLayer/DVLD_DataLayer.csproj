@@ -42,7 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tables\Application Classes\Application Types\clsManageApplicationTypes_DL.cs" />
+    <Compile Include="Tables\Application Classes\Application\clsApplication_DL.cs" />
+    <Compile Include="Tables\Application Classes\New Local Driving License Application\clsNewLocalDrivingLicenseApp_DL.cs" />
     <Compile Include="Tables\Application Classes\Test Types\clsManageTestTypes_DL.cs" />
+    <Compile Include="Tables\License Class\clsLicenseClass_DL.cs" />
+    <Compile Include="Tables\Tests Appointment\clsTestAppointment_DL.cs" />
+    <Compile Include="Tables\Tests Appointment\Vision Test Appointment\VisionTestAppointment_DL.cs" />
     <Compile Include="Tables\Users Classes\clsUsers_DL.cs" />
     <Compile Include="Tables\Countries Classes\clsCountries_DL.cs" />
     <Compile Include="Tables\People Classes\clsPeople_DL.cs" />

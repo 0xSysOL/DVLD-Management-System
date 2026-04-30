@@ -1,6 +1,7 @@
 ﻿using DVLD.Sub_Forms.Users_Forms;
 using DVLD.User_Controls;
 using DVLD_BusinessLogic;
+using DVLD_BussinessLogic.Application_Classes;
 using System;
 using System.Data;
 using System.Linq;
@@ -103,14 +104,14 @@ string address)
         }
 
 
-        public static void FillComboBOX(DataTable dataTable, ComboBox ComboBOX)
+        public static void FillComboBOX(DataTable dataTable, ComboBox ComboBOX,int Index = 0)
         {
 
             if (dataTable == null) return;
 
             foreach (DataRow data in dataTable.Rows)
             {
-                ComboBOX.Items.Add(data[0]);
+                ComboBOX.Items.Add(data[Index]);
             }
             if (ComboBOX != null)
                 ComboBOX.SelectedIndex = 0;
@@ -173,6 +174,24 @@ string address)
 
 
         }
+
+        public static void Fill_ApplicationType(int ApplicationID,ref clsManageApplicationTypes_BL APPT) 
+        {
+
+            APPT = new clsManageApplicationTypes_BL(ApplicationID);
+
+        }
+        public static bool IsAgeValid(short AllowedAge,DateTime DateOfBirth)
+        {
+            DateTime date = DateTime.Now;
+
+            if (DateOfBirth < date.AddYears(-Convert.ToInt32(AllowedAge)))
+                return true;
+
+            return false;
+
+        }
+
 
     }
 }

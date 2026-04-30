@@ -32,12 +32,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Application Classes\Application Types\clsManageApplicationTypes_BL.cs" />
+    <Compile Include="Application Classes\Application\clsApplication_BL.cs" />
+    <Compile Include="Application Classes\Tests Appointments\clsTestAppointment_BL.cs" />
+    <Compile Include="Application Classes\New Local License App\clsNewLocalDriverLicenseApplication_BL.cs" />
     <Compile Include="Application Classes\Test Types\clsManageTestTypes_BL.cs" />
+    <Compile Include="Application Classes\Tests Appointments\Vision Test Appointment\VisionTestAppointment_BL.cs" />
     <Compile Include="Countries Classes\clsCountries_BL.cs" />
+    <Compile Include="License Class\clsLicenseClass_BL.cs" />
     <Compile Include="People Classes\clsPeople_BL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users Classes\clsUsers_BL.cs" />
     <Compile Include="Users Classes\User Setting\CurrentUser.cs" />
+    <Compile Include="Utilities\Methods.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DVLD_DataLayer\DVLD_DataLayer.csproj">
@@ -50,5 +56,6 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
