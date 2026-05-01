@@ -1,7 +1,10 @@
 ﻿using DVLD.Sub_Forms.Users_Forms;
 using DVLD.User_Controls;
+using DVLD.User_Controls.Sechdule_Tests.Vision_Test_Appointment;
 using DVLD_BusinessLogic;
 using DVLD_BussinessLogic.Application_Classes;
+using DVLD_BussinessLogic.Application_Classes.Application;
+using DVLD_BussinessLogic.Application_Classes.New_Local_License_App;
 using System;
 using System.Data;
 using System.Linq;
@@ -11,6 +14,7 @@ namespace DVLD.Utilities
 {
     internal class Methods
     {
+        public enum eTestTypes { VisionTest = 1, WrittenTest = 2, StreetTest = 3, None = 4 }
 
         public static bool IsDataTableEmpty(DataTable Data)
         {
@@ -104,7 +108,7 @@ string address)
         }
 
 
-        public static void FillComboBOX(DataTable dataTable, ComboBox ComboBOX,int Index = 0)
+        public static void FillComboBOX(DataTable dataTable, ComboBox ComboBOX, int Index = 0)
         {
 
             if (dataTable == null) return;
@@ -175,13 +179,13 @@ string address)
 
         }
 
-        public static void Fill_ApplicationType(int ApplicationID,ref clsManageApplicationTypes_BL APPT) 
+        public static void Fill_ApplicationType(int ApplicationID, ref clsManageApplicationTypes_BL APPT)
         {
 
             APPT = new clsManageApplicationTypes_BL(ApplicationID);
 
         }
-        public static bool IsAgeValid(short AllowedAge,DateTime DateOfBirth)
+        public static bool IsAgeValid(short AllowedAge, DateTime DateOfBirth)
         {
             DateTime date = DateTime.Now;
 
@@ -193,5 +197,52 @@ string address)
         }
 
 
+        public static void UC_FillDrivingLicenseApplicationInfo
+            (int LDLAPP_ID,UC_DrivingLicenseApplication_Info DLAPPI, eTestTypes testTypes)
+        {
+            string LicenseName = "";
+            short PassedTests = -1;
+            clsNewLocalDriverLicenseApplication_BL.GetDrivingLicenseInfo(LDLAPP_ID, ref LicenseName, ref PassedTests);
+            DLAPPI.SetLabel_DLAPP_ID(LDLAPP_ID);
+            DLAPPI.SetLabel_PassedTests(PassedTests);
+            DLAPPI.SetLabel_AppliedForLicense(LicenseName);
+
+
+        }
+
+
+        public static void UC_FillApplicationBasic_Info(int LDLAPP_ID, UC_ApplicationBasic_Info APPBI, eTestTypes testTypes)
+        {
+            string ApplicationStatus = "";
+            int ApplicationID = -1;
+            decimal ApplicationFees  = -1;
+            string ApplicationTypeTitle = "";
+            string FullName = "";
+            DateTime ApplicationDate =  new DateTime();
+            DateTime ApplicationDateStatus = new DateTime();
+            string Username = "";
+
+
+            clsApplication_BL.GetApplicationBasicInfo(LDLAPP_ID, ref ApplicationStatus, ref ApplicationID,
+                ref ApplicationFees,
+               ref ApplicationTypeTitle, ref FullName, ref ApplicationDate, ref ApplicationDateStatus, ref Username);
+
+            APPBI.SetLabel_AppID(ApplicationID);
+            APPBI.SetLabel_Applicant(FullName);
+            APPBI.SetLabel_Fees(ApplicationFees);
+            APPBI.SetLabel_Date(ApplicationDate);
+            APPBI.SetLabel_DateStatus(ApplicationDateStatus);
+            APPBI.SetLabel_CreatedByUser(Username);
+            APPBI.SetLabel_Type(ApplicationTypeTitle);
+            APPBI.SetLabel_Status(ApplicationStatus);
+
+
+
+        }
+
+
     }
+
+
+
 }

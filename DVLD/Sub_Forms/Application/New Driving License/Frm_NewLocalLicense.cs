@@ -17,6 +17,7 @@ namespace DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_Licens
         clsManageApplicationTypes_BL ApplicationType;
         clsLicenseClass_BL License_Class;
         clsNewLocalDriverLicenseApplication_BL NewDriverLicense;
+        // TODO: Implement Update Mode Logic
         public Frm_NewLocalLicense()
         {
             InitializeComponent();
@@ -38,8 +39,7 @@ namespace DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_Licens
         // see more please
         private void InitializeApplicationFees()
         {
-            // this will be change 
-            // we will retrive data from database
+            /* TODO: this will be change we will retrive data from database */
             Label_Variable_ApplicationFees.Text = "15";
 
         }
@@ -237,5 +237,8 @@ namespace DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_Licens
         {
 
         }
+
+
+
     }
 }

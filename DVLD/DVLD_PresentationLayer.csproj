@@ -98,6 +98,12 @@
     <Compile Include="Sub_Forms\Application\New Driving License\Frm_NewLocalLicense.Designer.cs">
       <DependentUpon>Frm_NewLocalLicense.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sub_Forms\Application\Schedule Tests\Frm_Schedule_TestsAppointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\Schedule Tests\Frm_Schedule_TestsAppointments.Designer.cs">
+      <DependentUpon>Frm_Schedule_TestsAppointments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sub_Forms\People Forms\Frm_Add_Edit_People.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Application\New Driving License\Frm_NewLocalLicense.resx">
       <DependentUpon>Frm_NewLocalLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Application\Schedule Tests\Frm_Schedule_TestsAppointments.resx">
+      <DependentUpon>Frm_Schedule_TestsAppointments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\People Forms\Frm_Add_Edit_People.resx">
       <DependentUpon>Frm_Add_Edit_People.cs</DependentUpon>
@@ -402,9 +411,20 @@
   <ItemGroup>
     <None Include="Resources\woman_Show.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Application\new-document.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Users\3139256.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Application\Vision Test\eye-scan %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Application\Written Test\writing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Application\Street Test\test.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

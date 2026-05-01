@@ -1,4 +1,6 @@
 ﻿using DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_License;
+using DVLD.Sub_Forms.Application.Schedule_Tests;
+
 //using DVLD.Sub_Forms.Application.Sechdule_Tests.Vision_Test_Appointment;
 using DVLD_BussinessLogic.Application_Classes;
 using DVLD_BussinessLogic.Application_Classes.Application;
@@ -155,14 +157,14 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
 
         #region Sechdule Tests
 
-        enum eTestTypes { VisionTest = 1, WrittenTest = 2, StreetTest = 3 }
 
         private void sechduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //int LDL_AppID = Convert.ToInt32(_DataGridView.CurrentRow.Cells[0].Value);
-            //Frm_Sechdule_Test_Appointment STAPP = new Frm_Sechdule_Test_Appointment(LDL_AppID, (int)eTestTypes.VisionTest);
+            int LDL_AppID = Convert.ToInt32(_DataGridView.CurrentRow.Cells[0].Value);
+            Frm_Schedule_TestsAppointments STAPP = new Frm_Schedule_TestsAppointments
+                (LDL_AppID, (int)Utilities.Methods.eTestTypes.VisionTest);
 
-            //STAPP.ShowDialog();
+            STAPP.ShowDialog();
 
         }
 
@@ -224,11 +226,12 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
                 EnabledTestsMenuItem(true, false, false);
                 EnabledFinalItemAfterCompleted_3_Schedules(false, false);
                 return;
-            }else
+            }
+            else
             {
                 EnabledTestsMenuItem(false, true, false);
                 EnabledFinalItemAfterCompleted_3_Schedules(false, false);
-                
+
             }
 
             if (!clsTestAppointment_BL.IsWrittenTestPassed(LDLA_ID))
@@ -236,7 +239,8 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
                 EnabledTestsMenuItem(true, true, false);
                 EnabledFinalItemAfterCompleted_3_Schedules(false, false);
                 return;
-            }else
+            }
+            else
             {
                 EnabledTestsMenuItem(false, false, true);
                 EnabledFinalItemAfterCompleted_3_Schedules(false, false);
