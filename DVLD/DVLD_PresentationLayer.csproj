@@ -98,11 +98,17 @@
     <Compile Include="Sub_Forms\Application\New Driving License\Frm_NewLocalLicense.Designer.cs">
       <DependentUpon>Frm_NewLocalLicense.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sub_Forms\Application\Schedule Tests\Frm_Schedule_TestsAppointments.cs">
+    <Compile Include="Sub_Forms\Application\Tests Appointment\Frm_Schedule_TestsAppointments.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sub_Forms\Application\Schedule Tests\Frm_Schedule_TestsAppointments.Designer.cs">
+    <Compile Include="Sub_Forms\Application\Tests Appointment\Frm_Schedule_TestsAppointments.Designer.cs">
       <DependentUpon>Frm_Schedule_TestsAppointments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\Tests Appointment\Schedule Tests\Frm_ScheduleTests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\Tests Appointment\Schedule Tests\Frm_ScheduleTests.Designer.cs">
+      <DependentUpon>Frm_ScheduleTests.cs</DependentUpon>
     </Compile>
     <Compile Include="Sub_Forms\People Forms\Frm_Add_Edit_People.cs">
       <SubType>Form</SubType>
@@ -170,6 +176,12 @@
     <Compile Include="User_Controls\People User Control\UC_ShowPersonInfo.Designer.cs">
       <DependentUpon>UC_ShowPersonInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="User_Controls\Sechdule Tests\UC_RetakeTestInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User_Controls\Sechdule Tests\UC_RetakeTestInfo.Designer.cs">
+      <DependentUpon>UC_RetakeTestInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="User_Controls\Sechdule Tests\Vision Test Appointment\DrivingLicenseApplication_Info.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -218,8 +230,11 @@
     <EmbeddedResource Include="Sub_Forms\Application\New Driving License\Frm_NewLocalLicense.resx">
       <DependentUpon>Frm_NewLocalLicense.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sub_Forms\Application\Schedule Tests\Frm_Schedule_TestsAppointments.resx">
+    <EmbeddedResource Include="Sub_Forms\Application\Tests Appointment\Frm_Schedule_TestsAppointments.resx">
       <DependentUpon>Frm_Schedule_TestsAppointments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Application\Tests Appointment\Schedule Tests\Frm_ScheduleTests.resx">
+      <DependentUpon>Frm_ScheduleTests.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\People Forms\Frm_Add_Edit_People.resx">
       <DependentUpon>Frm_Add_Edit_People.cs</DependentUpon>
@@ -250,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User_Controls\People User Control\UC_ShowPersonInfo.resx">
       <DependentUpon>UC_ShowPersonInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_Controls\Sechdule Tests\UC_RetakeTestInfo.resx">
+      <DependentUpon>UC_RetakeTestInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User_Controls\Sechdule Tests\Vision Test Appointment\DrivingLicenseApplication_Info.resx">
       <DependentUpon>DrivingLicenseApplication_Info.cs</DependentUpon>
@@ -425,6 +443,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Application\Street Test\test.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Application\unkown.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿using DVLD.Sub_Forms.Users_Forms;
+﻿using DVLD.Properties;
+using DVLD.Sub_Forms.Users_Forms;
 using DVLD.User_Controls;
 using DVLD.User_Controls.Sechdule_Tests.Vision_Test_Appointment;
 using DVLD_BusinessLogic;
@@ -7,6 +8,7 @@ using DVLD_BussinessLogic.Application_Classes.Application;
 using DVLD_BussinessLogic.Application_Classes.New_Local_License_App;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -239,6 +241,45 @@ string address)
 
 
         }
+
+
+
+        public static void InitializeTitlesForm(ref string TitleForm,ref string LabelTitleForm,eTestTypes eTestTypes,ref Image image)
+        {
+
+            switch (eTestTypes)
+            {
+
+                case eTestTypes.VisionTest:
+                    image = Resources.eye_scan__1_;
+                    TitleForm      = "Vision Test Appointment";
+                    LabelTitleForm = "Vision Test Appointment";
+
+                    break;
+
+                case eTestTypes.WrittenTest:
+                    image = Resources.writing;
+                    TitleForm = "Written Test Appointment";
+                    LabelTitleForm  = "Written Test Appointment";
+
+                    break;
+
+                case eTestTypes.StreetTest:
+                    image = Resources.test;
+                    TitleForm = "Street Test Appointment";
+                    LabelTitleForm = "Street Test Appointment";
+                    break;
+
+
+            }
+        }
+
+
+
+
+
+
+
 
 
     }
