@@ -50,6 +50,12 @@ namespace DVLD_BussinessLogic.Application_Classes
 
         }
 
+        public static bool IsPersonTakeTestBefore(int LDLAPP_ID, int TestTypeID)
+        {
+
+            return clsTestAppointment_DL.IsPersonTakeTestBefore(LDLAPP_ID,TestTypeID);
+        }
+
 
     }
 }

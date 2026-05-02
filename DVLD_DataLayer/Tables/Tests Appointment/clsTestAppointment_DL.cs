@@ -130,7 +130,33 @@ namespace DVLD_DataLayer.Tables.Tests_Appointment
 
         }
 
-       
+
+        public static bool IsPersonTakeTestBefore(int LDLAPP_ID,int TestTypeID)
+        {
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQTestAppointment.IsPersonTakeTestBefore, connection);
+
+            command.Parameters.AddWithValue("@LDLAPP_ID", LDLAPP_ID);
+            command.Parameters.AddWithValue("@TestType", TestTypeID);
+
+            object Result = null;
+            try
+            {
+                connection.Open();
+
+                Result = command.ExecuteScalar();
+
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally { connection.Close(); }
+
+
+
+            return Result != null ? true : false;
+        }
 
 
     }

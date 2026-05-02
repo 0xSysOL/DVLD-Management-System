@@ -139,6 +139,9 @@ and Islocked = 1 and TestResult = 1 and TestTypeID = 3
 
         public const string IsPersonPassedTest = "select * from IsPersonPassedTest(@LDLAPP_ID,@TestType)";
 
+        public const string IsPersonTakeTestBefore = "select * from IsPersonTakeTestBefore(@LDLAPP_ID,@TestType)";
+
+
     }
 
     internal static class clsQVisionTestAppointment

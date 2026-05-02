@@ -1,4 +1,5 @@
 ﻿using DVLD.Properties;
+using DVLD_BussinessLogic.Application_Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,6 +52,23 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
        
 
         }
+        private void IsPersonTakeTestBefore()
+        {
+
+            if (!clsTestAppointment_BL.IsPersonTakeTestBefore(LDLAPP_ID, (int)eTestTypes))
+            {
+                UC_RetakeTestInfo.Enabled = false;
+            }
+
+        }
+
+        private void InitializeDatePicker()
+        {
+            _DateTimePicker.MinDate = DateTime.Now.AddDays(1);
+            _DateTimePicker.MaxDate = DateTime.Now.AddDays(30);
+            _DateTimePicker.CustomFormat = "dd/MM/yyyy";
+        }
+
         public Frm_ScheduleTests()
         {
             InitializeComponent();
@@ -58,11 +76,14 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
             eTestTypes = Utilities.Methods.eTestTypes.None;
                 
         }
+
         public Frm_ScheduleTests(int LDLAPP_ID,int TestType) : this()
         {
              this.LDLAPP_ID = LDLAPP_ID;
             eTestTypes = (Utilities.Methods.eTestTypes)TestType;
             InitializeTitlesForm();
+            IsPersonTakeTestBefore();
+            InitializeDatePicker();
         }
 
 

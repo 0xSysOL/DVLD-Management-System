@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_ScheduleTests));
             this.GroubBox_ST = new System.Windows.Forms.GroupBox();
-            this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this._DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.Btn_Save = new System.Windows.Forms.Button();
             this.Pic_Fees = new System.Windows.Forms.PictureBox();
             this.Label_Variable_Fees = new System.Windows.Forms.Label();
@@ -65,7 +65,7 @@
             // 
             // GroubBox_ST
             // 
-            this.GroubBox_ST.Controls.Add(this.DateTimePicker);
+            this.GroubBox_ST.Controls.Add(this._DateTimePicker);
             this.GroubBox_ST.Controls.Add(this.Btn_Save);
             this.GroubBox_ST.Controls.Add(this.Pic_Fees);
             this.GroubBox_ST.Controls.Add(this.Label_Variable_Fees);
@@ -95,15 +95,15 @@
             this.GroubBox_ST.TabStop = false;
             this.GroubBox_ST.Text = "Unknown Test";
             // 
-            // DateTimePicker
+            // _DateTimePicker
             // 
-            this.DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateTimePicker.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.DateTimePicker.Location = new System.Drawing.Point(158, 300);
-            this.DateTimePicker.Name = "DateTimePicker";
-            this.DateTimePicker.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.DateTimePicker.Size = new System.Drawing.Size(126, 22);
-            this.DateTimePicker.TabIndex = 43;
+            this._DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this._DateTimePicker.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this._DateTimePicker.Location = new System.Drawing.Point(158, 300);
+            this._DateTimePicker.Name = "_DateTimePicker";
+            this._DateTimePicker.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._DateTimePicker.Size = new System.Drawing.Size(126, 22);
+            this._DateTimePicker.TabIndex = 43;
             // 
             // Btn_Save
             // 
@@ -376,6 +376,6 @@
         private System.Windows.Forms.Label Label_Const_L_D_App_ID;
         private System.Windows.Forms.Button Btn_Save;
         private System.Windows.Forms.Button Btn_Close;
-        private System.Windows.Forms.DateTimePicker DateTimePicker;
+        private System.Windows.Forms.DateTimePicker _DateTimePicker;
     }
 }

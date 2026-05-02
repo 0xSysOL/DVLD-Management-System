@@ -12,17 +12,18 @@ namespace DVLD.Sub_Forms.Application
         {
             InitializeComponent();
             applicationTypes_BL = new clsManageApplicationTypes_BL();
+
         }
 
         private void LoadData()
         {
             _DataGridView.DataSource = applicationTypes_BL.GetManageApplicationType();
             Label_Variable_Record.Text = _DataGridView.RowCount.ToString();
-            applicationTypes_BL = null;
         }
         private void Frm_Manage_Application_Types__Load(object sender, EventArgs e)
-        {
+        {        
             LoadData();
+
         }
 
         private void _DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
