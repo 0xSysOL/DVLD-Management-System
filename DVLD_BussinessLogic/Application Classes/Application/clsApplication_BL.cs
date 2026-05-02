@@ -193,12 +193,7 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
 
 
 
-        public static bool FindAnyActiveAppointment(int LDLAPP_ID,int TestType)
-        {
-
-            return clsApplication_DL.FindAnyActiveAppointment(LDLAPP_ID,TestType);
-
-        }
+        
         public static bool IsPersonPassedTest(int LDLAPP_ID, int TestType)
         {
 

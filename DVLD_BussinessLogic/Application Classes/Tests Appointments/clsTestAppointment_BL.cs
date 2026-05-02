@@ -1,4 +1,5 @@
-﻿using DVLD_DataLayer.Tables.Tests_Appointment;
+﻿using DVLD_DataLayer.Tables.Application_Classes;
+using DVLD_DataLayer.Tables.Tests_Appointment;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -56,6 +57,41 @@ namespace DVLD_BussinessLogic.Application_Classes
             return clsTestAppointment_DL.IsPersonTakeTestBefore(LDLAPP_ID,TestTypeID);
         }
 
+        public static bool FindAnyActiveAppointment(int LDLAPP_ID, int TestType)
+        {
+
+            return clsTestAppointment_DL.FindAnyActiveAppointment(LDLAPP_ID, TestType);
+
+        }    
+        //if (FindAnyActiveAppointment(LDLApplicationID, TestType))
+        //    {  
+        //        // Update 
+        //    }
+        //    else
+        //    {
+        //                     // Insert
+
+
+        //    }
+        public static void GetTestAppointmentDetails(int LDLApplicationID,int TestType,ref string LicenseClassName,ref string FullName,
+           ref int Trial,ref DateTime AppointmentDate,ref  decimal TestFees)
+        {
+
+
+            clsTestAppointment_DL.GetTestAppointmentDetails(LDLApplicationID,TestType,ref LicenseClassName,ref FullName,
+                ref Trial,  ref AppointmentDate,ref TestFees);
+
+        }
+        public static void GetApplicationDetailsForNewAppointment(int LDLApplicationID, 
+            ref string LicenseClassName, ref string FullName,
+           ref int Trial, ref DateTime AppointmentDate, ref decimal TestFees)
+        {
+
+            GetTestAppointmentDetails(LDLApplicationID,-1,
+                ref LicenseClassName, ref FullName,
+                ref Trial, ref AppointmentDate, ref TestFees);
+
+        }
 
     }
 }

@@ -1,13 +1,7 @@
 ﻿using DVLD.Properties;
 using DVLD_BussinessLogic.Application_Classes;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
@@ -15,9 +9,8 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
     public partial class Frm_ScheduleTests : Form
     {
         int LDLAPP_ID;
-
+        bool Bool_IsPersonTakeTestBefore = true;
         Utilities.Methods.eTestTypes eTestTypes;
-
 
         private void InitializeTitlesForm()
         {
@@ -49,7 +42,7 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
             }
 
 
-       
+
 
         }
         private void IsPersonTakeTestBefore()
@@ -68,22 +61,52 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
             _DateTimePicker.MaxDate = DateTime.Now.AddDays(30);
             _DateTimePicker.CustomFormat = "dd/MM/yyyy";
         }
+        private void InitializeLabels()
+        {
+            string LicenseClassName = "";
+            string FullName = "";
+            int Trial = 0;
+            DateTime AppointmentDate = DateTime.Now;
+            decimal TestFees = 0;
 
+
+
+            if (Bool_IsPersonTakeTestBefore = clsTestAppointment_BL.IsPersonTakeTestBefore(LDLAPP_ID, (int)eTestTypes))
+            {
+                clsTestAppointment_BL.GetTestAppointmentDetails(LDLAPP_ID, (int)eTestTypes, ref LicenseClassName,
+                             ref FullName, ref Trial, ref AppointmentDate, ref TestFees);
+
+                Label_Variable_L_D_App_ID.Text = LDLAPP_ID.ToString();
+                Label_Variable_Name.Text = FullName;
+                Label_Variable_Trial.Text = Trial.ToString();
+                Label_Variable_Fees.Text = TestFees.ToString();
+                Label_Variable_D_Class.Text = LicenseClassName;
+                Label_Variable_FormTitle.Text = "Schedule Retake Test";
+            }
+            {
+                Label_Variable_FormTitle.Text = "      Schedule Test";
+
+            }
+
+
+
+        }
         public Frm_ScheduleTests()
         {
             InitializeComponent();
             LDLAPP_ID = -1;
             eTestTypes = Utilities.Methods.eTestTypes.None;
-                
+
         }
 
-        public Frm_ScheduleTests(int LDLAPP_ID,int TestType) : this()
+        public Frm_ScheduleTests(int LDLAPP_ID, int TestType) : this()
         {
-             this.LDLAPP_ID = LDLAPP_ID;
+            this.LDLAPP_ID = LDLAPP_ID;
             eTestTypes = (Utilities.Methods.eTestTypes)TestType;
             InitializeTitlesForm();
             IsPersonTakeTestBefore();
             InitializeDatePicker();
+            InitializeLabels();
         }
 
 
@@ -102,9 +125,10 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
 
         }
 
+        private void Btn_Save_Click(object sender, EventArgs e)
+        {
 
-
-
+        }
 
 
     }

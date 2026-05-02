@@ -141,6 +141,10 @@ and Islocked = 1 and TestResult = 1 and TestTypeID = 3
 
         public const string IsPersonTakeTestBefore = "select * from IsPersonTakeTestBefore(@LDLAPP_ID,@TestType)";
 
+        public const string GetTestAppointmentDetails = "select * from GetTestAppointmentDetails(@LDLAPP_ID,@TestType)";
+        public const string GetApplicationDetailsForNewAppointment = @"
+select * from GetApplicationDetailsForNewAppointment(@LDLAPP_ID)";
+        public const string FindAnyActiveAppointment = "select * from FindAnyActiveAppointment(@LDLAPP_ID,@TestType)";
 
     }
 
@@ -225,7 +229,6 @@ LocalDrivingLicenseApplication.LicenseClassID = LC_ID
 ";
         public const string IsAnyTestsFoundBy_LDLA_ID = @"Select top 1 Found = 1 from TestAppointment
                                                        where LocalDrivingLicenseApplicationID = @Value";
-        public const string FindAnyActiveAppointment = "select * from FindAnyActiveAppointment(@LDLAPP_ID,@TestType)";
 
         public const string GetAllApplications = "select * from GetApplications";
         public const string GetAllApplications_WithFilter = @"select * from GetApplications

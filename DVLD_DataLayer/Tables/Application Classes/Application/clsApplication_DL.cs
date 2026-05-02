@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DVLD_DataLayer.Tables.Tests_Appointment;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -436,37 +437,6 @@ namespace DVLD_DataLayer.Tables.Application_Classes
 
         }
 
-
-        public static bool FindAnyActiveAppointment(int LDLAPP_ID, int TestType)
-        {
-            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
-            SqlCommand command = new SqlCommand(clsQApplication.FindAnyActiveAppointment,connection);
-
-            command.Parameters.AddWithValue("@LDLAPP_ID",LDLAPP_ID);
-            command.Parameters.AddWithValue("@TestType", TestType);
-            bool IsPersonHaveAnyActiveApp = true;
-
-            try
-            {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                    IsPersonHaveAnyActiveApp = true;
-                else
-                    IsPersonHaveAnyActiveApp = false;
-
-                reader.Close();
-
-
-            }
-            catch(Exception e) { }
-            finally { connection.Close(); }
-
-            return IsPersonHaveAnyActiveApp;
-
-        }
 
 
         public static bool IsPersonPassedTest(int LDLAPP_ID, int TestType)

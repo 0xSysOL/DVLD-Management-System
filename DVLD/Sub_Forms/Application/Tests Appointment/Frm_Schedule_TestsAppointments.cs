@@ -91,7 +91,7 @@ namespace DVLD.Sub_Forms.Application.Schedule_Tests
         private void Pic_AddNewAppointment_Click(object sender, EventArgs e)
         {
 
-            if (clsApplication_BL.FindAnyActiveAppointment(LDLAPP_ID, (int)eTestTypes))
+            if (clsTestAppointment_BL.FindAnyActiveAppointment(LDLAPP_ID, (int)eTestTypes))
             {
                 MessageBox.Show(
                     "Person Already Have An Active Appointment!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
