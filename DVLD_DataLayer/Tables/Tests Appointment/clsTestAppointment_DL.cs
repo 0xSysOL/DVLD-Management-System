@@ -34,10 +34,6 @@ namespace DVLD_DataLayer.Tables.Tests_Appointment
 
         }
 
-
-
-
-
         public static bool IsWrittenTestPassed(int LDLA_ID)
         {
 
@@ -65,7 +61,6 @@ namespace DVLD_DataLayer.Tables.Tests_Appointment
 
         }
 
-        // Yeat
         public static bool IsStreetTestPassed(int LDLA_ID)
         {
 
@@ -192,24 +187,20 @@ namespace DVLD_DataLayer.Tables.Tests_Appointment
 
         public static void GetTestAppointmentDetails(int LDLApplicationID, int TestType,
             ref string LicenseClassName, ref string FullName,
-        ref int Trial, ref DateTime AppointmentDate, ref decimal TestFees)
+        ref int Trial, ref DateTime AppointmentDate, ref decimal TestFees, bool IsNew)
         {
 
             SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
             SqlCommand command;
 
-            if (TestType != -1)
-            {
+            if (!IsNew)
                 command = new SqlCommand(clsQTestAppointment.GetTestAppointmentDetails, connection);
-                command.Parameters.AddWithValue("@TestType", TestType);
-                command.Parameters.AddWithValue("@LDLAPP_ID", LDLApplicationID);
-
-            }
             else
-            {
                 command = new SqlCommand(clsQTestAppointment.GetApplicationDetailsForNewAppointment, connection);
-                command.Parameters.AddWithValue("@LDLAPP_ID", LDLApplicationID);
-            }
+
+
+            command.Parameters.AddWithValue("@TestType", TestType);
+            command.Parameters.AddWithValue("@LDLAPP_ID", LDLApplicationID);
 
 
             try
@@ -225,9 +216,9 @@ namespace DVLD_DataLayer.Tables.Tests_Appointment
                     Trial = (int)reader["Trial"];
                     TestFees = (decimal)reader["Fees"];
 
-                    if(TestType != -1)
-                    AppointmentDate = (DateTime)reader["AppointmentDate"];
-              
+                    if (!IsNew)
+                        AppointmentDate = (DateTime)reader["AppointmentDate"];
+
                 }
                 reader.Close();
 
@@ -243,8 +234,76 @@ namespace DVLD_DataLayer.Tables.Tests_Appointment
 
         }
 
-       
 
+
+        public static bool Add_TestAppointment(int LDLApplicationID, int TestTypeID,
+            DateTime AppointmentDate,decimal PaidFees,int CreateByUserID, object RetakeTeApp = null)
+        {
+
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQTestAppointment.Add_Appointment, connection);
+            command.CommandType = CommandType.StoredProcedure;
+            /*(@AppointmentDate,0,@PaidFees,@CreateByUserID,@TestTypeID,
+@LDLAPP_ID,@RetakeTAPP_ID)*/
+
+            command.Parameters.AddWithValue("@LDLAPP_ID", LDLApplicationID);
+            command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+            command.Parameters.AddWithValue("@AppointmentDate", AppointmentDate);
+            command.Parameters.AddWithValue("@PaidFees", PaidFees);
+            command.Parameters.AddWithValue("@CreateByUserID", CreateByUserID);
+            command.Parameters.AddWithValue("@RetakeTAPP_ID", RetakeTeApp);
+
+
+            try
+            {
+                connection.Open();
+
+
+
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally { connection.Close(); }
+
+
+
+            return false;
+        }
+
+        public static bool Update_TestAppointment(int LDLApplicationID, int TestTypeID,
+            DateTime AppointmentDate, decimal PaidFees, int CreateByUserID, object RetakeTeApp = null)
+        {
+
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQTestAppointment.Update_Appointment, connection);
+
+            command.Parameters.AddWithValue("@LDLAPP_ID", LDLApplicationID);
+            command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+            command.Parameters.AddWithValue("@AppointmentDate", AppointmentDate);
+            command.Parameters.AddWithValue("@PaidFees", PaidFees);
+            command.Parameters.AddWithValue("@CreateByUserID", CreateByUserID);
+            command.Parameters.AddWithValue("@RetakeTAPP_ID", RetakeTeApp);
+            int EvRow = -1;
+
+            try
+            {
+                connection.Open();
+                EvRow = command.ExecuteNonQuery();
+
+
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally { connection.Close(); }
+
+
+
+            return false;
+        }
     }
 
 

@@ -1,12 +1,6 @@
-﻿using DVLD_DataLayer.Tables.Application_Classes;
-using DVLD_DataLayer.Tables.Tests_Appointment;
+﻿using DVLD_DataLayer.Tables.Tests_Appointment;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DVLD_BussinessLogic.Application_Classes
 {
@@ -19,7 +13,7 @@ namespace DVLD_BussinessLogic.Application_Classes
         {
 
             return clsTestAppointment_DL.IsVisionTestPassed(LDLA_ID);
-          
+
 
 
         }
@@ -37,7 +31,7 @@ namespace DVLD_BussinessLogic.Application_Classes
 
             return clsTestAppointment_DL.IsStreetTestPassed(LDLA_ID);
 
-             
+
 
         }
 
@@ -54,7 +48,7 @@ namespace DVLD_BussinessLogic.Application_Classes
         public static bool IsPersonTakeTestBefore(int LDLAPP_ID, int TestTypeID)
         {
 
-            return clsTestAppointment_DL.IsPersonTakeTestBefore(LDLAPP_ID,TestTypeID);
+            return clsTestAppointment_DL.IsPersonTakeTestBefore(LDLAPP_ID, TestTypeID);
         }
 
         public static bool FindAnyActiveAppointment(int LDLAPP_ID, int TestType)
@@ -62,36 +56,51 @@ namespace DVLD_BussinessLogic.Application_Classes
 
             return clsTestAppointment_DL.FindAnyActiveAppointment(LDLAPP_ID, TestType);
 
-        }    
-        //if (FindAnyActiveAppointment(LDLApplicationID, TestType))
-        //    {  
-        //        // Update 
-        //    }
-        //    else
-        //    {
-        //                     // Insert
+        }
 
-
-        //    }
-        public static void GetTestAppointmentDetails(int LDLApplicationID,int TestType,ref string LicenseClassName,ref string FullName,
-           ref int Trial,ref DateTime AppointmentDate,ref  decimal TestFees)
+        public static void GetTestAppointmentDetails(int LDLApplicationID, int TestType, ref string LicenseClassName, ref string FullName,
+           ref int Trial, ref DateTime AppointmentDate, ref decimal TestFees, bool IsNew = false)
         {
 
 
-            clsTestAppointment_DL.GetTestAppointmentDetails(LDLApplicationID,TestType,ref LicenseClassName,ref FullName,
-                ref Trial,  ref AppointmentDate,ref TestFees);
+            clsTestAppointment_DL.GetTestAppointmentDetails(LDLApplicationID, TestType, ref LicenseClassName, ref FullName,
+                ref Trial, ref AppointmentDate, ref TestFees, IsNew);
 
         }
-        public static void GetApplicationDetailsForNewAppointment(int LDLApplicationID, 
+        public static void GetApplicationDetailsForNewAppointment(int LDLApplicationID, int TestType,
             ref string LicenseClassName, ref string FullName,
            ref int Trial, ref DateTime AppointmentDate, ref decimal TestFees)
         {
 
-            GetTestAppointmentDetails(LDLApplicationID,-1,
+            GetTestAppointmentDetails(LDLApplicationID, TestType,
                 ref LicenseClassName, ref FullName,
-                ref Trial, ref AppointmentDate, ref TestFees);
+                ref Trial, ref AppointmentDate, ref TestFees, true);
 
         }
 
+
+        public static bool Save(int LDLApplicationID, int TestTypeID,
+            DateTime AppointmentDate, decimal PaidFees, int CreateByUserID, object RetakeTeApp = null)
+        {
+
+            if (!FindAnyActiveAppointment(LDLApplicationID, TestTypeID))
+            {
+                // Insert  
+                clsTestAppointment_DL.Add_TestAppointment(LDLApplicationID, TestTypeID, AppointmentDate, PaidFees,
+                    CreateByUserID, RetakeTeApp);
+            }
+            else
+            {
+                clsTestAppointment_DL.Update_TestAppointment(LDLApplicationID, TestTypeID, AppointmentDate, PaidFees,
+                    CreateByUserID, RetakeTeApp);
+                // Update
+
+            }
+
+            return false;
+        }
+    
+    
+    
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DVLD.Properties;
 using DVLD_BussinessLogic.Application_Classes;
+using DVLD_BussinessLogic.Users_Classes.User_Setting;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -11,6 +12,11 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
         int LDLAPP_ID;
         bool Bool_IsPersonTakeTestBefore = true;
         Utilities.Methods.eTestTypes eTestTypes;
+        string LicenseClassName;
+        string FullName;
+        int Trial;
+        DateTime AppointmentDate;
+        decimal TestFees;
 
         private void InitializeTitlesForm()
         {
@@ -45,15 +51,7 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
 
 
         }
-        private void IsPersonTakeTestBefore()
-        {
-
-            if (!clsTestAppointment_BL.IsPersonTakeTestBefore(LDLAPP_ID, (int)eTestTypes))
-            {
-                UC_RetakeTestInfo.Enabled = false;
-            }
-
-        }
+       
 
         private void InitializeDatePicker()
         {
@@ -61,6 +59,7 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
             _DateTimePicker.MaxDate = DateTime.Now.AddDays(30);
             _DateTimePicker.CustomFormat = "dd/MM/yyyy";
         }
+
         private void InitializeLabels()
         {
             string LicenseClassName = "";
@@ -75,20 +74,25 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
             {
                 clsTestAppointment_BL.GetTestAppointmentDetails(LDLAPP_ID, (int)eTestTypes, ref LicenseClassName,
                              ref FullName, ref Trial, ref AppointmentDate, ref TestFees);
-
-                Label_Variable_L_D_App_ID.Text = LDLAPP_ID.ToString();
-                Label_Variable_Name.Text = FullName;
-                Label_Variable_Trial.Text = Trial.ToString();
-                Label_Variable_Fees.Text = TestFees.ToString();
-                Label_Variable_D_Class.Text = LicenseClassName;
+                _DateTimePicker.Value = AppointmentDate;
                 Label_Variable_FormTitle.Text = "Schedule Retake Test";
+
             }
             {
-                Label_Variable_FormTitle.Text = "      Schedule Test";
+                clsTestAppointment_BL.GetApplicationDetailsForNewAppointment(LDLAPP_ID, (int)eTestTypes,
+                    ref LicenseClassName, ref FullName, ref Trial, ref AppointmentDate, ref TestFees);
+                UC_RetakeTestInfo.Enabled = false;  
+                Label_Variable_FormTitle.Text = "        Schedule Test";
+
 
             }
 
-
+            Label_Variable_L_D_App_ID.Text = LDLAPP_ID.ToString();
+            Label_Variable_Name.Text = FullName;
+            Label_Variable_Trial.Text = Trial.ToString();
+            Label_Variable_Fees.Text = TestFees.ToString();
+            Label_Variable_D_Class.Text = LicenseClassName;
+          
 
         }
         public Frm_ScheduleTests()
@@ -96,6 +100,11 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
             InitializeComponent();
             LDLAPP_ID = -1;
             eTestTypes = Utilities.Methods.eTestTypes.None;
+            LicenseClassName = "";
+            FullName = "";
+            Trial = 0;
+            AppointmentDate = DateTime.Now;
+            TestFees = 0;
 
         }
 
@@ -104,7 +113,6 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
             this.LDLAPP_ID = LDLAPP_ID;
             eTestTypes = (Utilities.Methods.eTestTypes)TestType;
             InitializeTitlesForm();
-            IsPersonTakeTestBefore();
             InitializeDatePicker();
             InitializeLabels();
         }
@@ -122,11 +130,19 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
 
         private void Btn_Close_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void Btn_Save_Click(object sender, EventArgs e)
         {
+            if (Bool_IsPersonTakeTestBefore)
+            {
+
+
+                clsTestAppointment_BL.Save(LDLAPP_ID,(int)eTestTypes,_DateTimePicker.Value,
+                    PaidFees,CurrentUser.GetUserID,);
+
+            }
 
         }
 

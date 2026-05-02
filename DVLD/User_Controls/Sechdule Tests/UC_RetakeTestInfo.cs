@@ -15,10 +15,7 @@ namespace DVLD.User_Controls.Sechdule_Tests
         public UC_RetakeTestInfo()
         {
             InitializeComponent();
-            Label_Variable_RAppFees.Text = "";
-            Label_Variable_RTestAppID.Text = "";
-            Label_Variable_TotalFees.Text = "";
-
+            
 
         }
 
@@ -32,6 +29,20 @@ namespace DVLD.User_Controls.Sechdule_Tests
         }
         public void SetTotalFees(decimal TotalFees)
         {
+
+        }
+        public decimal GetRAppFees()
+        {
+            return Convert.ToDecimal(Label_Variable_RAppFees.Text);
+        }
+        public int GetRTestAppID(int RTestID)
+        {
+            return Convert.ToInt32(Label_Variable_RTestAppID.Text);
+
+        }
+        public decimal GetTotalFees()
+        {
+            return Convert.ToDecimal(Label_Variable_TotalFees.Text);
 
         }
 

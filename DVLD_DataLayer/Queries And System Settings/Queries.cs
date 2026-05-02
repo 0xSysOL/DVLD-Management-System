@@ -109,6 +109,9 @@ where ApplicationTypeID = @ID
     #region Test Appointment
     internal static class clsQTestAppointment
     {
+    
+        public const string Add_Appointment = "Add_Appointment";
+        public const string Update_Appointment = "";
 
         public const  string IsVisionTestPassed =
             @"
@@ -143,7 +146,7 @@ and Islocked = 1 and TestResult = 1 and TestTypeID = 3
 
         public const string GetTestAppointmentDetails = "select * from GetTestAppointmentDetails(@LDLAPP_ID,@TestType)";
         public const string GetApplicationDetailsForNewAppointment = @"
-select * from GetApplicationDetailsForNewAppointment(@LDLAPP_ID)";
+select * from GetApplicationDetailsForNewAppointment(@LDLAPP_ID,@TestType)";
         public const string FindAnyActiveAppointment = "select * from FindAnyActiveAppointment(@LDLAPP_ID,@TestType)";
 
     }

@@ -50,9 +50,9 @@
             this.Label_Variable_L_D_App_ID = new System.Windows.Forms.Label();
             this.Label_Const_L_D_App_ID = new System.Windows.Forms.Label();
             this.Label_Variable_FormTitle = new System.Windows.Forms.Label();
-            this.UC_RetakeTestInfo = new DVLD.User_Controls.Sechdule_Tests.UC_RetakeTestInfo();
             this.Pic_FormPicture = new System.Windows.Forms.PictureBox();
             this.Btn_Close = new System.Windows.Forms.Button();
+            this.UC_RetakeTestInfo = new DVLD.User_Controls.Sechdule_Tests.UC_RetakeTestInfo();
             this.GroubBox_ST.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Fees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Date)).BeginInit();
@@ -90,7 +90,7 @@
             this.GroubBox_ST.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GroubBox_ST.Location = new System.Drawing.Point(12, 37);
             this.GroubBox_ST.Name = "GroubBox_ST";
-            this.GroubBox_ST.Size = new System.Drawing.Size(386, 560);
+            this.GroubBox_ST.Size = new System.Drawing.Size(458, 560);
             this.GroubBox_ST.TabIndex = 0;
             this.GroubBox_ST.TabStop = false;
             this.GroubBox_ST.Text = "Unknown Test";
@@ -109,7 +109,7 @@
             // 
             this.Btn_Save.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Save.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Save.Location = new System.Drawing.Point(303, 500);
+            this.Btn_Save.Location = new System.Drawing.Point(357, 525);
             this.Btn_Save.Name = "Btn_Save";
             this.Btn_Save.Size = new System.Drawing.Size(76, 29);
             this.Btn_Save.TabIndex = 33;
@@ -292,25 +292,16 @@
             this.Label_Variable_FormTitle.AutoSize = true;
             this.Label_Variable_FormTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Variable_FormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Label_Variable_FormTitle.Location = new System.Drawing.Point(27, 117);
+            this.Label_Variable_FormTitle.Location = new System.Drawing.Point(63, 117);
             this.Label_Variable_FormTitle.Name = "Label_Variable_FormTitle";
             this.Label_Variable_FormTitle.Size = new System.Drawing.Size(309, 31);
             this.Label_Variable_FormTitle.TabIndex = 23;
             this.Label_Variable_FormTitle.Text = "Unknown Schedule Test";
             // 
-            // UC_RetakeTestInfo
-            // 
-            this.UC_RetakeTestInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UC_RetakeTestInfo.Location = new System.Drawing.Point(1, 366);
-            this.UC_RetakeTestInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.UC_RetakeTestInfo.Name = "UC_RetakeTestInfo";
-            this.UC_RetakeTestInfo.Size = new System.Drawing.Size(378, 127);
-            this.UC_RetakeTestInfo.TabIndex = 22;
-            // 
             // Pic_FormPicture
             // 
             this.Pic_FormPicture.Image = global::DVLD.Properties.Resources.unkown;
-            this.Pic_FormPicture.Location = new System.Drawing.Point(107, 21);
+            this.Pic_FormPicture.Location = new System.Drawing.Point(143, 21);
             this.Pic_FormPicture.Name = "Pic_FormPicture";
             this.Pic_FormPicture.Size = new System.Drawing.Size(165, 76);
             this.Pic_FormPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -321,7 +312,7 @@
             // 
             this.Btn_Close.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Close.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Close.Location = new System.Drawing.Point(155, 608);
+            this.Btn_Close.Location = new System.Drawing.Point(196, 608);
             this.Btn_Close.Name = "Btn_Close";
             this.Btn_Close.Size = new System.Drawing.Size(76, 29);
             this.Btn_Close.TabIndex = 33;
@@ -329,11 +320,20 @@
             this.Btn_Close.UseVisualStyleBackColor = true;
             this.Btn_Close.Click += new System.EventHandler(this.Btn_Close_Click);
             // 
+            // UC_RetakeTestInfo
+            // 
+            this.UC_RetakeTestInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UC_RetakeTestInfo.Location = new System.Drawing.Point(33, 356);
+            this.UC_RetakeTestInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.UC_RetakeTestInfo.Name = "UC_RetakeTestInfo";
+            this.UC_RetakeTestInfo.Size = new System.Drawing.Size(388, 127);
+            this.UC_RetakeTestInfo.TabIndex = 22;
+            // 
             // Frm_ScheduleTests
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(415, 649);
+            this.ClientSize = new System.Drawing.Size(482, 649);
             this.Controls.Add(this.Btn_Close);
             this.Controls.Add(this.GroubBox_ST);
             this.Name = "Frm_ScheduleTests";
