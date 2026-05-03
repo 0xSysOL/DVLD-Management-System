@@ -88,16 +88,19 @@ namespace DVLD_BussinessLogic.Application_Classes
                 // Insert  
                 clsTestAppointment_DL.Add_TestAppointment(LDLApplicationID, TestTypeID, AppointmentDate, PaidFees,
                     CreateByUserID, RetakeTeApp);
+                return true;
             }
             else
             {
                 clsTestAppointment_DL.Update_TestAppointment(LDLApplicationID, TestTypeID, AppointmentDate, PaidFees,
                     CreateByUserID, RetakeTeApp);
                 // Update
+                return true;
+
 
             }
 
-            return false;
+
         }
     
     

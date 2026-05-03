@@ -28,10 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Schedule_TestsAppointments));
             this._DataGridView = new System.Windows.Forms.DataGridView();
+            this._ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.takeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Label_Variable_FormTitle = new System.Windows.Forms.Label();
             this.Pic_FormPicture = new System.Windows.Forms.PictureBox();
             this.Pic_AddNewAppointment = new System.Windows.Forms.PictureBox();
@@ -42,6 +47,7 @@
             this.UC_DrivingLicenseApplication_Info = new DVLD.User_Controls.Sechdule_Tests.Vision_Test_Appointment.UC_DrivingLicenseApplication_Info();
             this.UC_ApplicationBasic_Info = new DVLD.User_Controls.Sechdule_Tests.Vision_Test_Appointment.UC_ApplicationBasic_Info();
             ((System.ComponentModel.ISupportInitialize)(this._DataGridView)).BeginInit();
+            this._ContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_FormPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_AddNewAppointment)).BeginInit();
             this.SuspendLayout();
@@ -62,6 +68,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this._DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this._DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this._DataGridView.ContextMenuStrip = this._ContextMenuStrip;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -83,6 +90,32 @@
             this._DataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this._DataGridView.Size = new System.Drawing.Size(776, 181);
             this._DataGridView.TabIndex = 5;
+            // 
+            // _ContextMenuStrip
+            // 
+            this._ContextMenuStrip.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._ContextMenuStrip.ImageScalingSize = new System.Drawing.Size(42, 42);
+            this._ContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem,
+            this.takeToolStripMenuItem});
+            this._ContextMenuStrip.Name = "_ContextMenuStrip";
+            this._ContextMenuStrip.Size = new System.Drawing.Size(207, 122);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editToolStripMenuItem.Image")));
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(206, 48);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // takeToolStripMenuItem
+            // 
+            this.takeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("takeToolStripMenuItem.Image")));
+            this.takeToolStripMenuItem.Name = "takeToolStripMenuItem";
+            this.takeToolStripMenuItem.Size = new System.Drawing.Size(206, 48);
+            this.takeToolStripMenuItem.Text = "Take";
+            this.takeToolStripMenuItem.Click += new System.EventHandler(this.takeToolStripMenuItem_Click);
             // 
             // Label_Variable_FormTitle
             // 
@@ -193,6 +226,7 @@
             this.Text = "Frm_Schedule_TestsAppointments";
             this.Load += new System.EventHandler(this.Frm_Schedule_TestsAppointments_Load);
             ((System.ComponentModel.ISupportInitialize)(this._DataGridView)).EndInit();
+            this._ContextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Pic_FormPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_AddNewAppointment)).EndInit();
             this.ResumeLayout(false);
@@ -212,5 +246,8 @@
         private System.Windows.Forms.Label Label_Const_Records;
         private System.Windows.Forms.Button Btn_Close;
         private System.Windows.Forms.Label Label_Const_DGV_Title;
+        private System.Windows.Forms.ContextMenuStrip _ContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem takeToolStripMenuItem;
     }
 }

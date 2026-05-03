@@ -296,6 +296,7 @@
             this.UC_Filter.EvFilter += new System.Action<string, object>(this.UC_Filter_EvFilter);
             this.UC_Filter.Ev_IsInt += new System.Action<int>(this.UC_Filter_Ev_IsInt);
             this.UC_Filter.EvClickedSearchButton += new System.Action<string>(this.UC_Filter_EvClickedSearchButton);
+            this.UC_Filter.Load += new System.EventHandler(this.UC_Filter_Load);
             // 
             // Frm_LocalDrivingLicenseApplications
             // 

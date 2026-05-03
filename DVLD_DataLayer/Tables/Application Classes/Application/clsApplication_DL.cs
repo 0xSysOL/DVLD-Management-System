@@ -135,7 +135,7 @@ namespace DVLD_DataLayer.Tables.Application_Classes
 
 
 
-        public static DataTable GetAllApplications()
+        public static DataTable Get_LDL_Applications()
         {
             SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
             SqlCommand command = new SqlCommand(clsQApplication.GetAllApplications, connection);

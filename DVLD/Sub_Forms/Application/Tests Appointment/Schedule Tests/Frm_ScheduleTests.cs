@@ -138,28 +138,43 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
             this.Close();
         }
 
+        private void AddNewAppointment(object RetakeTest = null)
+        {
+            TestFees = Convert.ToDecimal(Label_Variable_Fees.Text);
+
+
+            clsTestAppointment_BL.Save(LDLAPP_ID, (int)eTestTypes, 
+                _DateTimePicker.Value,TestFees,CurrentUser.GetUserID(),RetakeTest);
+
+        }
+
         private void Btn_Save_Click(object sender, EventArgs e)
         {
             if (Bool_IsPersonTakeTestBefore)
             {
-                clsRetakeTestApplication_BL clsRetakeTest = new clsRetakeTestApplication_BL();
-                clsLicenseClass_BL LicenseClass = new clsLicenseClass_BL();
-
-                clsRetakeTest.ApplicationDate = DateTime.Now;
-                clsRetakeTest.ApplicationState = (int)clsApplication_BL.eModeState.New;
-                clsRetakeTest.PaidFees = -1;
+                clsRetakeTestApplication_BL clsRetakeTest = new clsRetakeTestApplication_BL(APP_ID);
 
 
-                //clsRetakeTest.
+                if (clsRetakeTest.Save())
+                {
+                    AddNewAppointment(clsRetakeTest.GetID());
+                }
+                else
+                    MessageBox.Show("Something Wrong Please Try Agian", "Error", MessageBoxButtons.OK
+                        , MessageBoxIcon.Error);
+                
 
-
-                //clsTestAppointment_BL.Save(LDLAPP_ID,(int)eTestTypes,_DateTimePicker.Value,
-                //    PaidFees,CurrentUser.GetUserID,);
-
+                return;
             }
+
+
+            AddNewAppointment();
+
 
         }
 
-
     }
+
+
+    
 }

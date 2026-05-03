@@ -74,7 +74,7 @@ namespace DVLD_BussinessLogic.Application_Classes.New_Local_License_App
             return false;
         }
 
-        public static void GetDrivingLicenseInfo(int LDLAPP_ID, ref string LicenseName, ref short PassedTests)
+        public static void GetDrivingLicenseInfo(int LDLAPP_ID, ref string LicenseName, ref int PassedTests)
         {
 
             clsNewLocalDrivingLicenseApp_DL.GetDrivingLicenseInfo(LDLAPP_ID, ref LicenseName, ref PassedTests);

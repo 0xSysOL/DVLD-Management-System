@@ -102,7 +102,7 @@ namespace DVLD_DataLayer.Tables.Application_Classes.New_Local_Driving_License_Ap
 
         }
 
-        public static void GetDrivingLicenseInfo(int LDLAPP_ID, ref string LicenseName, ref short PassedTests)
+        public static void GetDrivingLicenseInfo(int LDLAPP_ID, ref string LicenseName, ref int PassedTests)
         {
             SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
             SqlCommand command = new SqlCommand(clsQLocalDrivingLicenseApp.GetDrivingLicenseApplication, connection);
@@ -119,7 +119,7 @@ namespace DVLD_DataLayer.Tables.Application_Classes.New_Local_Driving_License_Ap
                     {
                         LicenseName = (string)reader["ClassName"];
                         object Ob_PassedTest = (object)reader["PassedTest"];
-                        PassedTests = Ob_PassedTest != null ? Convert.ToInt16(Ob_PassedTest) : Convert.ToInt16(0);
+                        PassedTests = Ob_PassedTest != DBNull.Value ? Convert.ToInt32(Ob_PassedTest) : Convert.ToInt32(0);
 
                     }
 

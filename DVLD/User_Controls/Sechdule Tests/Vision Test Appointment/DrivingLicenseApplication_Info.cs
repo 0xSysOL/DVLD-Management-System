@@ -37,7 +37,7 @@ namespace DVLD.User_Controls.Sechdule_Tests.Vision_Test_Appointment
 
 
         }
-        public void SetLabel_PassedTests(short PassedTests)
+        public void SetLabel_PassedTests(int PassedTests)
         {
             Label_Variable_PassesTests.Text = PassedTests.ToString() + "/3";
         }

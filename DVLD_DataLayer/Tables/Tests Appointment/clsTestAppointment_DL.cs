@@ -243,6 +243,7 @@ namespace DVLD_DataLayer.Tables.Tests_Appointment
             SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
             SqlCommand command = new SqlCommand(clsQTestAppointment.Add_Appointment, connection);
             command.CommandType = CommandType.StoredProcedure;
+            int Result = -1;
             /*(@AppointmentDate,0,@PaidFees,@CreateByUserID,@TestTypeID,
 @LDLAPP_ID,@RetakeTAPP_ID)*/
 
@@ -251,14 +252,15 @@ namespace DVLD_DataLayer.Tables.Tests_Appointment
             command.Parameters.AddWithValue("@AppointmentDate", AppointmentDate);
             command.Parameters.AddWithValue("@PaidFees", PaidFees);
             command.Parameters.AddWithValue("@CreateByUserID", CreateByUserID);
-            command.Parameters.AddWithValue("@RetakeTAPP_ID", RetakeTeApp);
+
+            command.Parameters.AddWithValue("@RetakeTAPP_ID", (RetakeTeApp == null) ? DBNull.Value : RetakeTeApp);
 
 
             try
             {
                 connection.Open();
 
-
+                Result = command.ExecuteNonQuery();
 
             }
             catch (Exception e)
@@ -269,7 +271,8 @@ namespace DVLD_DataLayer.Tables.Tests_Appointment
 
 
 
-            return false;
+            return Result != -1 ? true : false;
+
         }
 
         public static bool Update_TestAppointment(int LDLApplicationID, int TestTypeID,

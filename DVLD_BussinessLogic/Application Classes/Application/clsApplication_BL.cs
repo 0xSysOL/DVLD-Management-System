@@ -14,7 +14,7 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
         public enum enApplicationType
         {
             None,
-            NewLocalDrivingLicense = 1,
+            LocalDrivingLicense = 1,
             RenewDrivingLicense = 2,
             ReplacementLost = 3,
             ReplacementDamaged = 4,
@@ -95,10 +95,10 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
 
         }
         
-        public static DataTable GetAllApplications()
+        public static DataTable Get_LDL_Applications()
         {
 
-            return clsApplication_DL.GetAllApplications();
+            return clsApplication_DL.Get_LDL_Applications();
 
         }
         public static DataTable GetAllApplications_WithFilter(object Value, string ColumnName)
@@ -113,7 +113,7 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
 
             switch (eAppTypeID)
             {
-                case enApplicationType.NewLocalDrivingLicense:
+                case enApplicationType.LocalDrivingLicense:
 
                     if (mode == eMode.Add)
                     {

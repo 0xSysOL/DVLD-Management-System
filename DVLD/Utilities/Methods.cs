@@ -1,6 +1,7 @@
 ﻿using DVLD.Properties;
 using DVLD.Sub_Forms.Users_Forms;
 using DVLD.User_Controls;
+using DVLD.User_Controls.Sechdule_Tests;
 using DVLD.User_Controls.Sechdule_Tests.Vision_Test_Appointment;
 using DVLD_BusinessLogic;
 using DVLD_BussinessLogic.Application_Classes;
@@ -203,7 +204,7 @@ string address)
             (int LDLAPP_ID,UC_DrivingLicenseApplication_Info DLAPPI, eTestTypes testTypes)
         {
             string LicenseName = "";
-            short PassedTests = -1;
+            int PassedTests = 0;
             clsNewLocalDriverLicenseApplication_BL.GetDrivingLicenseInfo(LDLAPP_ID, ref LicenseName, ref PassedTests);
             DLAPPI.SetLabel_DLAPP_ID(LDLAPP_ID);
             DLAPPI.SetLabel_PassedTests(PassedTests);
@@ -274,7 +275,7 @@ string address)
             }
         }
 
-
+      
 
 
 

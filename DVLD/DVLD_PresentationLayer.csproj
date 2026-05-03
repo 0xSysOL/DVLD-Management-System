@@ -110,6 +110,12 @@
     <Compile Include="Sub_Forms\Application\Tests Appointment\Schedule Tests\Frm_ScheduleTests.Designer.cs">
       <DependentUpon>Frm_ScheduleTests.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sub_Forms\Application\Tests Appointment\Schedule Tests\Frm_TakeTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\Tests Appointment\Schedule Tests\Frm_TakeTest.Designer.cs">
+      <DependentUpon>Frm_TakeTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sub_Forms\People Forms\Frm_Add_Edit_People.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Application\Tests Appointment\Schedule Tests\Frm_ScheduleTests.resx">
       <DependentUpon>Frm_ScheduleTests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Application\Tests Appointment\Schedule Tests\Frm_TakeTest.resx">
+      <DependentUpon>Frm_TakeTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\People Forms\Frm_Add_Edit_People.resx">
       <DependentUpon>Frm_Add_Edit_People.cs</DependentUpon>
@@ -446,6 +455,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Application\unkown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Application\Appointment\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ErProvider.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -233,7 +233,8 @@ LocalDrivingLicenseApplication.LicenseClassID = LC_ID
         public const string IsAnyTestsFoundBy_LDLA_ID = @"Select top 1 Found = 1 from TestAppointment
                                                        where LocalDrivingLicenseApplicationID = @Value";
 
-        public const string GetAllApplications = "select * from GetApplications";
+        public const string GetAllApplications = @"select * from GetApplications";
+
         public const string GetAllApplications_WithFilter = @"select * from GetApplications
                                                 where [@ColumnName] like @Value  + '%'";
         public const string GetApplicationByID = @"select * from Applications

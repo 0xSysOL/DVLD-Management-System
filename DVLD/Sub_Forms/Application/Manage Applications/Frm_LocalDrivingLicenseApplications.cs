@@ -31,7 +31,7 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
         }
         private void RefreshDataGridView()
         {
-            _DataGridView.DataSource = clsApplication_BL.GetAllApplications();
+            _DataGridView.DataSource = clsApplication_BL.Get_LDL_Applications();
             Label_Variable_Records.Text = _DataGridView.RowCount.ToString();
 
             IsLoaded = true;
@@ -270,9 +270,9 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
 
         }
 
+        private void UC_Filter_Load(object sender, EventArgs e)
+        {
 
-
-
-
+        }
     }
 }

@@ -3,7 +3,6 @@ using DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests;
 using DVLD_BussinessLogic.Application_Classes;
 using DVLD_BussinessLogic.Application_Classes.Application;
 using System;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace DVLD.Sub_Forms.Application.Schedule_Tests
@@ -70,11 +69,15 @@ namespace DVLD.Sub_Forms.Application.Schedule_Tests
         }
 
 
-
-        private void Frm_Schedule_TestsAppointments_Load(object sender, EventArgs e)
+        private void Refresh_DataGridView()
         {
             _DataGridView.DataSource = clsTestAppointment_BL.GetAppointmentInfoBy_LDLAPP_ID(LDLAPP_ID, (int)eTestTypes);
             Label_Variable_Records.Text = _DataGridView.Rows.Count.ToString();
+
+        }
+        private void Frm_Schedule_TestsAppointments_Load(object sender, EventArgs e)
+        {
+            Refresh_DataGridView();
         }
 
         private void UC_DrivingLicenseApplication_Info_Load(object sender, EventArgs e)
@@ -86,7 +89,6 @@ namespace DVLD.Sub_Forms.Application.Schedule_Tests
         private void UC_ApplicationBasic_Info_Load(object sender, EventArgs e)
         {
             APP_ID = Utilities.Methods.UC_FillApplicationBasic_Info(LDLAPP_ID, UC_ApplicationBasic_Info, eTestTypes);
-
         }
 
         private void Pic_AddNewAppointment_Click(object sender, EventArgs e)
@@ -112,12 +114,42 @@ namespace DVLD.Sub_Forms.Application.Schedule_Tests
             Frm_ScheduleTests scheduleTests = new Frm_ScheduleTests(LDLAPP_ID, (int)eTestTypes, APP_ID);
 
             scheduleTests.ShowDialog();
-                
+
         }
 
         private void Btn_Close_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void takeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int AppointmentID = Convert.ToInt32(_DataGridView.CurrentRow.Cells[0].Value);
+            Frm_TakeTest _TakeTest = new Frm_TakeTest(AppointmentID, LDLAPP_ID, (int)eTestTypes);
+
+            _TakeTest.ShowDialog();
+
+            Refresh_DataGridView();
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

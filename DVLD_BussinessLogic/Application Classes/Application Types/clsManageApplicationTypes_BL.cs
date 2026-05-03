@@ -15,7 +15,7 @@ namespace DVLD_BussinessLogic.Application_Classes
        protected int ID;
        protected string Title;
        protected decimal Fees;
-
+      
         public void SetTitle(string Title) 
         {
 
@@ -84,6 +84,8 @@ namespace DVLD_BussinessLogic.Application_Classes
             return false;
 
         }
+
+
 
 
     }
