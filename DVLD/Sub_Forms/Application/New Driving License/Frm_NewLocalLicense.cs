@@ -29,7 +29,7 @@ namespace DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_Licens
 
         private void InitializeApplicationClass()
         {
-            NewApplication = new clsApplication_BL();
+            NewApplication = new clsApplication_BL(clsApplication_BL.enApplicationType.NewLocalDrivingLicense);
         }
 
         private void InitializeNewDriverLicense()
@@ -150,6 +150,8 @@ namespace DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_Licens
             if (NewApplication.mode == clsApplication_BL.eMode.Add)
             {
                 #region Validation 
+                NewApplication = new clsApplication_BL(License_Class, clsPeople, 
+                    clsApplication_BL.enApplicationType.NewLocalDrivingLicense);
 
                 if (!Utilities.Methods.IsAgeValid(GetMinimumAllowedAge, clsPeople.DateOfBirth))
                 {
@@ -188,9 +190,11 @@ namespace DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_Licens
             // Start Processing
             if (NewApplication.mode != clsApplication_BL.eMode.Update)
             {
+
                 NewApplication.PersonID = clsPeople.PersonID;
                 NewApplication.ApplicationDate = DateTime.Now;
-                NewApplication.ApplicationTypeID = ApplicationType.GetID();
+                NewApplication.eAppTypeID = (clsApplication_BL.enApplicationType)ApplicationType.GetID();
+
             }
 
 
@@ -199,7 +203,7 @@ namespace DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_Licens
             NewApplication.PaidFees = License_Class.GetClassFees();
             NewApplication.UserID = CurrentUser.GetUserID();
 
-            if (NewApplication.Save(GetMinimumAllowedAge, clsPeople.DateOfBirth, License_Class.GetID()))
+            if (NewApplication.Save())
             {
                 NewDriverLicense.SetApplicationID(NewApplication.GetID());
                 NewDriverLicense.SetLicenseClassID(License_Class.GetID());

@@ -249,6 +249,9 @@ Select top 1 case when Islocked = 0 then Sum(1) end as Result from TestAppointme
 ";
         public const string GetApplicationBasicInfo = "select * from ApplicationBasicInfo(@LDLAPP_ID)";
 
+        public const string GetPersonID = @"select ApplicationPersonID from Applications
+                                        where ApplicationID	= @Value";
+
     }
 
 

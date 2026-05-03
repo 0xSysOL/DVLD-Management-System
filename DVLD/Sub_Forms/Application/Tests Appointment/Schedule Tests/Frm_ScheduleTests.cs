@@ -1,5 +1,7 @@
 ﻿using DVLD.Properties;
 using DVLD_BussinessLogic.Application_Classes;
+using DVLD_BussinessLogic.Application_Classes.Application;
+using DVLD_BussinessLogic.License_Class;
 using DVLD_BussinessLogic.Users_Classes.User_Setting;
 using System;
 using System.ComponentModel;
@@ -10,6 +12,7 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
     public partial class Frm_ScheduleTests : Form
     {
         int LDLAPP_ID;
+        int APP_ID;
         bool Bool_IsPersonTakeTestBefore = true;
         Utilities.Methods.eTestTypes eTestTypes;
         string LicenseClassName;
@@ -99,6 +102,7 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
         {
             InitializeComponent();
             LDLAPP_ID = -1;
+            APP_ID = -1;
             eTestTypes = Utilities.Methods.eTestTypes.None;
             LicenseClassName = "";
             FullName = "";
@@ -108,9 +112,10 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
 
         }
 
-        public Frm_ScheduleTests(int LDLAPP_ID, int TestType) : this()
+        public Frm_ScheduleTests(int LDLAPP_ID, int TestType,int APP_ID) : this()
         {
             this.LDLAPP_ID = LDLAPP_ID;
+            this.APP_ID = APP_ID;
             eTestTypes = (Utilities.Methods.eTestTypes)TestType;
             InitializeTitlesForm();
             InitializeDatePicker();
@@ -137,10 +142,19 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
         {
             if (Bool_IsPersonTakeTestBefore)
             {
+                clsRetakeTestApplication_BL clsRetakeTest = new clsRetakeTestApplication_BL();
+                clsLicenseClass_BL LicenseClass = new clsLicenseClass_BL();
+
+                clsRetakeTest.ApplicationDate = DateTime.Now;
+                clsRetakeTest.ApplicationState = (int)clsApplication_BL.eModeState.New;
+                clsRetakeTest.PaidFees = -1;
 
 
-                clsTestAppointment_BL.Save(LDLAPP_ID,(int)eTestTypes,_DateTimePicker.Value,
-                    PaidFees,CurrentUser.GetUserID,);
+                //clsRetakeTest.
+
+
+                //clsTestAppointment_BL.Save(LDLAPP_ID,(int)eTestTypes,_DateTimePicker.Value,
+                //    PaidFees,CurrentUser.GetUserID,);
 
             }
 

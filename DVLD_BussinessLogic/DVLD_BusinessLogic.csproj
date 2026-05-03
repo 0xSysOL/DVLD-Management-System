@@ -33,7 +33,7 @@
   <ItemGroup>
     <Compile Include="Application Classes\Application Types\clsManageApplicationTypes_BL.cs" />
     <Compile Include="Application Classes\Application\clsApplication_BL.cs" />
-    <Compile Include="Application Classes\RetakeTestApplication.cs" />
+    <Compile Include="Application Classes\Tests Appointments\clsRetakeTestApplication_BL.cs" />
     <Compile Include="Application Classes\Tests Appointments\clsTestAppointment_BL.cs" />
     <Compile Include="Application Classes\New Local License App\clsNewLocalDriverLicenseApplication_BL.cs" />
     <Compile Include="Application Classes\Test Types\clsManageTestTypes_BL.cs" />

@@ -474,7 +474,29 @@ namespace DVLD_DataLayer.Tables.Application_Classes
 
 
 
+        public static int GetPersonID(int ApplicationID)
+        {
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQApplication.GetPersonID, connection);
+            command.Parameters.AddWithValue("@Value", ApplicationID);
+            object PersonID = null;
 
+            try
+            {
+                connection.Open();
+
+                PersonID = command.ExecuteScalar();
+
+            }
+            catch (Exception e) { }
+            finally { connection.Close(); }
+
+
+
+
+            return (PersonID == null)? -1:Convert.ToInt32(PersonID);
+
+        }
 
 
 

@@ -11,6 +11,7 @@ namespace DVLD.Sub_Forms.Application.Schedule_Tests
     public partial class Frm_Schedule_TestsAppointments : Form
     {
         int LDLAPP_ID;
+        int APP_ID;
         Utilities.Methods.eTestTypes eTestTypes;
 
         private void InitializeTitlesForm()
@@ -84,7 +85,7 @@ namespace DVLD.Sub_Forms.Application.Schedule_Tests
 
         private void UC_ApplicationBasic_Info_Load(object sender, EventArgs e)
         {
-            Utilities.Methods.UC_FillApplicationBasic_Info(LDLAPP_ID, UC_ApplicationBasic_Info, eTestTypes);
+            APP_ID = Utilities.Methods.UC_FillApplicationBasic_Info(LDLAPP_ID, UC_ApplicationBasic_Info, eTestTypes);
 
         }
 
@@ -108,7 +109,7 @@ namespace DVLD.Sub_Forms.Application.Schedule_Tests
             }
 
 
-            Frm_ScheduleTests scheduleTests = new Frm_ScheduleTests(LDLAPP_ID, (int)eTestTypes);
+            Frm_ScheduleTests scheduleTests = new Frm_ScheduleTests(LDLAPP_ID, (int)eTestTypes, APP_ID);
 
             scheduleTests.ShowDialog();
                 

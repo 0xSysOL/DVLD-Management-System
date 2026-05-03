@@ -213,7 +213,7 @@ string address)
         }
 
 
-        public static void UC_FillApplicationBasic_Info(int LDLAPP_ID, UC_ApplicationBasic_Info APPBI, eTestTypes testTypes)
+        public static int UC_FillApplicationBasic_Info(int LDLAPP_ID, UC_ApplicationBasic_Info APPBI, eTestTypes testTypes)
         {
             string ApplicationStatus = "";
             int ApplicationID = -1;
@@ -238,7 +238,7 @@ string address)
             APPBI.SetLabel_Type(ApplicationTypeTitle);
             APPBI.SetLabel_Status(ApplicationStatus);
 
-
+            return ApplicationID;
 
         }
 

@@ -1,6 +1,6 @@
 ﻿using DVLD_BusinessLogic;
+using DVLD_BussinessLogic.License_Class;
 using DVLD_DataLayer.Tables.Application_Classes;
-using DVLD_DataLayer.Tables.Tests_Appointment;
 using System;
 using System.Data;
 
@@ -11,7 +11,19 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
 
         public enum eMode { Add = 0, Update = 1 };
         public enum eModeState { New = 1, Cancel = 2, Completed = 3, None = 0 };
-        public eModeState modeState = eModeState.None;
+        public enum enApplicationType
+        {
+            None,
+            NewLocalDrivingLicense = 1,
+            RenewDrivingLicense = 2,
+            ReplacementLost = 3,
+            ReplacementDamaged = 4,
+            ReleaseDetained = 5,
+            NewInternationalLicense = 6,
+            RetakeTest = 7
+        }
+        public enApplicationType eAppTypeID;
+        public eModeState modeState;
         public eMode mode;
 
 
@@ -28,21 +40,25 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
         public int PersonID { get; set; }
         public DateTime LastStateDate { get; set; }
 
+        clsLicenseClass_BL clsLicenseClass;
+        clsPeople_BL Person;
 
-        public clsApplication_BL()
+        public clsApplication_BL(enApplicationType eAppTypeID)
         {
             ID = -1;
             ApplicationState = 1;
-            ApplicationTypeID = -1;
             PaidFees = -1;
             UserID = -1;
             PersonID = -1;
             mode = eMode.Add;
+            modeState = eModeState.None;
+            this.eAppTypeID = eAppTypeID;
+
         }
 
         public clsApplication_BL(int ApplicationID)
         {
-            
+
             DateTime _ApplicationDate = new DateTime();
             byte _ApplicationState = 0;
             decimal _PaidFees = 0;
@@ -58,12 +74,27 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
             ApplicationDate = _ApplicationDate;
             ApplicationState = _ApplicationState;
             PaidFees = _PaidFees;
-            ApplicationTypeID = _ApplicationTypeID;
+
+            this.eAppTypeID = (enApplicationType)_ApplicationTypeID;
+            this.mode = eMode.Update;
+
             UserID = _UserID;
             PersonID = _PersonID;
             LastStateDate = _LastStateDate;
 
         }
+
+        public clsApplication_BL(clsLicenseClass_BL clsLicenseClass, clsPeople_BL clsPerson, enApplicationType eAppTypeID)
+            : this(eAppTypeID)
+        {
+
+            this.clsLicenseClass = clsLicenseClass;
+            this.Person = clsPerson;
+          
+
+
+        }
+        
         public static DataTable GetAllApplications()
         {
 
@@ -76,22 +107,44 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
             return clsApplication_DL.GetAllApplications_WithFilter(Value, ColumnName);
 
         }
-        public bool Save(short MinAge, DateTime DateOfBirth, int LicenseClassID)
+
+        private bool IsPassedValidation()
+        {
+
+            switch (eAppTypeID)
+            {
+                case enApplicationType.NewLocalDrivingLicense:
+
+                    if (mode == eMode.Add)
+                    {
+                      
+
+                        if (!Methods_BL.IsAgeValid(clsLicenseClass.GetMinimumAllowedAge(), Person.DateOfBirth))
+                            return false;
+                        if
+                            ((IsPersonHaveNewApp(PersonID, clsLicenseClass.GetID())) == eModeState.New)
+                            return false;
+
+                        if (IsPersonHaveCompletedApp(PersonID, clsLicenseClass.GetID()) == eModeState.Completed)
+                            return false;
+
+                    }
+                    break;
+
+                case enApplicationType.RetakeTest:
+
+                    return true;
+
+            }
+
+            return true;
+        }
+        public bool Save()
         {
             #region Validation 
 
-            if (mode == eMode.Add)
-            {
-                if (!Methods_BL.IsAgeValid(MinAge, DateOfBirth))
-                    return false;
-                if
-                    ((IsPersonHaveNewApp(PersonID, LicenseClassID)) == eModeState.New)
-                    return false;
-                
-                if (IsPersonHaveCompletedApp(PersonID, LicenseClassID) == eModeState.Completed)
-                    return false;
-
-            }
+            if (!IsPassedValidation())
+                return false;
             #endregion End
 
 
@@ -100,7 +153,7 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
             {
 
                 case eMode.Add:
-                    ID = clsApplication_DL.AddNewApplication(ApplicationState, ApplicationTypeID, PaidFees,
+                    ID = clsApplication_DL.AddNewApplication(ApplicationState, (int)eAppTypeID, PaidFees,
                         UserID, PersonID, ApplicationDate, LastStateDate);
                     mode = eMode.Update;
                     break;
@@ -124,7 +177,7 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
 
 
             return eModeState.None;
-           
+
 
         }
         public eModeState IsPersonHaveCompletedApp(int PersonID, int ClassID)
@@ -175,15 +228,15 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
 
 
         }
-        
 
-        public static void GetApplicationBasicInfo(int LDLAPP_ID,ref  string ApplicationStatus,ref int ApplicationID,ref decimal ApplicationFees,
-            ref string ApplicationTypeTitle,ref string FullName,
-            ref DateTime ApplicationDate,ref DateTime ApplicationDateStatus,
+
+        public static void GetApplicationBasicInfo(int LDLAPP_ID, ref string ApplicationStatus, ref int ApplicationID, ref decimal ApplicationFees,
+            ref string ApplicationTypeTitle, ref string FullName,
+            ref DateTime ApplicationDate, ref DateTime ApplicationDateStatus,
             ref string Username)
         {
 
-            clsApplication_DL.GetApplicationBasicInfo(LDLAPP_ID,ref ApplicationStatus, ref ApplicationID, ref ApplicationFees,
+            clsApplication_DL.GetApplicationBasicInfo(LDLAPP_ID, ref ApplicationStatus, ref ApplicationID, ref ApplicationFees,
                ref ApplicationTypeTitle, ref FullName, ref ApplicationDate, ref ApplicationDateStatus, ref Username);
 
 
@@ -191,9 +244,14 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
         }
 
 
+        public static int GetPersonID(int ApplicationID)
+        {
+
+            return clsApplication_DL.GetPersonID(ApplicationID);
+
+        }
 
 
-        
         public static bool IsPersonPassedTest(int LDLAPP_ID, int TestType)
         {
 
