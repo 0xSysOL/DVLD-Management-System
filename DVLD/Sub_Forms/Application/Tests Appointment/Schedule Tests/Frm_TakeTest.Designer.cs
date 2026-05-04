@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_TakeTest));
             this.GroubBox_ST = new System.Windows.Forms.GroupBox();
+            this.Label_Variable_Date = new System.Windows.Forms.Label();
+            this.Label_Variable_TestID = new System.Windows.Forms.Label();
+            this.Label_Const_TestID = new System.Windows.Forms.Label();
             this.Label_Variable_Fees = new System.Windows.Forms.Label();
             this.Label_Const_Fees = new System.Windows.Forms.Label();
             this.Label_Const_Date = new System.Windows.Forms.Label();
@@ -42,14 +45,11 @@
             this.Label_Variable_L_D_App_ID = new System.Windows.Forms.Label();
             this.Label_Const_L_D_App_ID = new System.Windows.Forms.Label();
             this.Label_Variable_FormTitle = new System.Windows.Forms.Label();
-            this.Label_Variable_TestID = new System.Windows.Forms.Label();
-            this.Label_Const_TestID = new System.Windows.Forms.Label();
-            this.Label_Variable_Date = new System.Windows.Forms.Label();
             this.RadButt_Pass = new System.Windows.Forms.RadioButton();
             this.RadButt_Fail = new System.Windows.Forms.RadioButton();
             this.Label_Const_Result = new System.Windows.Forms.Label();
             this.Label_Const_Note = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TB_Note = new System.Windows.Forms.TextBox();
             this.Btn_Save = new System.Windows.Forms.Button();
             this.Btn_Close = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -107,6 +107,36 @@
             this.GroubBox_ST.TabIndex = 1;
             this.GroubBox_ST.TabStop = false;
             this.GroubBox_ST.Text = "Unknown Test";
+            // 
+            // Label_Variable_Date
+            // 
+            this.Label_Variable_Date.AutoSize = true;
+            this.Label_Variable_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Variable_Date.Location = new System.Drawing.Point(156, 300);
+            this.Label_Variable_Date.Name = "Label_Variable_Date";
+            this.Label_Variable_Date.Size = new System.Drawing.Size(63, 16);
+            this.Label_Variable_Date.TabIndex = 47;
+            this.Label_Variable_Date.Text = "No Value";
+            // 
+            // Label_Variable_TestID
+            // 
+            this.Label_Variable_TestID.AutoSize = true;
+            this.Label_Variable_TestID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Variable_TestID.Location = new System.Drawing.Point(156, 359);
+            this.Label_Variable_TestID.Name = "Label_Variable_TestID";
+            this.Label_Variable_TestID.Size = new System.Drawing.Size(63, 16);
+            this.Label_Variable_TestID.TabIndex = 45;
+            this.Label_Variable_TestID.Text = "No Value";
+            // 
+            // Label_Const_TestID
+            // 
+            this.Label_Const_TestID.AutoSize = true;
+            this.Label_Const_TestID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Const_TestID.Location = new System.Drawing.Point(75, 359);
+            this.Label_Const_TestID.Name = "Label_Const_TestID";
+            this.Label_Const_TestID.Size = new System.Drawing.Size(56, 16);
+            this.Label_Const_TestID.TabIndex = 44;
+            this.Label_Const_TestID.Text = "Test ID: ";
             // 
             // Label_Variable_Fees
             // 
@@ -229,36 +259,6 @@
             this.Label_Variable_FormTitle.TabIndex = 23;
             this.Label_Variable_FormTitle.Text = "Unknown Schedule Test";
             // 
-            // Label_Variable_TestID
-            // 
-            this.Label_Variable_TestID.AutoSize = true;
-            this.Label_Variable_TestID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Variable_TestID.Location = new System.Drawing.Point(156, 359);
-            this.Label_Variable_TestID.Name = "Label_Variable_TestID";
-            this.Label_Variable_TestID.Size = new System.Drawing.Size(63, 16);
-            this.Label_Variable_TestID.TabIndex = 45;
-            this.Label_Variable_TestID.Text = "No Value";
-            // 
-            // Label_Const_TestID
-            // 
-            this.Label_Const_TestID.AutoSize = true;
-            this.Label_Const_TestID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Const_TestID.Location = new System.Drawing.Point(75, 359);
-            this.Label_Const_TestID.Name = "Label_Const_TestID";
-            this.Label_Const_TestID.Size = new System.Drawing.Size(56, 16);
-            this.Label_Const_TestID.TabIndex = 44;
-            this.Label_Const_TestID.Text = "Test ID: ";
-            // 
-            // Label_Variable_Date
-            // 
-            this.Label_Variable_Date.AutoSize = true;
-            this.Label_Variable_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Variable_Date.Location = new System.Drawing.Point(156, 300);
-            this.Label_Variable_Date.Name = "Label_Variable_Date";
-            this.Label_Variable_Date.Size = new System.Drawing.Size(63, 16);
-            this.Label_Variable_Date.TabIndex = 47;
-            this.Label_Variable_Date.Text = "No Value";
-            // 
             // RadButt_Pass
             // 
             this.RadButt_Pass.AutoSize = true;
@@ -305,13 +305,13 @@
             this.Label_Const_Note.TabIndex = 47;
             this.Label_Const_Note.Text = "Note:";
             // 
-            // textBox1
+            // TB_Note
             // 
-            this.textBox1.Location = new System.Drawing.Point(92, 504);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(355, 84);
-            this.textBox1.TabIndex = 48;
+            this.TB_Note.Location = new System.Drawing.Point(92, 504);
+            this.TB_Note.Multiline = true;
+            this.TB_Note.Name = "TB_Note";
+            this.TB_Note.Size = new System.Drawing.Size(355, 84);
+            this.TB_Note.TabIndex = 48;
             // 
             // Btn_Save
             // 
@@ -325,6 +325,7 @@
             this.Btn_Save.Text = "Save";
             this.Btn_Save.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Btn_Save.UseVisualStyleBackColor = true;
+            this.Btn_Save.Click += new System.EventHandler(this.Btn_Save_Click);
             // 
             // Btn_Close
             // 
@@ -338,6 +339,7 @@
             this.Btn_Close.Text = "Close";
             this.Btn_Close.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Btn_Close.UseVisualStyleBackColor = true;
+            this.Btn_Close.Click += new System.EventHandler(this.Btn_Close_Click);
             // 
             // pictureBox2
             // 
@@ -448,7 +450,7 @@
             this.Controls.Add(this.Btn_Close);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.Pic_Note);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.TB_Note);
             this.Controls.Add(this.Label_Const_Note);
             this.Controls.Add(this.Label_Const_Result);
             this.Controls.Add(this.RadButt_Fail);
@@ -503,7 +505,7 @@
         private System.Windows.Forms.RadioButton RadButt_Fail;
         private System.Windows.Forms.Label Label_Const_Result;
         private System.Windows.Forms.Label Label_Const_Note;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TB_Note;
         private System.Windows.Forms.PictureBox Pic_TestID;
         private System.Windows.Forms.PictureBox Pic_Note;
         private System.Windows.Forms.PictureBox pictureBox2;

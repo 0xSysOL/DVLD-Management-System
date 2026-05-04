@@ -75,6 +75,17 @@ namespace DVLD.Sub_Forms.Application.Schedule_Tests
             Label_Variable_Records.Text = _DataGridView.Rows.Count.ToString();
 
         }
+        private void Refresh_UC_DLAPP_INFO()
+        {
+            Utilities.Methods.UC_FillDrivingLicenseApplicationInfo(LDLAPP_ID, UC_DrivingLicenseApplication_Info, eTestTypes);
+
+        }
+        private void Refresh_UC_APPBInfo()
+        {
+
+            APP_ID = Utilities.Methods.UC_FillApplicationBasic_Info(LDLAPP_ID, UC_ApplicationBasic_Info, eTestTypes);
+
+        }
         private void Frm_Schedule_TestsAppointments_Load(object sender, EventArgs e)
         {
             Refresh_DataGridView();
@@ -82,13 +93,12 @@ namespace DVLD.Sub_Forms.Application.Schedule_Tests
 
         private void UC_DrivingLicenseApplication_Info_Load(object sender, EventArgs e)
         {
-            Utilities.Methods.UC_FillDrivingLicenseApplicationInfo(LDLAPP_ID, UC_DrivingLicenseApplication_Info, eTestTypes);
-
+            Refresh_UC_DLAPP_INFO();
         }
 
         private void UC_ApplicationBasic_Info_Load(object sender, EventArgs e)
         {
-            APP_ID = Utilities.Methods.UC_FillApplicationBasic_Info(LDLAPP_ID, UC_ApplicationBasic_Info, eTestTypes);
+            Refresh_UC_APPBInfo();
         }
 
         private void Pic_AddNewAppointment_Click(object sender, EventArgs e)
@@ -115,6 +125,13 @@ namespace DVLD.Sub_Forms.Application.Schedule_Tests
 
             scheduleTests.ShowDialog();
 
+
+
+
+            Refresh_DataGridView();
+            Refresh_UC_DLAPP_INFO();
+            Refresh_UC_APPBInfo();
+
         }
 
         private void Btn_Close_Click(object sender, EventArgs e)
@@ -135,6 +152,8 @@ namespace DVLD.Sub_Forms.Application.Schedule_Tests
             _TakeTest.ShowDialog();
 
             Refresh_DataGridView();
+            Refresh_UC_DLAPP_INFO();
+            Refresh_UC_APPBInfo();
 
 
         }

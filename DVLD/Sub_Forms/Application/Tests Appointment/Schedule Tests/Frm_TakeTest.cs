@@ -1,13 +1,8 @@
-﻿using DVLD.User_Controls.Sechdule_Tests;
+﻿using DVLD.Properties;
 using DVLD_BussinessLogic.Application_Classes;
+using DVLD_BussinessLogic.Application_Classes.Tests_Appointments;
+using DVLD_BussinessLogic.Users_Classes.User_Setting;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static DVLD.Utilities.Methods;
 
@@ -18,6 +13,8 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
         Utilities.Methods.eTestTypes eTestTypes;
         int LDLAPP_ID;
         int AppointmentID;
+
+
         private Frm_TakeTest()
         {
             InitializeComponent();
@@ -26,29 +23,45 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
             eTestTypes = Utilities.Methods.eTestTypes.None;
 
         }
-        public Frm_TakeTest(int AppointmentID,int LDLAPP_ID,int TestTypeID) : this()
+
+        private void InitializeTitlesForm()
+        {
+            switch (eTestTypes)
+            {
+
+                case Utilities.Methods.eTestTypes.VisionTest:
+                    Pic_FormPicture.Image = Resources.eye_scan__1_;
+                    this.Text = "Take Vision Test";
+                    Label_Variable_FormTitle.Text = "        Vision Test";
+                    GroubBox_ST.Text = "Vision Test";
+                    break;
+
+                case Utilities.Methods.eTestTypes.WrittenTest:
+                    Pic_FormPicture.Image = Resources.writing;
+                    this.Text = "Take Written Test";
+                    Label_Variable_FormTitle.Text = "        Written Test";
+                    GroubBox_ST.Text = "Written Test";
+                    break;
+
+                case Utilities.Methods.eTestTypes.StreetTest:
+                    Pic_FormPicture.Image = Resources.test;
+                    this.Text = "Take Street Test";
+                    Label_Variable_FormTitle.Text = "        Street Test";
+                    GroubBox_ST.Text = "Street Test";
+                    break;
+
+
+            }
+        }
+        public Frm_TakeTest(int AppointmentID, int LDLAPP_ID, int TestTypeID) : this()
         {
             this.AppointmentID = AppointmentID;
             this.LDLAPP_ID = LDLAPP_ID;
             eTestTypes = (eTestTypes)TestTypeID;
             InitializeLabels();
-        }
-
-        private void Frm_TakeTest_Load(object sender, EventArgs e)
-        {
+            InitializeTitlesForm();
 
         }
-
-        private void RadButt_Fail_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label_Const_Result_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void InitializeLabels()
         {
 
@@ -77,5 +90,58 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
 
 
         }
+
+        private void Frm_TakeTest_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RadButt_Fail_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label_Const_Result_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private bool RadButt_IsPersonFailOrPass()
+        {
+            if (RadButt_Pass.Checked)
+                return true;
+
+
+            return false;
+            
+
+        }
+        private void Btn_Save_Click(object sender, EventArgs e)
+        {
+
+            if (clsTests_BL.TakeTest(RadButt_IsPersonFailOrPass(), TB_Note.Text, CurrentUser.GetUserID(), AppointmentID))
+                MessageBox.Show("Test Added Successfully (:", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("We Couldn't Add Test ):", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            this.Close();
+
+
+        }
+
+        private void Btn_Close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
+
+
+
+
+
+
+
+
     }
 }

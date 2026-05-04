@@ -1,5 +1,4 @@
 ﻿using DVLD_DataLayer.Tables.Application_Classes.New_Local_Driving_License_Application;
-using DVLD_DataLayer.Tables.Tests_Appointment.Vision_Test_Appointment;
 
 namespace DVLD_BussinessLogic.Application_Classes.New_Local_License_App
 {

@@ -21,15 +21,15 @@ namespace DVLD.User_Controls.Sechdule_Tests
 
         public void SetRAppFees(decimal DAPP_Fees)
         {
-
+            Label_Variable_RAppFees.Text = DAPP_Fees.ToString();
         }
         public void SetRTestAppID(int RTestID)
         {
-
+            Label_Variable_RTestAppID.Text = RTestID.ToString();
         }
         public void SetTotalFees(decimal TotalFees)
         {
-
+            Label_Variable_TotalFees.Text = TotalFees.ToString();
         }
         public decimal GetRAppFees()
         {

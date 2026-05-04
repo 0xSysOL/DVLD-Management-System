@@ -111,7 +111,12 @@ where ApplicationTypeID = @ID
     {
     
         public const string Add_Appointment = "Add_Appointment";
-        public const string Update_Appointment = "";
+        public const string Update_Appointment = @"
+";
+        public const string Update_LockAppointment = @"update TestAppointment
+set Islocked = 1
+where AppointmentID = @AppointmentID";
+
 
         public const  string IsVisionTestPassed =
             @"
@@ -154,6 +159,15 @@ select * from GetApplicationDetailsForNewAppointment(@LDLAPP_ID,@TestType)";
     internal static class clsQVisionTestAppointment
     {
        
+    }
+
+    internal static class clsQTests
+    {
+
+       public const string TakeTest = @"insert into Tests(TestResult,Notes,CreateByUserID,TestAppointmentID)
+                                   values (@TestResult,@Note,@UserID,@TestAppointmentID)";
+
+
     }
     #endregion End
 

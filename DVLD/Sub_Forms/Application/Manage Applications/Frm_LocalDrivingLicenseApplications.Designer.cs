@@ -137,6 +137,7 @@
             this.showToolStripMenuItem});
             this._ContextMenuStrip.Name = "_ContextMenuStrip";
             this._ContextMenuStrip.Size = new System.Drawing.Size(384, 418);
+            this._ContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this._ContextMenuStrip_Opening);
             // 
             // showApplicationDetailsToolStripMenuItem
             // 
@@ -214,6 +215,7 @@
             this.sechduleWrittenTestToolStripMenuItem.Name = "sechduleWrittenTestToolStripMenuItem";
             this.sechduleWrittenTestToolStripMenuItem.Size = new System.Drawing.Size(292, 48);
             this.sechduleWrittenTestToolStripMenuItem.Text = "Sechdule Written Test";
+            this.sechduleWrittenTestToolStripMenuItem.Click += new System.EventHandler(this.sechduleWrittenTestToolStripMenuItem_Click);
             // 
             // sechduleStreetTestToolStripMenuItem
             // 
@@ -221,6 +223,7 @@
             this.sechduleStreetTestToolStripMenuItem.Name = "sechduleStreetTestToolStripMenuItem";
             this.sechduleStreetTestToolStripMenuItem.Size = new System.Drawing.Size(292, 48);
             this.sechduleStreetTestToolStripMenuItem.Text = "Sechdule Street Test";
+            this.sechduleStreetTestToolStripMenuItem.Click += new System.EventHandler(this.sechduleStreetTestToolStripMenuItem_Click);
             // 
             // issueDateToolStripMenuItem
             // 

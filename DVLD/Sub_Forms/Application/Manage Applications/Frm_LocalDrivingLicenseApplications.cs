@@ -166,8 +166,29 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
 
             STAPP.ShowDialog();
 
+            CheckFromRecord();
+        }
+        private void sechduleWrittenTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int LDL_AppID = Convert.ToInt32(_DataGridView.CurrentRow.Cells[0].Value);
+            Frm_Schedule_TestsAppointments STAPP = new Frm_Schedule_TestsAppointments
+                (LDL_AppID, (int)Utilities.Methods.eTestTypes.WrittenTest);
+
+            STAPP.ShowDialog();
+
+            CheckFromRecord();
         }
 
+        private void sechduleStreetTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int LDL_AppID = Convert.ToInt32(_DataGridView.CurrentRow.Cells[0].Value);
+            Frm_Schedule_TestsAppointments STAPP = new Frm_Schedule_TestsAppointments
+                (LDL_AppID, (int)Utilities.Methods.eTestTypes.StreetTest);
+
+            STAPP.ShowDialog();
+
+            CheckFromRecord();
+        }
         #endregion End
 
 
@@ -191,7 +212,6 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
             editApplicationToolStripMenuItem.Enabled = false;
             deleteApplicationToolStripMenuItem.Enabled = false;
             sechduleToolStripMenuItem.Enabled = false;
-            issueDateToolStripMenuItem.Enabled = false;
 
         }
 
@@ -236,7 +256,7 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
 
             if (!clsTestAppointment_BL.IsWrittenTestPassed(LDLA_ID))
             {
-                EnabledTestsMenuItem(true, true, false);
+                EnabledTestsMenuItem(false, true, false);
                 EnabledFinalItemAfterCompleted_3_Schedules(false, false);
                 return;
             }
@@ -248,7 +268,7 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
 
             if (!clsTestAppointment_BL.IsStreetTestPassed(LDLA_ID))
             {
-                EnabledTestsMenuItem(true, true, true);
+                EnabledTestsMenuItem(false, false, true);
                 EnabledFinalItemAfterCompleted_3_Schedules(false, false);
                 return;
             }
@@ -274,5 +294,12 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
         {
 
         }
+
+        private void _ContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+ 
     }
 }

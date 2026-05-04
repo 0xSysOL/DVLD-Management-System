@@ -50,9 +50,9 @@
             this.Label_Variable_L_D_App_ID = new System.Windows.Forms.Label();
             this.Label_Const_L_D_App_ID = new System.Windows.Forms.Label();
             this.Label_Variable_FormTitle = new System.Windows.Forms.Label();
+            this.UC_RetakeTestInfo = new DVLD.User_Controls.Sechdule_Tests.UC_RetakeTestInfo();
             this.Pic_FormPicture = new System.Windows.Forms.PictureBox();
             this.Btn_Close = new System.Windows.Forms.Button();
-            this.UC_RetakeTestInfo = new DVLD.User_Controls.Sechdule_Tests.UC_RetakeTestInfo();
             this.GroubBox_ST.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Fees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Date)).BeginInit();
@@ -94,6 +94,7 @@
             this.GroubBox_ST.TabIndex = 0;
             this.GroubBox_ST.TabStop = false;
             this.GroubBox_ST.Text = "Unknown Test";
+            this.GroubBox_ST.Enter += new System.EventHandler(this.GroubBox_ST_Enter);
             // 
             // _DateTimePicker
             // 
@@ -298,6 +299,16 @@
             this.Label_Variable_FormTitle.TabIndex = 23;
             this.Label_Variable_FormTitle.Text = "Unknown Schedule Test";
             // 
+            // UC_RetakeTestInfo
+            // 
+            this.UC_RetakeTestInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UC_RetakeTestInfo.Location = new System.Drawing.Point(33, 356);
+            this.UC_RetakeTestInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.UC_RetakeTestInfo.Name = "UC_RetakeTestInfo";
+            this.UC_RetakeTestInfo.Size = new System.Drawing.Size(388, 127);
+            this.UC_RetakeTestInfo.TabIndex = 22;
+            this.UC_RetakeTestInfo.Load += new System.EventHandler(this.UC_RetakeTestInfo_Load);
+            // 
             // Pic_FormPicture
             // 
             this.Pic_FormPicture.Image = global::DVLD.Properties.Resources.unkown;
@@ -319,15 +330,6 @@
             this.Btn_Close.Text = "Close";
             this.Btn_Close.UseVisualStyleBackColor = true;
             this.Btn_Close.Click += new System.EventHandler(this.Btn_Close_Click);
-            // 
-            // UC_RetakeTestInfo
-            // 
-            this.UC_RetakeTestInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UC_RetakeTestInfo.Location = new System.Drawing.Point(33, 356);
-            this.UC_RetakeTestInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.UC_RetakeTestInfo.Name = "UC_RetakeTestInfo";
-            this.UC_RetakeTestInfo.Size = new System.Drawing.Size(388, 127);
-            this.UC_RetakeTestInfo.TabIndex = 22;
             // 
             // Frm_ScheduleTests
             // 

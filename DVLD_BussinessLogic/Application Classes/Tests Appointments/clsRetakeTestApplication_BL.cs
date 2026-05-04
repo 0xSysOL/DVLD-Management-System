@@ -33,9 +33,9 @@ namespace DVLD_BussinessLogic.Application_Classes
 
             return APPType.GetFees();
 
-        }   
+        }
 
-
+   
 
 
     }
