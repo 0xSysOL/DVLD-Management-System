@@ -258,8 +258,7 @@ namespace DVLD_DataLayer.Tables.Tests_Appointment
                     FullName = (string)reader["FullName"];
                     Trial = (int)reader["Trial"];
                     TestFees = (decimal)reader["Fees"];
-                    AppointmentDate = (DateTime)reader["AppointmentDate"];
-
+                    
                 }
                 reader.Close();
 
@@ -277,14 +276,14 @@ namespace DVLD_DataLayer.Tables.Tests_Appointment
 
 
 
-        public static bool Add_TestAppointment(int LDLApplicationID, int TestTypeID,
+        public static int Add_TestAppointment(int LDLApplicationID, int TestTypeID,
             DateTime AppointmentDate, decimal PaidFees, int CreateByUserID, object RetakeTeApp = null)
         {
 
             SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
             SqlCommand command = new SqlCommand(clsQTestAppointment.Add_Appointment, connection);
             command.CommandType = CommandType.StoredProcedure;
-            int Result = -1;
+            object Result = null;
             /*(@AppointmentDate,0,@PaidFees,@CreateByUserID,@TestTypeID,
 @LDLAPP_ID,@RetakeTAPP_ID)*/
 
@@ -301,7 +300,7 @@ namespace DVLD_DataLayer.Tables.Tests_Appointment
             {
                 connection.Open();
 
-                Result = command.ExecuteNonQuery();
+                Result = command.ExecuteScalar();
 
             }
             catch (Exception e)
@@ -312,17 +311,17 @@ namespace DVLD_DataLayer.Tables.Tests_Appointment
 
 
 
-            return Result != -1 ? true : false;
+            return Convert.ToInt32(Result);
 
         }
 
-        public static bool Update_TestAppointment(DateTime AppointmentDate)
+        public static bool Update_TestAppointment(int AppointmentID,ref DateTime AppointmentDate)
         {
 
             SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
             SqlCommand command = new SqlCommand(clsQTestAppointment.Update_Appointment, connection);
 
-           
+            command.Parameters.AddWithValue("@AppointmentID", AppointmentID);
             command.Parameters.AddWithValue("@AppointmentDate", AppointmentDate);
             
             int EvRow = -1;
@@ -342,8 +341,71 @@ namespace DVLD_DataLayer.Tables.Tests_Appointment
 
 
 
-            return false;
+            return EvRow > 0?true:false;
         }
+
+
+
+        public static void FillClass(int AppointmentID, ref int LDLApplicationID, ref int testTypeID, ref DateTime appointmentDate,
+           ref decimal paidFees, ref int createByUserID, ref object retakeTeApp)
+        {
+
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQTestAppointment.GetAppointmentByID, connection);
+
+            command.Parameters.AddWithValue("@AppointmentID", AppointmentID);
+            
+            try
+            {
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+
+                        AppointmentID = (int)reader["AppointmentID"];
+
+                        LDLApplicationID = (int)reader["LocalDrivingLicenseApplicationID"];
+                        testTypeID = (int)reader["TestTypeID"];
+                        appointmentDate = (DateTime)reader["AppointmentDate"];
+                        paidFees = (decimal)reader["PaidFees"];
+                        createByUserID = (int)reader["CreateByUserID"];
+
+                        if (reader["RetakeTestApplicationID"] != DBNull.Value)
+                        {
+                            retakeTeApp = reader["RetakeTestApplicationID"];
+                        }
+                        else
+                        {
+                            retakeTeApp = null;
+                        }
+
+
+                    }
+                      
+
+
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally { connection.Close(); }
+
+
+        }
+
+
+
+
+
+
+
+
+
     }
 
 

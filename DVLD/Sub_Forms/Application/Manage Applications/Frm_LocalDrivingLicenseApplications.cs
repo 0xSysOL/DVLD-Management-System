@@ -6,6 +6,8 @@ using DVLD_BussinessLogic.Application_Classes;
 using DVLD_BussinessLogic.Application_Classes.Application;
 using System;
 using System.Windows.Forms;
+using static DVLD_BussinessLogic.Application_Classes.Application.clsApplication_BL;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DVLD.Sub_Forms.Application.Manage_Applications
 {
@@ -34,7 +36,6 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
             _DataGridView.DataSource = clsApplication_BL.Get_LDL_Applications();
             Label_Variable_Records.Text = _DataGridView.RowCount.ToString();
 
-            IsLoaded = true;
             CheckFromRecord();
         }
         private void Frm_LocalDrivingLicenseApplications_Load(object sender, EventArgs e)
@@ -165,7 +166,7 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
                 (LDL_AppID, (int)Utilities.Methods.eTestTypes.VisionTest);
 
             STAPP.ShowDialog();
-
+            RefreshDataGridView();
             CheckFromRecord();
         }
         private void sechduleWrittenTestToolStripMenuItem_Click(object sender, EventArgs e)
@@ -175,6 +176,7 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
                 (LDL_AppID, (int)Utilities.Methods.eTestTypes.WrittenTest);
 
             STAPP.ShowDialog();
+            RefreshDataGridView();
 
             CheckFromRecord();
         }
@@ -186,6 +188,7 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
                 (LDL_AppID, (int)Utilities.Methods.eTestTypes.StreetTest);
 
             STAPP.ShowDialog();
+            RefreshDataGridView();
 
             CheckFromRecord();
         }
@@ -204,15 +207,15 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
         }
         private void EnabledFinalItemAfterCompleted_3_Schedules(bool IssDSMI, bool SLTMI)
         {
-            issueDateToolStripMenuItem.Enabled = IssDSMI;
+            issueDLFT_ToolStripMenuItem.Enabled = IssDSMI;
             showLicenseToolStripMenuItem.Enabled = SLTMI;
         }
-        private void EnabledMenuItems(bool Edit, bool Delete, bool Sechdule, bool Issue)
+        private void EnabledMenuItems(bool Edit, bool Delete, bool Sechdule,bool Cancel)
         {
-            editApplicationToolStripMenuItem.Enabled = false;
-            deleteApplicationToolStripMenuItem.Enabled = false;
-            sechduleToolStripMenuItem.Enabled = false;
-
+            editApplicationToolStripMenuItem.Enabled = Edit;
+            deleteApplicationToolStripMenuItem.Enabled = Delete;
+            sechduleToolStripMenuItem.Enabled = Sechdule;
+            cancelApplicationToolStripMenuItem.Enabled = Cancel;
         }
 
 
@@ -226,18 +229,27 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
 
 
         }
-        bool IsLoaded = false;
 
         private void CheckFromRecord()
         {
-            if (IsLoaded == false)
-                return;
 
             if (_DataGridView == null || _DataGridView.Rows.Count == 0)
-                return;
+            {
+                EnabledTestsMenuItem(false, false, false);
+                EnabledFinalItemAfterCompleted_3_Schedules(false, false);
+                EnabledMenuItems(false, false, false,false);
+            }
 
 
             int LDLA_ID = Convert.ToInt32(_DataGridView.CurrentRow.Cells[0].Value);
+            eModeState status = clsApplication_BL.GetStatusBy_LDLAPP_ID(LDLA_ID);
+            if (status == eModeState.Cancel|| status == eModeState.Completed)
+            {
+                EnabledTestsMenuItem(false, false, false);
+                EnabledFinalItemAfterCompleted_3_Schedules(false, false);
+                EnabledMenuItems(false, false, false, false);
+                return;
+            }
 
 
 
@@ -245,6 +257,7 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
             {
                 EnabledTestsMenuItem(true, false, false);
                 EnabledFinalItemAfterCompleted_3_Schedules(false, false);
+                EnabledMenuItems(true, true, true, true);
                 return;
             }
             else
@@ -270,9 +283,15 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
             {
                 EnabledTestsMenuItem(false, false, true);
                 EnabledFinalItemAfterCompleted_3_Schedules(false, false);
+
                 return;
             }
-            else
+            else if(status == eModeState.Completed)
+            {
+                EnabledTestsMenuItem(false, false, false);
+                EnabledFinalItemAfterCompleted_3_Schedules(false, true);
+                EnabledMenuItems(false, false, false, false);
+            }else
             {
                 EnabledTestsMenuItem(false, false, false);
                 EnabledFinalItemAfterCompleted_3_Schedules(true, true);
@@ -285,7 +304,6 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
         private void _DataGridView_SelectionChanged(object sender, EventArgs e)
         {
 
-            CheckFromRecord();
 
 
         }
@@ -297,9 +315,10 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
 
         private void _ContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            CheckFromRecord();
 
         }
 
- 
+
     }
 }

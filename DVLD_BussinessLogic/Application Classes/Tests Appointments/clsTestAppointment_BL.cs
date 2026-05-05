@@ -7,43 +7,123 @@ namespace DVLD_BussinessLogic.Application_Classes
 {
     public class clsTestAppointment_BL
     {
-        enum eMode { Update,Add}
-        eMode mode;
-        private int AppointmentID;
-
-      public int LDLApplicationID { get; set; }
-      public int TestTypeID { get; set; }
-      public DateTime AppointmentDate { get; set; }
-      public decimal PaidFees { get; set; }
-      public int CreateByUserID { get; set; }
-      public object RetakeTeApp  { get; set; }
-
-        public  bool Save(int LDLApplicationID, int TestTypeID,
-        DateTime AppointmentDate, decimal PaidFees, int CreateByUserID, object RetakeTeApp = null)
+       public enum eMode { Update,Add}
+      public  eMode mode;
+     
+        private int _AppointmentID;
+        private int _LDLApplicationID;
+        private int _TestTypeID;
+        private DateTime _AppointmentDate;
+        private decimal _PaidFees;
+        private int _CreateByUserID;
+        private object _RetakeTeApp;
+        public int GetAppointmentID()
         {
+            return _AppointmentID;
+        }
+
+        public int GetLDLApplicationID()
+        {
+            return _LDLApplicationID;
+        }
+        public void SetLDLApplicationID(int value)
+        {
+            _LDLApplicationID = value;
+        }
+
+        public int GetTestTypeID()
+        {
+            return _TestTypeID;
+        }
+        public void SetTestTypeID(int value)
+        {
+            _TestTypeID = value;
+        }
+
+        public DateTime GetAppointmentDate()
+        {
+            return _AppointmentDate;
+        }
+        public void SetAppointmentDate(DateTime value)
+        {
+            _AppointmentDate = value;
+        }
+
+        public decimal GetPaidFees()
+        {
+            return _PaidFees;
+        }
+        public void SetPaidFees(decimal value)
+        {
+            _PaidFees = value;
+        }
+
+        public int GetCreateByUserID()
+        {
+            return _CreateByUserID;
+        }
+        public void SetCreateByUserID(int value)
+        {
+            _CreateByUserID = value;
+        }
+
+        public object GetRetakeTeApp()
+        {
+            return _RetakeTeApp;
+        }
+        public void SetRetakeTeApp(object value)
+        {
+            _RetakeTeApp = value;
+        }
+        public clsTestAppointment_BL()
+        {
+            _AppointmentID = -1;
+            _LDLApplicationID = -1;
+            _TestTypeID = -1;
+            _AppointmentDate = new DateTime();
+            _PaidFees = -1;
+            _CreateByUserID = -1;
+            _RetakeTeApp = null;
+            this.mode = eMode.Add;
+
+
+        }
+        public clsTestAppointment_BL(int AppointmentID) : this()
+        {
+          
+           clsTestAppointment_DL.FillClass(AppointmentID, ref _LDLApplicationID,ref _TestTypeID, 
+               ref _AppointmentDate,ref  _PaidFees,
+              ref  _CreateByUserID, ref _RetakeTeApp);
+            _AppointmentID = AppointmentID;
+            this.mode = eMode.Update;
+
+        }
+
+        public bool Save()
+        {
+            if (_RetakeTeApp == null)
+                _RetakeTeApp = DBNull.Value;
+
 
             switch (mode)
             {
 
 
+                case eMode.Add:
 
+                    _AppointmentID = clsTestAppointment_DL.Add_TestAppointment(_LDLApplicationID, _TestTypeID, _AppointmentDate, _PaidFees,
+                              _CreateByUserID, _RetakeTeApp);
+                    this.mode = eMode.Update;
+                    return true;
+                case eMode.Update:
+                    return clsTestAppointment_DL.Update_TestAppointment(_AppointmentID, ref _AppointmentDate);
+
+
+                 
+
+                    
             }
-            if (!FindAnyActiveAppointment(LDLApplicationID, TestTypeID))
-            {
-                // Insert  
-                return clsTestAppointment_DL.Add_TestAppointment(LDLApplicationID, TestTypeID, AppointmentDate, PaidFees,
-                      CreateByUserID, RetakeTeApp);
-
-            }
-            else
-            {
-                return clsTestAppointment_DL.Update_TestAppointment(AppointmentDate);
-                // Update
-
-
-
-            }
-
+            return false;
 
         }
 

@@ -90,6 +90,7 @@
             this._DataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this._DataGridView.Size = new System.Drawing.Size(776, 181);
             this._DataGridView.TabIndex = 5;
+            this._DataGridView.SelectionChanged += new System.EventHandler(this._DataGridView_SelectionChanged);
             // 
             // _ContextMenuStrip
             // 
@@ -100,6 +101,7 @@
             this.takeToolStripMenuItem});
             this._ContextMenuStrip.Name = "_ContextMenuStrip";
             this._ContextMenuStrip.Size = new System.Drawing.Size(207, 122);
+            this._ContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this._ContextMenuStrip_Opening);
             // 
             // editToolStripMenuItem
             // 

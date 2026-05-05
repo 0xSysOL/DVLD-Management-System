@@ -47,7 +47,7 @@
             this.sechduleVisionTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sechduleWrittenTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sechduleStreetTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.issueDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.issueDLFT_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.showLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
@@ -130,7 +130,7 @@
             this.cancelApplicationToolStripMenuItem,
             this.toolStripMenuItem3,
             this.sechduleToolStripMenuItem,
-            this.issueDateToolStripMenuItem,
+            this.issueDLFT_ToolStripMenuItem,
             this.toolStripMenuItem4,
             this.showLicenseToolStripMenuItem,
             this.toolStripMenuItem5,
@@ -225,13 +225,13 @@
             this.sechduleStreetTestToolStripMenuItem.Text = "Sechdule Street Test";
             this.sechduleStreetTestToolStripMenuItem.Click += new System.EventHandler(this.sechduleStreetTestToolStripMenuItem_Click);
             // 
-            // issueDateToolStripMenuItem
+            // issueDLFT_ToolStripMenuItem
             // 
-            this.issueDateToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("issueDateToolStripMenuItem.Image")));
-            this.issueDateToolStripMenuItem.Name = "issueDateToolStripMenuItem";
-            this.issueDateToolStripMenuItem.Size = new System.Drawing.Size(383, 48);
-            this.issueDateToolStripMenuItem.Text = "Issue Driving License (First Time)";
-            this.issueDateToolStripMenuItem.Click += new System.EventHandler(this.issueDateToolStripMenuItem_Click);
+            this.issueDLFT_ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("issueDLFT_ToolStripMenuItem.Image")));
+            this.issueDLFT_ToolStripMenuItem.Name = "issueDLFT_ToolStripMenuItem";
+            this.issueDLFT_ToolStripMenuItem.Size = new System.Drawing.Size(383, 48);
+            this.issueDLFT_ToolStripMenuItem.Text = "Issue Driving License (First Time)";
+            this.issueDLFT_ToolStripMenuItem.Click += new System.EventHandler(this.issueDateToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
@@ -343,7 +343,7 @@
         private System.Windows.Forms.ToolStripMenuItem cancelApplicationToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem sechduleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem issueDateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem issueDLFT_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem showLicenseToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;

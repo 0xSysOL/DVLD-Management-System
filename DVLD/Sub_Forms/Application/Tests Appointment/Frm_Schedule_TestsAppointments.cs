@@ -139,14 +139,34 @@ namespace DVLD.Sub_Forms.Application.Schedule_Tests
             this.Close();
         }
 
+        private int GetAppointmentID_From_DataGridView()
+        {
+            if (_DataGridView.Rows.Count == 0)
+                return -1;
+
+            return Convert.ToInt32(_DataGridView.CurrentRow.Cells[0].Value);
+
+
+        }
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+            int AppointmentID = GetAppointmentID_From_DataGridView();
+            Frm_ScheduleTests scheduleTests = new Frm_ScheduleTests(AppointmentID, LDLAPP_ID, (int)eTestTypes, APP_ID);
+
+            scheduleTests.ShowDialog();
+
+
+
+
+            Refresh_DataGridView();
+            Refresh_UC_DLAPP_INFO();
+            Refresh_UC_APPBInfo();
         }
 
         private void takeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int AppointmentID = Convert.ToInt32(_DataGridView.CurrentRow.Cells[0].Value);
+            int AppointmentID = GetAppointmentID_From_DataGridView();
             Frm_TakeTest _TakeTest = new Frm_TakeTest(AppointmentID, LDLAPP_ID, (int)eTestTypes);
 
             _TakeTest.ShowDialog();
@@ -158,17 +178,29 @@ namespace DVLD.Sub_Forms.Application.Schedule_Tests
 
         }
 
+        private void _DataGridView_SelectionChanged(object sender, EventArgs e)
+        {
 
 
 
+        }
+
+        private void _ContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (_DataGridView.Rows.Count == 0)
+                return;
 
 
+            if (Convert.ToBoolean(_DataGridView.CurrentRow.Cells["IsLocked"].Value))
+            {
+                editToolStripMenuItem.Enabled = false;
+                takeToolStripMenuItem.Enabled = false;
+            }else
+            {
+                editToolStripMenuItem.Enabled = true;
+                takeToolStripMenuItem.Enabled = true;
+            }
 
-
-
-
-
-
-
+        }
     }
 }

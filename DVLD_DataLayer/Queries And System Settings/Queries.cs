@@ -111,7 +111,9 @@ where ApplicationTypeID = @ID
     {
     
         public const string Add_Appointment = "Add_Appointment";
-        public const string Update_Appointment = @"
+        public const string Update_Appointment = @"update TestAppointment
+set AppointmentDate = @AppointmentDate
+where AppointmentID = @AppointmentID
 ";
         public const string Update_LockAppointment = @"update TestAppointment
 set Islocked = 1
@@ -148,7 +150,9 @@ and Islocked = 1 and TestResult = 1 and TestTypeID = 3
         public const string IsPersonPassedTest = "select * from IsPersonPassedTest(@LDLAPP_ID,@TestType)";
 
         public const string IsPersonTakeTestBefore = "select * from IsPersonTakeTestBefore(@LDLAPP_ID,@TestType)";
-
+        public const string GetAppointmentByID = @"select * from TestAppointment
+where AppointmentID = @AppointmentID
+";
         public const string GetTestAppointmentDetails = "select * from GetTestAppointmentDetails(@LDLAPP_ID,@TestType)";
         public const string GetApplicationDetailsForNewAppointment = @"
 select * from GetApplicationDetailsForNewAppointment(@LDLAPP_ID,@TestType)";
@@ -266,6 +270,8 @@ Select top 1 case when Islocked = 0 then Sum(1) end as Result from TestAppointme
 
         public const string GetPersonID = @"select ApplicationPersonID from Applications
                                         where ApplicationID	= @Value";
+        public const string GetStatusByID = @"select ApplicationState from Applications
+where ApplicationID = @Value";
 
     }
 

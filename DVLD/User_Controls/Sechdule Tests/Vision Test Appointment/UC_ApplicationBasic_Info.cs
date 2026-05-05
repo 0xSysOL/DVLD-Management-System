@@ -17,17 +17,7 @@ namespace DVLD.User_Controls.Sechdule_Tests.Vision_Test_Appointment
             InitializeComponent();
 
             return;
-            Label_Variable_Applicant.Text = "";
-            Label_Variable_APP_ID.Text = "";
-            Label_Variable_Fees.Text = "";
-            Label_Variable_Status.Text = "";
-            Label_Variable_Type.Text = "";
-            
-            Label_Variable_CreateByUser.Text = "";
-            Label_Variable_Date.Text = "";
-            Label_Variable_DateStatus.Text = "";
-
-         
+       
           
         }
         public void SetLabel_Applicant(string FullName) => Label_Variable_Applicant.Text = FullName;

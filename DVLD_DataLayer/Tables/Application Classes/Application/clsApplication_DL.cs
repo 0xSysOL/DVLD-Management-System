@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DVLD_DataLayer.Tables.Application_Classes
 {
@@ -160,7 +161,7 @@ namespace DVLD_DataLayer.Tables.Application_Classes
             return data;
         }
         public static void GetApplicationByID(
-            int ApplicationID,
+           ref int ApplicationID,
            ref DateTime ApplicationDate,
            ref byte ApplicationState,
            ref decimal PaidFees,
@@ -502,7 +503,33 @@ namespace DVLD_DataLayer.Tables.Application_Classes
 
 
 
+        public static int GetStatusByID(int ApplicationID)
+        {
 
+
+
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQApplication.GetStatusByID, connection);
+            command.Parameters.AddWithValue("@Value", ApplicationID);
+            object Status = null;
+
+            try
+            {
+                connection.Open();
+
+                Status = command.ExecuteScalar();
+
+            }
+            catch (Exception e) { }
+            finally { connection.Close(); }
+
+
+
+
+            return (Status == null) ? -1 : Convert.ToInt32(Status);
+
+
+        }
 
 
 

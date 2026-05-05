@@ -57,7 +57,7 @@ string address)
         public static bool Fill_UC_Controls(UC_ShowPersonInfo UC_Fill, clsPeople_BL PersonData)
         {
             // If Object Null We will stop Processing
-            if (PersonData == null)
+            if (PersonData == null || PersonData.PersonID == -1)
                 return false;
 
 

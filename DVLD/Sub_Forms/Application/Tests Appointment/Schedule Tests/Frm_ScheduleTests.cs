@@ -21,7 +21,7 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
         int Trial;
         DateTime AppointmentDate;
         decimal TestFees;
-
+        clsTestAppointment_BL clsTestAppointment;
         private void InitializeTitlesForm()
         {
             switch (eTestTypes)
@@ -59,9 +59,11 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
 
         private void InitializeDatePicker()
         {
-            _DateTimePicker.MinDate = DateTime.Now.AddDays(1);
-            _DateTimePicker.MaxDate = DateTime.Now.AddDays(30);
-            _DateTimePicker.CustomFormat = "dd/MM/yyyy";
+          
+                _DateTimePicker.MinDate = DateTime.Now.AddDays(1);
+                _DateTimePicker.MaxDate = DateTime.Now.AddDays(30);
+                _DateTimePicker.CustomFormat = "dd/MM/yyyy";
+       
         }
 
         private void InitializeLabels()
@@ -80,7 +82,7 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
             {
                 clsTestAppointment_BL.GetApplicationDetailsForNewAppointment(LDLAPP_ID, (int)eTestTypes,
                     ref LicenseClassName, ref FullName, ref Trial, ref AppointmentDate, ref TestFees);
-                UC_RetakeTestInfo.Enabled = false;  
+                UC_RetakeTestInfo.Enabled = clsTestAppointment.mode == clsTestAppointment_BL.eMode.Update;  
                 Label_Variable_FormTitle.Text = "        Schedule Test";
 
 
@@ -107,7 +109,7 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
             Trial = 0;
             AppointmentDate = DateTime.Now;
             TestFees = 0;
-
+            clsTestAppointment = new clsTestAppointment_BL();
         }
 
         public Frm_ScheduleTests(int LDLAPP_ID, int TestType,int APP_ID) : this()
@@ -120,6 +122,17 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
             InitializeLabels();
         }
 
+        public Frm_ScheduleTests(int AppointmentID, int LDLAPP_ID, int TestType, int APP_ID) : this()
+        {
+            clsTestAppointment = new clsTestAppointment_BL(AppointmentID);
+            this.LDLAPP_ID = LDLAPP_ID;
+            this.APP_ID = APP_ID;
+            eTestTypes = (Utilities.Methods.eTestTypes)TestType;
+            InitializeTitlesForm();
+            InitializeDatePicker();
+            InitializeLabels();
+
+        }
 
         private void Frm_ScheduleTests_Load(object sender, EventArgs e)
         {
@@ -136,14 +149,27 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
             this.Close();
         }
 
-        private void AddNewAppointment(object RetakeTest = null)
+        private void AddUpdate_Appointment(object RetakeTest = null)
         {
-            TestFees = Convert.ToDecimal(Label_Variable_Fees.Text);
-            clsTestAppointment_BL clsTestAppointment = new clsTestAppointment_BL();
+            clsTestAppointment.SetLDLApplicationID(LDLAPP_ID);
+            clsTestAppointment.SetTestTypeID((int)eTestTypes);
+            clsTestAppointment.SetAppointmentDate(_DateTimePicker.Value);
+            clsTestAppointment.SetCreateByUserID(CurrentUser.GetUserID());
+            clsTestAppointment.SetRetakeTeApp(RetakeTest);
+            clsTestAppointment.SetPaidFees(Convert.ToDecimal(Label_Variable_Fees.Text));
+
+            if (clsTestAppointment.mode != clsTestAppointment_BL.eMode.Add)
+            {
+                if (clsTestAppointment.Save())
+                {
+                    MessageBox.Show("Appointment Updated Successfully", "info", MessageBoxButtons.OK
+                  , MessageBoxIcon.Information);
+                }
+                return;
+            }
 
 
-            if (clsTestAppointment_BL.Save(LDLAPP_ID, (int)eTestTypes,
-                _DateTimePicker.Value, TestFees, CurrentUser.GetUserID(), RetakeTest))
+            if (clsTestAppointment.Save())
             {
                 MessageBox.Show("Appointment Added Successfully", "info", MessageBoxButtons.OK
               , MessageBoxIcon.Information);
@@ -155,16 +181,22 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
         {
 
 
+            if(clsTestAppointment.mode == clsTestAppointment_BL.eMode.Update)
+            {
+                AddUpdate_Appointment();
+                return;
+            }
 
             if (Bool_IsPersonTakeTestBefore)
             {
+
                 clsRetakeTestApplication_BL clsRetakeTest = new clsRetakeTestApplication_BL(APP_ID);
 
 
                 if (clsRetakeTest.Save())
                 {
-                    AddNewAppointment(clsRetakeTest.GetID());
-                    
+                    AddUpdate_Appointment(clsRetakeTest.GetID());
+                    UC_RetakeTestInfo.SetRTestAppID(clsRetakeTest.GetID());
                 }
                 else
                     MessageBox.Show("Something Wrong Please Try Agian", "Error", MessageBoxButtons.OK
@@ -174,8 +206,8 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
                 return;
             }
 
-
-            AddNewAppointment();
+            // Appointment For First Time
+            AddUpdate_Appointment();
 
 
         }

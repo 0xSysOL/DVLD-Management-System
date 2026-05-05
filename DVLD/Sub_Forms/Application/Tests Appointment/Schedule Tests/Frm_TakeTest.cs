@@ -119,7 +119,13 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
         private void Btn_Save_Click(object sender, EventArgs e)
         {
 
-            if (clsTests_BL.TakeTest(RadButt_IsPersonFailOrPass(), TB_Note.Text, CurrentUser.GetUserID(), AppointmentID))
+            if (MessageBox.Show("Are sure you want to confirm this process??", "Confirmation",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+
+
+
+            if (clsTests_BL.TakeTest(RadButt_IsPersonFailOrPass(), TB_Note.Text, CurrentUser.GetUserID(),ref AppointmentID))
                 MessageBox.Show("Test Added Successfully (:", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
                 MessageBox.Show("We Couldn't Add Test ):", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);

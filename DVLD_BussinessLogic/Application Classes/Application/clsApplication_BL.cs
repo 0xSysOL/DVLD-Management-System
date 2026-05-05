@@ -9,7 +9,7 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
     public class clsApplication_BL
     {
 
-        public enum eMode { Add = 0, Update = 1 };
+        public enum eMode { Add = 0, Update = 1, None = -1 };
         public enum eModeState { New = 1, Cancel = 2, Completed = 3, None = 0 };
         public enum enApplicationType
         {
@@ -27,7 +27,7 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
         public eMode mode;
 
 
-        private int ID;
+        protected int ID;
         public int GetID()
         {
             return ID;
@@ -67,7 +67,7 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
             int _PersonID = -1;
             DateTime _LastStateDate = new DateTime();
 
-            clsApplication_DL.GetApplicationByID(ApplicationID, ref _ApplicationDate, ref _ApplicationState
+            clsApplication_DL.GetApplicationByID(ref ApplicationID, ref _ApplicationDate, ref _ApplicationState
                 , ref _PaidFees, ref _ApplicationTypeID, ref _UserID, ref _PersonID, ref _LastStateDate);
 
             ID = ApplicationID;
@@ -90,11 +90,11 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
 
             this.clsLicenseClass = clsLicenseClass;
             this.Person = clsPerson;
-          
+
 
 
         }
-        
+
         public static DataTable Get_LDL_Applications()
         {
 
@@ -108,7 +108,7 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
 
         }
 
-        private bool IsPassedValidation()
+        protected bool IsPassedValidation()
         {
 
             switch (eAppTypeID)
@@ -117,7 +117,7 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
 
                     if (mode == eMode.Add)
                     {
-                      
+
 
                         if (!Methods_BL.IsAgeValid(clsLicenseClass.GetMinimumAllowedAge(), Person.DateOfBirth))
                             return false;
@@ -133,13 +133,32 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
 
                 case enApplicationType.RetakeTest:
 
-                    return true;
+
+                    if (!clsPeople_BL.IsPersonExists(PersonID))
+                        return false;
+
+                    break;
 
             }
 
             return true;
         }
-        public bool Save()
+
+        protected bool AddNewApplication()
+
+        {
+            if ((ID = clsApplication_DL.AddNewApplication(ApplicationState, (int)eAppTypeID, PaidFees,
+                           UserID, PersonID, ApplicationDate, LastStateDate)) != -1)
+            {
+                mode = eMode.Update;
+
+                return true;
+
+            }
+
+            return false;
+        }
+        public virtual bool Save()
         {
             #region Validation 
 
@@ -160,6 +179,8 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
                 case eMode.Update:
                     return clsApplication_DL.UpdateApplication(ID, LastStateDate, PaidFees, UserID);
 
+                case eMode.None:
+                    return false;
 
 
 
@@ -192,11 +213,28 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
 
 
         }
+
+
+        /* FIX: We Are Create Object To just Know Status
+         Fix  we will replace that ,Just Give LDLA_APP_ID
+        And Return One Column Instead Create Object  Save All Data 
+        that not be use
+        1-CancelApplicationState
+        2-DeleteApplication
+         */
+        public static eModeState GetStatusBy_LDLAPP_ID(int LDLA_AppID)
+        {
+            int ApplicationID = clsApplication_DL.GetApplicationIDBy_LDLA_APPID(LDLA_AppID);
+
+            return (eModeState)clsApplication_DL.GetStatusByID(ApplicationID);
+
+        }
         public static bool CancelApplicationState(int LDLA_AppID)
         {
             int ApplicationID = clsApplication_DL.GetApplicationIDBy_LDLA_APPID(LDLA_AppID);
 
             clsApplication_BL clsApplication = new clsApplication_BL(ApplicationID);
+
 
             if ((eModeState)clsApplication.ApplicationState == eModeState.Completed
                 ||
@@ -215,11 +253,20 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
             return clsApplication_DL.CancelApplicationState(ApplicationID);
 
         }
-
         public static bool DeleteApplication(int LDLA_AppID)
         {
 
             if (clsApplication_DL.IsPersonHaveAnyTests(LDLA_AppID))
+                return false;
+
+            int ApplicationID = clsApplication_DL.GetApplicationIDBy_LDLA_APPID(LDLA_AppID);
+
+            clsApplication_BL clsApplication = new clsApplication_BL(ApplicationID);
+
+
+            if ((eModeState)clsApplication.ApplicationState == eModeState.Completed
+                ||
+                (eModeState)clsApplication.ApplicationState == eModeState.Cancel)
                 return false;
 
 
