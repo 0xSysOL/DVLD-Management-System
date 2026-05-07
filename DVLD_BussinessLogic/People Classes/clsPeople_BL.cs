@@ -299,7 +299,12 @@ namespace DVLD_BusinessLogic
 
             return clsPeople_DL.GetPersonByID(ID);
         }
+        public static DateTime GetPersonDateOfBirth(int PersonID)
+        {
 
+
+            return clsPeople_DL.GetPersonDateOfBirth(PersonID);
+        }
         #region Delete Person
 
         private static string _GetImagePath(int ID)

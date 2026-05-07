@@ -22,7 +22,7 @@ namespace DVLD.Sub_Forms.Users_Forms
         {
             clsPerson = new clsPeople_BL(clsUser.PersonID);
 
-            Utilities.Methods.Fill_UC_Controls(UC_ShowPersonInfo_1,clsPerson);
+            Utilities.Methods.Fill_UC_Person_Controls(UC_ShowPersonInfo_1,clsPerson);
         }
         private void InitializeUser(int ID)
         {
@@ -70,7 +70,7 @@ namespace DVLD.Sub_Forms.Users_Forms
         {
             clsPerson = PersonInfo;
             clsPerson.Save();
-            Utilities.Methods.Fill_UC_Controls(UC_ShowPersonInfo_1, clsPerson);
+            Utilities.Methods.Fill_UC_Person_Controls(UC_ShowPersonInfo_1, clsPerson);
 
         }
         private void UC_ShowPersonInfo_1_SendEditEvent()

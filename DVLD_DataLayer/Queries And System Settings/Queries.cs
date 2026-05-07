@@ -314,7 +314,8 @@ where [Local Driving License Application ID] = @Value";
         public const string GetAllClasses = "select * from LicenseClasses";
         public const string GetOneRecord = @"select * from LicenseClasses
                                             Where ClassName = @Value";
-
+        public const string GetMinimumAllowedAge = @"select MinmumAllowedAge from LicenseClasses
+where LicenseClassID = @Value";
     }
 
     #endregion End

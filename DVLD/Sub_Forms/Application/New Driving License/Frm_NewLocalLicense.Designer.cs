@@ -131,6 +131,7 @@
             this.UC_ShowPersonInfo.Size = new System.Drawing.Size(751, 297);
             this.UC_ShowPersonInfo.TabIndex = 0;
             this.UC_ShowPersonInfo.SendRequestToGetImage += new System.Action<bool, string>(this.UC_ShowPersonInfo_SendRequestToGetImage);
+            this.UC_ShowPersonInfo.SendEditEvent += new System.Action(this.UC_ShowPersonInfo_SendEditEvent);
             // 
             // AppInfo
             // 
@@ -236,7 +237,6 @@
             this.Label_Variable_CreateBy.Size = new System.Drawing.Size(79, 16);
             this.Label_Variable_CreateBy.TabIndex = 35;
             this.Label_Variable_CreateBy.Text = "........................";
-            this.Label_Variable_CreateBy.Click += new System.EventHandler(this.Label_Variable_CreateBy_Click);
             // 
             // Label_Const_CreateBy
             // 
@@ -303,7 +303,6 @@
             this.Label_Variable_DL_AppID.Size = new System.Drawing.Size(79, 16);
             this.Label_Variable_DL_AppID.TabIndex = 29;
             this.Label_Variable_DL_AppID.Text = "........................";
-            this.Label_Variable_DL_AppID.Click += new System.EventHandler(this.Label_Variable_UserID_Click);
             // 
             // Label_Const_DL_AppID
             // 

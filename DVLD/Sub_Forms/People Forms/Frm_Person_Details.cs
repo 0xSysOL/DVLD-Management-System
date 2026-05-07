@@ -35,7 +35,7 @@ namespace DVLD.Sub_Forms
 
         private void Frm_Person_Details_Load(object sender, EventArgs e)
         {
-            Utilities.Methods.Fill_UC_Controls(uC_ShowPersonInfo1, clsPeople_);
+            Utilities.Methods.Fill_UC_Person_Controls(uC_ShowPersonInfo1, clsPeople_);
         }
 
         private void uC_ShowPersonInfo1_Load(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace DVLD.Sub_Forms
         private void _Refresh(clsPeople_BL NewInfo)
         {
             clsPeople_ = NewInfo;
-            Utilities.Methods.Fill_UC_Controls(uC_ShowPersonInfo1, clsPeople_);
+            Utilities.Methods.Fill_UC_Person_Controls(uC_ShowPersonInfo1, clsPeople_);
 
         }
         private void uC_ShowPersonInfo1_SendEditEvent()

@@ -53,7 +53,7 @@ namespace DVLD.Sub_Forms.Users_Forms
             if (PersonID != -1)
             {
                 clsPeople = new clsPeople_BL(PersonID);
-                Utilities.Methods.Fill_UC_Controls
+                Utilities.Methods.Fill_UC_Person_Controls
                 (UC_ShowPersonInfo, clsPeople);
                 EnableControl_Save(true);
 
@@ -161,7 +161,7 @@ namespace DVLD.Sub_Forms.Users_Forms
 
 
 
-            Utilities.Methods.Fill_UC_Controls(UC_ShowPersonInfo, clsPeople);
+            Utilities.Methods.Fill_UC_Person_Controls(UC_ShowPersonInfo, clsPeople);
 
          
 
@@ -270,7 +270,7 @@ namespace DVLD.Sub_Forms.Users_Forms
         {
 
 
-            if (Utilities.Methods.Fill_UC_Controls(UC_ShowPersonInfo, clsPersonInfo))
+            if (Utilities.Methods.Fill_UC_Person_Controls(UC_ShowPersonInfo, clsPersonInfo))
             {
                 MessageBox.Show("Person Added", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Btn_Save.Enabled = true;
@@ -303,7 +303,7 @@ namespace DVLD.Sub_Forms.Users_Forms
         {
             clsPeople = PersonInfo;
             clsPeople.Save();  
-            Utilities.Methods.Fill_UC_Controls(UC_ShowPersonInfo, clsPeople);
+            Utilities.Methods.Fill_UC_Person_Controls(UC_ShowPersonInfo, clsPeople);
 
         }
         private void UC_ShowPersonInfo_SendEditEvent()

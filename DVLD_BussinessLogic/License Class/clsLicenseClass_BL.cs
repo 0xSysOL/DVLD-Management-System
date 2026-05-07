@@ -6,7 +6,7 @@ namespace DVLD_BussinessLogic.License_Class
     public class clsLicenseClass_BL
     {
         int ID;
-       public int GetID()
+        public int GetID()
         {
 
             return ID;
@@ -83,7 +83,6 @@ namespace DVLD_BussinessLogic.License_Class
 
         public clsLicenseClass_BL(string ClassName)
         {
-
             GetClassByName(ClassName);
 
         }
@@ -98,8 +97,16 @@ namespace DVLD_BussinessLogic.License_Class
 
             clsLicenseClass_DL.GetClassByName(ref ID, ClassName, ref ClassDescription, ref MinimumAllowedAge,
                ref DefaultValidityLength, ref ClassFees);
+            if (ID != -1)
+                this.ClassName = ClassName;
 
         }
+        public static int GetMinimumAllowedAge(int ClassID)
+        {
+            return clsLicenseClass_DL.GetMinimumAllowedAge(ClassID);
+        }
+
+
 
     }
 }

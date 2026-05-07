@@ -192,7 +192,7 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
 
                 clsRetakeTestApplication_BL clsRetakeTest = new clsRetakeTestApplication_BL(APP_ID);
 
-
+                // FIXME: TransAction
                 if (clsRetakeTest.Save())
                 {
                     AddUpdate_Appointment(clsRetakeTest.GetID());

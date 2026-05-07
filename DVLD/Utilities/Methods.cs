@@ -54,7 +54,7 @@ string address)
             return (Value.Value <= Max);
         }
 
-        public static bool Fill_UC_Controls(UC_ShowPersonInfo UC_Fill, clsPeople_BL PersonData)
+        public static bool Fill_UC_Person_Controls(UC_ShowPersonInfo UC_Fill, clsPeople_BL PersonData)
         {
             // If Object Null We will stop Processing
             if (PersonData == null || PersonData.PersonID == -1)
@@ -191,8 +191,8 @@ string address)
         public static bool IsAgeValid(short AllowedAge, DateTime DateOfBirth)
         {
             DateTime date = DateTime.Now;
-
-            if (DateOfBirth < date.AddYears(-Convert.ToInt32(AllowedAge)))
+           
+            if (DateOfBirth.Year <= date.AddYears(-Convert.ToInt32(AllowedAge)).Year)
                 return true;
 
             return false;

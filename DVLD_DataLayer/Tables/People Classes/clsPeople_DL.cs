@@ -400,13 +400,21 @@ namespace DVLD_DataLayer
         }
 
         
+  public static DateTime GetPersonDateOfBirth(int PersonID)
+        {
+
+
+            return clsPeople_DL.GetPersonDateOfBirth(PersonID);
+        }
+
+    }
+
+
+      
+        #endregion
+
+
+
 
 
     }
-    #endregion 
-
-
-
-
-
-}

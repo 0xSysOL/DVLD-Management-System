@@ -1,54 +1,81 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DVLD_DataLayer.Tables.Application_Classes.New_Local_Driving_License_Application
 {
     public class clsNewLocalDrivingLicenseApp_DL
-    { 
+    {
 
 
 
-        public static int AddNew_LDLA(ref int ID, int ApplicationID, int LicenseClassID)
+        public static int Add_Application_And_LDLAPP(ref int ApplicationID, int LicenseClassID,
+            byte ApplicationState, int ApplicationTypeID, decimal PaidFees,
+                        int UserID, int PersonID, DateTime ApplicationDate, DateTime LastStateDate)
         {
-            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
-            SqlCommand command = new SqlCommand(clsQLocalDrivingLicenseApp.AddNew_LDLA,connection);
             object Result = null;
-            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
-            command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
-
-
-            try
+            int LocalApplicationID = -1;
+            using (SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString))
             {
                 connection.Open();
 
-                Result = command.ExecuteScalar();
-              
+                SqlTransaction transaction = connection.BeginTransaction();
+                SqlCommand command = connection.CreateCommand();
+
+
+                try
+                {
+
+
+                    command.Transaction = transaction;
+
+                    command.CommandText = clsQApplication.AddApplication;
+                    //new SqlCommand(clsQApplication.AddApplication, connection)
+                    command.Parameters.AddWithValue("@Date", ApplicationDate);
+                    command.Parameters.AddWithValue("@State", ApplicationState);
+                    command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
+                    command.Parameters.AddWithValue("@PaidFees", PaidFees);
+                    command.Parameters.AddWithValue("@PersonID", PersonID);
+                    command.Parameters.AddWithValue("@UserID", UserID);
+                    command.Parameters.AddWithValue("@LastStateDate", LastStateDate);
+
+                    LocalApplicationID = Convert.ToInt32(command.ExecuteScalar());
+
+                    command.Parameters.Clear();
+
+                    command.CommandText = clsQLocalDrivingLicenseApp.AddNew_LDLA;
+
+                    command.Parameters.AddWithValue("@ApplicationID", LocalApplicationID);
+                    command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
+
+                    Result = command.ExecuteScalar();
+
+
+                    transaction.Commit();
+                    ApplicationID = (LocalApplicationID != -1) ? LocalApplicationID : -1;
+
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+
             }
-            catch(Exception e) { }
-            finally
-            {
-                connection.Close();
-            }
 
-            ID = (Result == null) ? -1 : Convert.ToInt32(Result);
-
-            return ID;
-
-
+            // this Will return Local Driving License ID
+            return (Result != null) ? Convert.ToInt32(Result) : -1;
         }
 
-        public static bool Update_LDLA(int ID,int LicenseClassID)
+        public static bool Update_LDLA(int ID, int LicenseClassID)
         {
 
             SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
             SqlCommand command = new SqlCommand(clsQLocalDrivingLicenseApp.Update_LDLA, connection);
-            int Result  = -1;
+            int Result = -1;
 
             command.Parameters.AddWithValue("@LC_ID", LicenseClassID);
             command.Parameters.AddWithValue("@ID", ID);
@@ -58,7 +85,7 @@ namespace DVLD_DataLayer.Tables.Application_Classes.New_Local_Driving_License_Ap
             {
                 connection.Open();
 
-                 Result = command.ExecuteNonQuery();
+                Result = command.ExecuteNonQuery();
             }
             catch (Exception e) { }
             finally
@@ -66,40 +93,42 @@ namespace DVLD_DataLayer.Tables.Application_Classes.New_Local_Driving_License_Ap
                 connection.Close();
             }
 
-            
+
 
 
             return Result != -1 ? true : false;
 
         }
 
-        public static void Get_LDLA_ByApplicationID(int ApplicationID, int LDLA_ID, 
-            int Base_ApplicationID, int LicenseClassID)
+        public static bool Get_LDLA_ByApplicationID(int ApplicationID, ref int LDLA_ID,
+            ref int LicenseClassID)
         {
+
             SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
             SqlCommand command = new SqlCommand(clsQLocalDrivingLicenseApp.Get_LDLA, connection);
             command.Parameters.AddWithValue("@Value", ApplicationID);
-
+            bool IsSuccess = false;
             try
             {
                 connection.Open();
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
-                   
+
                     if (reader.Read())
                     {
                         LDLA_ID = (int)reader[0];
-                        Base_ApplicationID = (int)reader["ApplicationID"];
                         LicenseClassID = (int)reader["LicenseClassID"];
+                        IsSuccess = true;
                     }
                 }
 
-                
+
 
             }
-            catch(Exception e) { } finally { connection.Close(); }
+            catch (Exception e) { }
+            finally { connection.Close(); }
 
-
+            return IsSuccess;
         }
 
         public static void GetDrivingLicenseInfo(int LDLAPP_ID, ref string LicenseName, ref int PassedTests)
@@ -131,6 +160,12 @@ namespace DVLD_DataLayer.Tables.Application_Classes.New_Local_Driving_License_Ap
             {
                 connection.Close();
             }
+
+        }
+
+        public static void GetLocalDrivingLicense(int LDLAPP_ID,ref int LicenseID,ref int PersonID)
+        {
+
 
         }
 

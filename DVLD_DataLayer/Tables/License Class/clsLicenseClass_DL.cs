@@ -66,5 +66,37 @@ namespace DVLD_DataLayer.Tables.License_Class
         }
 
 
+        public static int GetMinimumAllowedAge(int ClassLicenseID)
+        {
+
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQ_LicenseClass.GetMinimumAllowedAge, connection);
+            object Result = null;
+
+
+            command.Parameters.AddWithValue("@Value", ClassLicenseID);
+            try
+            {
+                connection.Open();
+                Result = command.ExecuteScalar();
+
+            }
+            catch (Exception e)
+            { }
+            finally
+            {
+                connection.Close();
+            }
+
+            return Result != null ? Convert.ToInt32(Result) : -1;
+
+
+        }
+        public static short GetMinimumAllowedAge(int ClassID)
+        {
+
+
+            return 0;
+        }
     }
 }

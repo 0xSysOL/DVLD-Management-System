@@ -100,7 +100,14 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
 
         private void editApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            int LDL_AppID = Convert.ToInt32(_DataGridView.CurrentRow.Cells[0].Value);
+            int ApplicationID = clsApplication_BL.GetApplicationID_ByLDLAPPID(LDL_AppID);
 
+            Frm_NewLocalLicense newLocalLicense = new Frm_NewLocalLicense(ApplicationID);
+
+            newLocalLicense.ShowDialog();
+
+            RefreshDataGridView();
         }
 
         private void deleteApplicationToolStripMenuItem_Click(object sender, EventArgs e)
