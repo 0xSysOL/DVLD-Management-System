@@ -70,30 +70,50 @@ namespace DVLD_DataLayer.Tables.Application_Classes.New_Local_Driving_License_Ap
             return (Result != null) ? Convert.ToInt32(Result) : -1;
         }
 
-        public static bool Update_LDLA(int ID, int LicenseClassID)
+        public static bool Update_Application_LDLA(int ID, int LicenseClassID, int ApplicationID, DateTime LastDateUpdate)
         {
 
-            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
-            SqlCommand command = new SqlCommand(clsQLocalDrivingLicenseApp.Update_LDLA, connection);
+
             int Result = -1;
-
-            command.Parameters.AddWithValue("@LC_ID", LicenseClassID);
-            command.Parameters.AddWithValue("@ID", ID);
-
-
-            try
+            SqlTransaction transaction = null;
+            SqlCommand command = new SqlCommand();
+            using (SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString))
             {
-                connection.Open();
 
-                Result = command.ExecuteNonQuery();
+                try
+                {
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
+
+                    command = connection.CreateCommand();
+
+                    command.Transaction = transaction;
+
+                    command.CommandText = clsQLocalDrivingLicenseApp.Update_LDLA;
+                    command.Parameters.AddWithValue("@LC_ID", LicenseClassID);
+                    command.Parameters.AddWithValue("@ID", ID);
+
+                    Result = command.ExecuteNonQuery();
+                    Result = -1;
+                    command.Parameters.Clear();
+
+                    command.CommandText = clsQApplication.UpdateApplication;
+
+                    command.Parameters.AddWithValue("@LastDateApplication", LastDateUpdate);
+                    command.Parameters.AddWithValue("@ID", ApplicationID);
+
+                    Result = command.ExecuteNonQuery();
+
+
+                    transaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                }
+
+
             }
-            catch (Exception e) { }
-            finally
-            {
-                connection.Close();
-            }
-
-
 
 
             return Result != -1 ? true : false;
@@ -163,7 +183,7 @@ namespace DVLD_DataLayer.Tables.Application_Classes.New_Local_Driving_License_Ap
 
         }
 
-        public static void GetLocalDrivingLicense(int LDLAPP_ID,ref int LicenseID,ref int PersonID)
+        public static void GetLocalDrivingLicense(int LDLAPP_ID, ref int LicenseID, ref int PersonID)
         {
 
 

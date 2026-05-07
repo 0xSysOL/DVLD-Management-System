@@ -16,25 +16,28 @@ namespace DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_Licens
 
         clsPeople_BL clsPeople;
         clsLicenseClass_BL License_Class;
-        clsNewLocalDriverLicenseApplication_BL NewDriverLicense;
+        clsNewLocalDriverLicenseApplication_BL clsLocalDriverLicense;
         string Mode;
         // TODO: Implement Update Mode Logic
         public Frm_NewLocalLicense()
         {
             InitializeComponent();
             InitializeLabels(DateTime.Now, GetApplicationFees(), CurrentUser.GetUserName());
+            Mode = "Add";
         }
 
         public Frm_NewLocalLicense(int LDLAPP_ID)
         {
             InitializeComponent();
-            NewDriverLicense = new clsNewLocalDriverLicenseApplication_BL(LDLAPP_ID);
-            InitializeLabels(NewDriverLicense.ApplicationDate, GetApplicationFees(), CurrentUser.GetUserName(), LDLAPP_ID);
+            clsLocalDriverLicense = new clsNewLocalDriverLicenseApplication_BL(LDLAPP_ID);
+            InitializeLabels(clsLocalDriverLicense.ApplicationDate, GetApplicationFees(), CurrentUser.GetUserName(), LDLAPP_ID);
             InitializePerson();
+            Mode = "Update";
+
         }
         private void InitializePerson()
         {
-            clsPeople = new clsPeople_BL(NewDriverLicense.PersonID);
+            clsPeople = new clsPeople_BL(clsLocalDriverLicense.PersonID);
             if (Methods.Fill_UC_Person_Controls(UC_ShowPersonInfo, clsPeople))
             {
                 UC_Filter.Enabled = false;
@@ -149,9 +152,6 @@ namespace DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_Licens
 
         private void Btn_Save_Click(object sender, EventArgs e)
         {
-            License_Class = new clsLicenseClass_BL(ComboBox_LicenseClass.Text);
-            short GetMinimumAllowedAge = License_Class.GetMinimumAllowedAge();
-
 
 
             #region Validation 
@@ -169,8 +169,8 @@ namespace DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_Licens
             }
 
 
-            if (NewDriverLicense != null && NewDriverLicense.mode == clsApplication_BL.eMode.Add)
-                NewDriverLicense = new clsNewLocalDriverLicenseApplication_BL(License_Class.GetID(), clsPeople.PersonID);
+            if (clsLocalDriverLicense == null || clsLocalDriverLicense.mode == clsApplication_BL.eMode.Add)
+                clsLocalDriverLicense = new clsNewLocalDriverLicenseApplication_BL(License_Class.GetID(), clsPeople.PersonID);
 
 
 
@@ -185,21 +185,20 @@ namespace DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_Licens
                 return;
             }
 
-            if (NewDriverLicense.mode == clsNewLocalDriverLicenseApplication_BL.eMode.Add)
+
+
+            if (!Utilities.Methods.IsAgeValid(License_Class.GetMinimumAllowedAge(), clsPeople.DateOfBirth))
             {
 
-                if (!Utilities.Methods.IsAgeValid(GetMinimumAllowedAge, clsPeople.DateOfBirth))
-                {
-
-                    MessageBox.Show(
-                   "Person Age not Allowed For This License Class" +
-                    "\nPerson Age:" + (DateTime.Now.Year - clsPeople.DateOfBirth.Year).ToString() +
-                    "\nMinimum Allowed Age For License: " + License_Class.GetMinimumAllowedAge().ToString(),
-                   "Error",
-                  MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                MessageBox.Show(
+               "Person Age not Allowed For This License Class" +
+                "\nPerson Age:" + (DateTime.Now.Year - clsPeople.DateOfBirth.Year).ToString() +
+                "\nMinimum Allowed Age For License: " + License_Class.GetMinimumAllowedAge().ToString(),
+               "Error",
+              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
 
             if ((clsApplication_BL.IsPersonHaveNewApp(clsPeople.PersonID, License_Class.GetID()))
                   ==
@@ -221,17 +220,14 @@ namespace DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_Licens
 
 
 
-
-
-
-            NewDriverLicense.SetLicenseClassID(License_Class.GetID());
-            if (NewDriverLicense.Save())
+            clsLocalDriverLicense.SetLicenseClassID(License_Class.GetID());
+            if (clsLocalDriverLicense.Save())
             {
                 Pic_AddNewPerson.Enabled = false;
                 UC_Filter.Enabled = false;
                 UC_ShowPersonInfo.Enabled = false;
                 Label_Const_FormTitle.Text = "Update Local Driving License";
-
+                Label_Variable_DL_AppID.Text = clsLocalDriverLicense.GetLDLA().ToString();
                 MessageBox.Show("Application " + Mode + " ", "Info",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Mode = "Update";
@@ -240,7 +236,10 @@ namespace DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_Licens
 
         }
 
-
+        private void ComboBox_LicenseClass_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            License_Class = new clsLicenseClass_BL(ComboBox_LicenseClass.Text);
+        }
         private void Btn_Close_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -256,8 +255,6 @@ namespace DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_Licens
             // FIXME: Edit Person Window - Click
 
         }
-
-
 
 
     }

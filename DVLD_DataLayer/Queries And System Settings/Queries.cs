@@ -9,7 +9,9 @@
         public const string GetOnePerson = "SELECT * FROM GetOnePerson ";
         public const string GetImagePath = @"Select ImagePath from People where PersonID = @PersonID";
         public const string GetPersonByNationalNo = "SELECT * FROM GetOnePerson WHERE NationalNo = @value";
-
+        public const string GetDateOfBirth = @"
+select DateOfBirth from People 
+where PersonID = @Value";
 
 
         public const string AddPerson = @"INSERT INTO People 
@@ -93,6 +95,9 @@ where Gendor = @ColumnValue
 
         public const string GetApplicationTypes = "select * from ApplicationTypes";
         public const string GetOneRecord = "select * from ApplicationTypes where ApplicationTypeID = @value";
+        public const string GetFees = @"
+select ApplicationFees from ApplicationTypes
+where ApplicationTypeID = @Value";
         public const string UpdateRecord =
             @"
 
@@ -207,10 +212,13 @@ UserID,ApplicationPersonID,LastDateApplication)
 values
 (@Date,@State,@PaidFees,@ApplicationTypeID,@UserID,@PersonID,@LastStateDate)
 SELECT SCOPE_IDENTITY()";
+
         public const string UpdateApplication = @"
 update Applications 
-set LastDateApplication = @LastDateApplication,UserID = @UserID,PaidFees = @PaidFees
+set LastDateApplication = @LastDateApplication
 where ApplicationID = @ID";
+
+
         public const string CancelApplication = @"
 update Applications 
 set ApplicationState = 2

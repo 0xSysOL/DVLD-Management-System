@@ -98,7 +98,32 @@ namespace DVLD_DataLayer.Application_Classes
             return (result > 0) ? true : false;
 
         }
+        public static decimal GetFeesByID(int AppTypeID)
+        {
 
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQManage_Application_Types.GetFees, connection);
+            object Result = null;
+
+
+            command.Parameters.AddWithValue("@Value", AppTypeID);
+            try
+            {
+                connection.Open();
+                Result = command.ExecuteScalar();
+
+            }
+            catch (Exception e)
+            { }
+            finally
+            {
+                connection.Close();
+            }
+
+            return Result != null ? Convert.ToInt32(Result) : -1;
+
+
+        }
 
     }
 }

@@ -57,7 +57,7 @@ namespace DVLD_BussinessLogic.Application_Classes
             {
 
                 case eMode.Add:
-                    ID = clsApplication_DL.AddNewApplication(ApplicationStatus, (int)eAppTypeID, PaidFees,
+                    Base_ApplicationID = clsApplication_DL.AddNewApplication(ApplicationStatus, (int)eAppTypeID, PaidFees,
                         UserID, PersonID, ApplicationDate, LastStateDate);
                     break;
                 case eMode.None:
@@ -67,7 +67,7 @@ namespace DVLD_BussinessLogic.Application_Classes
 
 
 
-            return ID != -1;
+            return Base_ApplicationID != -1;
 
         }
 

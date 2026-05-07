@@ -33,8 +33,6 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.Pic_AddNewPerson = new System.Windows.Forms.PictureBox();
             this.Btn_Next = new System.Windows.Forms.Button();
-            this.UC_Filter = new DVLD.User_Controls.UC_Filter();
-            this.UC_ShowPersonInfo = new DVLD.User_Controls.UC_ShowPersonInfo();
             this.AppInfo = new System.Windows.Forms.TabPage();
             this.Pic_Const_CreateBy = new System.Windows.Forms.PictureBox();
             this.Pic_Const_ApplicationFees = new System.Windows.Forms.PictureBox();
@@ -54,6 +52,8 @@
             this.Label_Const_FormTitle = new System.Windows.Forms.Label();
             this.Btn_Save = new System.Windows.Forms.Button();
             this.Btn_Close = new System.Windows.Forms.Button();
+            this.UC_Filter = new DVLD.User_Controls.UC_Filter();
+            this.UC_ShowPersonInfo = new DVLD.User_Controls.UC_ShowPersonInfo();
             this.TC_PersonalInfo.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_AddNewPerson)).BeginInit();
@@ -114,24 +114,6 @@
             this.Btn_Next.Text = "Next";
             this.Btn_Next.UseVisualStyleBackColor = true;
             this.Btn_Next.Click += new System.EventHandler(this.Btn_Next_Click);
-            // 
-            // UC_Filter
-            // 
-            this.UC_Filter.Location = new System.Drawing.Point(43, 28);
-            this.UC_Filter.Name = "UC_Filter";
-            this.UC_Filter.Size = new System.Drawing.Size(481, 45);
-            this.UC_Filter.TabIndex = 1;
-            this.UC_Filter.Ev_IsInt += new System.Action<int>(this.UC_Filter_Ev_IsInt);
-            this.UC_Filter.EvClickedSearchButton += new System.Action<string>(this.UC_Filter_EvClickedSearchButton);
-            // 
-            // UC_ShowPersonInfo
-            // 
-            this.UC_ShowPersonInfo.Location = new System.Drawing.Point(43, 79);
-            this.UC_ShowPersonInfo.Name = "UC_ShowPersonInfo";
-            this.UC_ShowPersonInfo.Size = new System.Drawing.Size(751, 297);
-            this.UC_ShowPersonInfo.TabIndex = 0;
-            this.UC_ShowPersonInfo.SendRequestToGetImage += new System.Action<bool, string>(this.UC_ShowPersonInfo_SendRequestToGetImage);
-            this.UC_ShowPersonInfo.SendEditEvent += new System.Action(this.UC_ShowPersonInfo_SendEditEvent);
             // 
             // AppInfo
             // 
@@ -215,6 +197,7 @@
             this.ComboBox_LicenseClass.Name = "ComboBox_LicenseClass";
             this.ComboBox_LicenseClass.Size = new System.Drawing.Size(198, 21);
             this.ComboBox_LicenseClass.TabIndex = 37;
+            this.ComboBox_LicenseClass.SelectedIndexChanged += new System.EventHandler(this.ComboBox_LicenseClass_SelectedIndexChanged);
             // 
             // Label_Const_LicenseClass
             // 
@@ -352,6 +335,24 @@
             this.Btn_Close.Text = "Close";
             this.Btn_Close.UseVisualStyleBackColor = true;
             this.Btn_Close.Click += new System.EventHandler(this.Btn_Close_Click);
+            // 
+            // UC_Filter
+            // 
+            this.UC_Filter.Location = new System.Drawing.Point(43, 28);
+            this.UC_Filter.Name = "UC_Filter";
+            this.UC_Filter.Size = new System.Drawing.Size(481, 45);
+            this.UC_Filter.TabIndex = 1;
+            this.UC_Filter.Ev_IsInt += new System.Action<int>(this.UC_Filter_Ev_IsInt);
+            this.UC_Filter.EvClickedSearchButton += new System.Action<string>(this.UC_Filter_EvClickedSearchButton);
+            // 
+            // UC_ShowPersonInfo
+            // 
+            this.UC_ShowPersonInfo.Location = new System.Drawing.Point(43, 79);
+            this.UC_ShowPersonInfo.Name = "UC_ShowPersonInfo";
+            this.UC_ShowPersonInfo.Size = new System.Drawing.Size(751, 297);
+            this.UC_ShowPersonInfo.TabIndex = 0;
+            this.UC_ShowPersonInfo.SendRequestToGetImage += new System.Action<bool, string>(this.UC_ShowPersonInfo_SendRequestToGetImage);
+            this.UC_ShowPersonInfo.SendEditEvent += new System.Action(this.UC_ShowPersonInfo_SendEditEvent);
             // 
             // Frm_NewLocalLicense
             // 

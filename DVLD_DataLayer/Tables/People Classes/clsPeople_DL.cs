@@ -402,9 +402,31 @@ namespace DVLD_DataLayer
         
   public static DateTime GetPersonDateOfBirth(int PersonID)
         {
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQ_People.GetDateOfBirth, connection);
+            command.Parameters.AddWithValue("@Value", PersonID);
+            object result = null;
+            try
+            {
+                connection.Open();
+                result = command.ExecuteScalar();
 
 
-            return clsPeople_DL.GetPersonDateOfBirth(PersonID);
+            }
+            catch (SqlException e)
+            {
+
+            }
+            finally
+            {
+
+                connection.Close();
+            }
+
+
+
+            return Convert.ToDateTime(result);
+
         }
 
     }

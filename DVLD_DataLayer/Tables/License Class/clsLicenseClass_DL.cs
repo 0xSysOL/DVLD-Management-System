@@ -92,11 +92,6 @@ namespace DVLD_DataLayer.Tables.License_Class
 
 
         }
-        public static short GetMinimumAllowedAge(int ClassID)
-        {
-
-
-            return 0;
-        }
+       
     }
 }

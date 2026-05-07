@@ -85,7 +85,10 @@ namespace DVLD_BussinessLogic.Application_Classes
 
         }
 
-
+        public static decimal GetFeesByID(int AppTypeID)
+        {
+           return clsManageApplicationTypes_DL.GetFeesByID(AppTypeID);
+        }
 
 
     }

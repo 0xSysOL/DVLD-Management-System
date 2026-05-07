@@ -1,5 +1,6 @@
 ﻿using DVLD_BusinessLogic;
 using DVLD_BussinessLogic.License_Class;
+using DVLD_DataLayer.Application_Classes;
 using DVLD_DataLayer.Tables.Application_Classes;
 using System;
 using System.Data;
@@ -27,10 +28,10 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
         public eMode mode;
 
 
-        protected int ID;
-        public int GetID()
+        protected int Base_ApplicationID;
+        public int Get_BaseAPP_ID()
         {
-            return ID;
+            return Base_ApplicationID;
         }
         public DateTime ApplicationDate { get; set; }
         public byte ApplicationStatus { get; set; }
@@ -44,15 +45,15 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
 
         public clsApplication_BL(enApplicationType eAppTypeID)
         {
-            ID = -1;
-            ApplicationStatus = 1;
-            PaidFees = -1;
+            Base_ApplicationID = -1;
+            ApplicationStatus = (int)eModeState.New;
+            PaidFees = clsManageApplicationTypes_BL.GetFeesByID((int)eAppTypeID);
             UserID = -1;
             PersonID = -1;
             mode = eMode.Add;
             modeState = eModeState.None;
             this.eAppTypeID = eAppTypeID;
-
+           
         }
 
         public clsApplication_BL(int ApplicationID)
@@ -69,7 +70,7 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
             clsApplication_DL.GetApplicationByID(ref ApplicationID, ref _ApplicationDate, ref _ApplicationState
                 , ref _PaidFees, ref _ApplicationTypeID, ref _UserID, ref _PersonID, ref _LastStateDate);
 
-            ID = ApplicationID;
+            Base_ApplicationID = ApplicationID;
             ApplicationDate = _ApplicationDate;
             ApplicationStatus = _ApplicationState;
             PaidFees = _PaidFees;
@@ -83,16 +84,7 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
 
         }
 
-        public clsApplication_BL(clsLicenseClass_BL clsLicenseClass, clsPeople_BL clsPerson, enApplicationType eAppTypeID)
-            : this(eAppTypeID)
-        {
-
-            //this.clsLicenseClass = clsLicenseClass;
-            //this.Person = clsPerson;
-
-
-
-        }
+   
 
         public static DataTable Get_LDL_Applications()
         {
@@ -110,87 +102,6 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
         public abstract bool IsPassedValidation();
         public abstract bool Save();
 
-
-        //    switch (eAppTypeID)
-        //    {
-        //        case enApplicationType.LocalDrivingLicense:
-
-        //            if (mode == eMode.Add)
-        //            {
-
-
-        //                if (!Methods_BL.IsAgeValid(clsLicenseClass.GetMinimumAllowedAge(), Person.DateOfBirth))
-        //                    return false;
-        //            }
-        //            if
-        //                ((IsPersonHaveNewApp(PersonID, clsLicenseClass.GetID())) == eModeState.New)
-        //                return false;
-
-        //            if (IsPersonHaveCompletedApp(PersonID, clsLicenseClass.GetID()) == eModeState.Completed)
-        //                return false;
-
-
-        //            break;
-
-        //        case enApplicationType.RetakeTest:
-
-
-        //            if (!clsPeople_BL.IsPersonExists(PersonID))
-        //                return false;
-
-        //            break;
-
-        //    }
-
-        //    return true;
-        //}
-
-        protected bool AddNewApplication()
-
-        {
-            if ((ID = clsApplication_DL.AddNewApplication(ApplicationStatus, (int)eAppTypeID, PaidFees,
-                           UserID, PersonID, ApplicationDate, LastStateDate)) != -1)
-            {
-                mode = eMode.Update;
-
-                return true;
-
-            }
-
-            return false;
-        }
-
-
-        //public virtual bool Save()
-        //{
-        //    #region Validation 
-
-        //    if (!IsPassedValidation())
-        //        return false;
-        //    #endregion End
-
-
-
-        //    switch (mode)
-        //    {
-
-        //        case eMode.Add:
-        //            ID = clsApplication_DL.AddNewApplication(ApplicationStatus, (int)eAppTypeID, PaidFees,
-        //                UserID, PersonID, ApplicationDate, LastStateDate);
-        //            mode = eMode.Update;
-        //            break;
-        //        case eMode.Update:
-        //            return clsApplication_DL.UpdateApplication(ID, LastStateDate, PaidFees, UserID);
-
-        //        case eMode.None:
-        //            return false;
-
-
-
-        //    }
-
-        //    return (ID != -1) ? true : false;
-        //}
 
         public static eModeState IsPersonHaveNewApp(int PersonID, int ClassID)
         {

@@ -103,7 +103,7 @@ namespace DVLD.Sub_Forms.People_Forms
 
         private void UC_AddEditPerson_SendMessageToClose()
         {
-            /* If ID = -1 that's means the user  saved wrong Information 
+            /* If Base_ApplicationID = -1 that's means the user  saved wrong Information 
                  OR He Closed the SubForm that have UC_AddEditPerson */
             if (clsPeople.PersonID != -1)
                 Retrieve_1?.Invoke(clsPeople);

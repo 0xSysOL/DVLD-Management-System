@@ -195,8 +195,8 @@ namespace DVLD.Sub_Forms.Application.Tests_Appointment.Schedule_Tests
                 // FIXME: TransAction
                 if (clsRetakeTest.Save())
                 {
-                    AddUpdate_Appointment(clsRetakeTest.GetID());
-                    UC_RetakeTestInfo.SetRTestAppID(clsRetakeTest.GetID());
+                    AddUpdate_Appointment(clsRetakeTest.Get_BaseAPP_ID());
+                    UC_RetakeTestInfo.SetRTestAppID(clsRetakeTest.Get_BaseAPP_ID());
                 }
                 else
                     MessageBox.Show("Something Wrong Please Try Agian", "Error", MessageBoxButtons.OK

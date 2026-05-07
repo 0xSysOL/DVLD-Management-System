@@ -45,36 +45,36 @@ namespace DVLD_DataLayer.Tables.Application_Classes
 
         }
 
-        public static bool UpdateApplication(int ID, DateTime LastStateDate, decimal PaidFees, int UserID)
-        {
-            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
-            SqlCommand command = new SqlCommand(clsQApplication.UpdateApplication, connection);
+        //public static bool UpdateApplication(int ID, DateTime LastStateDate, decimal PaidFees, int UserID)
+        //{
+        //    SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+        //    SqlCommand command = new SqlCommand(clsQApplication.UpdateApplication, connection);
 
-            command.Parameters.AddWithValue("@LastDateApplication", LastStateDate);
-            command.Parameters.AddWithValue("@UserID", UserID);
-            command.Parameters.AddWithValue("@PaidFees", PaidFees);
-            command.Parameters.AddWithValue("@ID", ID);
-            int Result = -1;
+        //    command.Parameters.AddWithValue("@LastDateApplication", LastStateDate);
+        //    command.Parameters.AddWithValue("@UserID", UserID);
+        //    command.Parameters.AddWithValue("@PaidFees", PaidFees);
+        //    command.Parameters.AddWithValue("@ID", ID);
+        //    int Result = -1;
 
-            try
-            {
-                connection.Open();
+        //    try
+        //    {
+        //        connection.Open();
 
-                Result = command.ExecuteNonQuery();
+        //        Result = command.ExecuteNonQuery();
 
 
-            }
-            catch (Exception e)
-            {
+        //    }
+        //    catch (Exception e)
+        //    {
 
-            }
-            finally
-            {
-                connection.Close();
-            }
+        //    }
+        //    finally
+        //    {
+        //        connection.Close();
+        //    }
 
-            return Result > 0 ? true : false;
-        }
+        //    return Result > 0 ? true : false;
+        //}
 
 
         public static bool IsApplicationNew(int PersonID, int LicenseClassID)
