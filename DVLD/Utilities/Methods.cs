@@ -201,7 +201,7 @@ string address)
 
 
         public static void UC_FillDrivingLicenseApplicationInfo
-            (int LDLAPP_ID,UC_DrivingLicenseApplication_Info DLAPPI, eTestTypes testTypes)
+            (int LDLAPP_ID,UC_DrivingLicenseApplication_Info DLAPPI)
         {
             string LicenseName = "";
             int PassedTests = 0;
@@ -214,7 +214,7 @@ string address)
         }
 
 
-        public static int UC_FillApplicationBasic_Info(int LDLAPP_ID, UC_ApplicationBasic_Info APPBI, eTestTypes testTypes)
+        public static int UC_FillApplicationBasic_Info(int LDLAPP_ID, UC_ApplicationBasic_Info APPBI)
         {
             string ApplicationStatus = "";
             int ApplicationID = -1;

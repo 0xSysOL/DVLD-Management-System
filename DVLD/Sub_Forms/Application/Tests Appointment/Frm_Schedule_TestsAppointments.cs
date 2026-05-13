@@ -77,13 +77,13 @@ namespace DVLD.Sub_Forms.Application.Schedule_Tests
         }
         private void Refresh_UC_DLAPP_INFO()
         {
-            Utilities.Methods.UC_FillDrivingLicenseApplicationInfo(LDLAPP_ID, UC_DrivingLicenseApplication_Info, eTestTypes);
+            Utilities.Methods.UC_FillDrivingLicenseApplicationInfo(LDLAPP_ID, UC_DrivingLicenseApplication_Info);
 
         }
         private void Refresh_UC_APPBInfo()
         {
 
-            APP_ID = Utilities.Methods.UC_FillApplicationBasic_Info(LDLAPP_ID, UC_ApplicationBasic_Info, eTestTypes);
+            APP_ID = Utilities.Methods.UC_FillApplicationBasic_Info(LDLAPP_ID, UC_ApplicationBasic_Info);
 
         }
         private void Frm_Schedule_TestsAppointments_Load(object sender, EventArgs e)

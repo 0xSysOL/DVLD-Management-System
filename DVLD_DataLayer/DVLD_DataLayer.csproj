@@ -55,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries And System Settings\Queries.cs" />
     <Compile Include="Queries And System Settings\Setting.cs" />
+    <Compile Include="Tables\Workflow\clsWF_IssueFirstTimeLicense_DL.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

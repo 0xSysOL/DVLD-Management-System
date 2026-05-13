@@ -105,7 +105,18 @@ namespace DVLD_BussinessLogic.License_Class
         {
             return clsLicenseClass_DL.GetMinimumAllowedAge(ClassID);
         }
+        public static decimal GetLicensePrice(int ClassID) 
+        {
 
+           return clsLicenseClass_DL.GetLicensePrice(ClassID);
+
+        }
+        public static int GetDefaultValidityLength(int ClassID)
+        {
+
+         return   clsLicenseClass_DL.GetDefaultValidityLength(ClassID);
+
+        }
 
 
     }

@@ -92,6 +92,62 @@ namespace DVLD_DataLayer.Tables.License_Class
 
 
         }
-       
+
+
+        public static decimal GetLicensePrice(int ClassLicenseID)
+        {
+
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQ_LicenseClass.GetLicensePrice, connection);
+            object Result = null;
+
+
+            command.Parameters.AddWithValue("@Value", ClassLicenseID);
+            try
+            {
+                connection.Open();
+                Result = command.ExecuteScalar();
+
+            }
+            catch (Exception e)
+            { }
+            finally
+            {
+                connection.Close();
+            }
+
+            return Result != null ? Convert.ToDecimal(Result) : -1;
+
+        }
+
+
+        public static int GetDefaultValidityLength(int ClassLicenseID)
+        {
+
+
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQ_LicenseClass.GetDefaultValidityLength, connection);
+            object Result = null;
+
+
+            command.Parameters.AddWithValue("@Value", ClassLicenseID);
+            try
+            {
+                connection.Open();
+                Result = command.ExecuteScalar();
+
+            }
+            catch (Exception e)
+            { }
+            finally
+            {
+                connection.Close();
+            }
+
+            return Result != null ? Convert.ToInt32(Result) : -1;
+
+
+        }
+
     }
 }

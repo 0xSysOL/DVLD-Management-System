@@ -16,10 +16,7 @@ namespace DVLD_BussinessLogic.Application_Classes.New_Local_License_App
         {
             return LDLAPPID;
         }
-        public void SetApplicationID(int ApplicationID)
-        {
-            Base_ApplicationID = ApplicationID;
-        }
+       
         public void SetLicenseClassID(int LicenseClassID)
         {
             this.LicenseClassID = LicenseClassID;
@@ -41,7 +38,7 @@ namespace DVLD_BussinessLogic.Application_Classes.New_Local_License_App
             mode = eMode.Add;
 
         }
-
+         
         public clsNewLocalDriverLicenseApplication_BL(int ApplicationID) : base(ApplicationID)
         {
             LDLAPPID = -1;

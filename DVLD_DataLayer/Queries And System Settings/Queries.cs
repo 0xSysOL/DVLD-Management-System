@@ -114,7 +114,7 @@ where ApplicationTypeID = @ID
     #region Test Appointment
     internal static class clsQTestAppointment
     {
-    
+
         public const string Add_Appointment = "Add_Appointment";
         public const string Update_Appointment = @"update TestAppointment
 set AppointmentDate = @AppointmentDate
@@ -125,7 +125,7 @@ set Islocked = 1
 where AppointmentID = @AppointmentID";
 
 
-        public const  string IsVisionTestPassed =
+        public const string IsVisionTestPassed =
             @"
 select TestResult from TestAppointment 
 join Tests on Tests.TestAppointmentID = TestAppointment.AppointmentID
@@ -167,13 +167,13 @@ select * from GetApplicationDetailsForNewAppointment(@LDLAPP_ID,@TestType)";
 
     internal static class clsQVisionTestAppointment
     {
-       
+
     }
 
     internal static class clsQTests
     {
 
-       public const string TakeTest = @"insert into Tests(TestResult,Notes,CreateByUserID,TestAppointmentID)
+        public const string TakeTest = @"insert into Tests(TestResult,Notes,CreateByUserID,TestAppointmentID)
                                    values (@TestResult,@Note,@UserID,@TestAppointmentID)";
 
 
@@ -268,7 +268,7 @@ LocalDrivingLicenseApplication.LicenseClassID = LC_ID
         public const string GetApplicationID_By_LDLAID = @"select ApplicationID from LocalDrivingLicenseApplication
 where [Local Driving License Application ID] = @Value
 ";
-  
+
         public const string GetTestAppointmentResult = @"
 Select top 1 case when Islocked = 0 then Sum(1) end as Result from TestAppointment
  group by Islocked,LocalDrivingLicenseApplicationID
@@ -305,7 +305,7 @@ where [Local Driving License Application ID] = @Value";
         public const string Get_LDLA = @"select * from LocalDrivingLicenseApplication 
                                      where ApplicationID = @Value";
 
- public const string GetDrivingLicenseApplication = "select * from fn_GetDrivingLicenseInfo(@LDLAPP_ID)";
+        public const string GetDrivingLicenseApplication = "select * from fn_GetDrivingLicenseInfo(@LDLAPP_ID)";
 
     }
 
@@ -324,11 +324,30 @@ where [Local Driving License Application ID] = @Value";
                                             Where ClassName = @Value";
         public const string GetMinimumAllowedAge = @"select MinmumAllowedAge from LicenseClasses
 where LicenseClassID = @Value";
+        public const string GetLicensePrice = @"select classFees from LicenseClasses
+where LicenseClassID = @Value";
+        public const string GetDefaultValidityLength = @"select DefaultValidityLength from LicenseClasses
+where LicenseClassID = @Value";
+    }
+
+    #endregion End
+
+    #region Workflow
+
+
+    #region SaveNew_Driver_License_UPDAPP
+
+    internal static class clsQWFSave_DLAPP
+    {
+        public static string AddDriver = "";
+        public static string IssueLicense = "";
+        public static string ConvertApplicationToCompelated = "";
     }
 
     #endregion End
 
 
+    #endregion End
 
 
 

@@ -97,7 +97,18 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
         {
 
         }
+        private int GetLDLAPP_ID_FromDataGridV()
+        {
 
+            int LDL_AppID = Convert.ToInt32(_DataGridView.CurrentRow.Cells[0].Value);
+            return LDL_AppID;
+        }
+        private int GetApplicationID_FromDataGridV()
+        {
+            int LDL_AppID = Convert.ToInt32(_DataGridView.CurrentRow.Cells[0].Value);
+            int ApplicationID = clsApplication_BL.GetApplicationID_ByLDLAPPID(LDL_AppID);
+            return ApplicationID;
+        }
         private void editApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int LDL_AppID = Convert.ToInt32(_DataGridView.CurrentRow.Cells[0].Value);
@@ -149,6 +160,12 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
 
         private void issueDateToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+
+            Frm_IssueDriverLicenseForFirstTime IDLFFT 
+                = new Frm_IssueDriverLicenseForFirstTime(GetApplicationID_FromDataGridV());
+
+            IDLFFT.ShowDialog();
 
         }
 

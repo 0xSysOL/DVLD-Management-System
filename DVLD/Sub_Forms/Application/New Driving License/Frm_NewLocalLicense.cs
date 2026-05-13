@@ -26,11 +26,12 @@ namespace DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_Licens
             Mode = "Add";
         }
 
-        public Frm_NewLocalLicense(int LDLAPP_ID)
+        public Frm_NewLocalLicense(int ApplicationID)
         {
             InitializeComponent();
-            clsLocalDriverLicense = new clsNewLocalDriverLicenseApplication_BL(LDLAPP_ID);
-            InitializeLabels(clsLocalDriverLicense.ApplicationDate, GetApplicationFees(), CurrentUser.GetUserName(), LDLAPP_ID);
+            clsLocalDriverLicense = new clsNewLocalDriverLicenseApplication_BL(ApplicationID);
+            InitializeLabels
+  (clsLocalDriverLicense.ApplicationDate, GetApplicationFees(), CurrentUser.GetUserName(), clsLocalDriverLicense.GetLDLA());
             InitializePerson();
             Mode = "Update";
 
