@@ -34,7 +34,7 @@
             this.Btn_Issue = new System.Windows.Forms.Button();
             this.UC_DrivingLicenseApplication_Info = new DVLD.User_Controls.Sechdule_Tests.Vision_Test_Appointment.UC_DrivingLicenseApplication_Info();
             this.UC_ApplicationBasic_Info = new DVLD.User_Controls.Sechdule_Tests.Vision_Test_Appointment.UC_ApplicationBasic_Info();
-            this.Label_Const_FormTitle = new System.Windows.Forms.Label();
+            this.Label_Variable_FormTitle = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Btn_Close = new System.Windows.Forms.Button();
             this.Pic_NewLocalDrivingLicense = new System.Windows.Forms.PictureBox();
@@ -90,16 +90,16 @@
             this.UC_ApplicationBasic_Info.TabIndex = 0;
             this.UC_ApplicationBasic_Info.Load += new System.EventHandler(this.UC_ApplicationBasic_Info_Load);
             // 
-            // Label_Const_FormTitle
+            // Label_Variable_FormTitle
             // 
-            this.Label_Const_FormTitle.AutoSize = true;
-            this.Label_Const_FormTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Const_FormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Label_Const_FormTitle.Location = new System.Drawing.Point(164, 131);
-            this.Label_Const_FormTitle.Name = "Label_Const_FormTitle";
-            this.Label_Const_FormTitle.Size = new System.Drawing.Size(419, 31);
-            this.Label_Const_FormTitle.TabIndex = 23;
-            this.Label_Const_FormTitle.Text = "Issue Driving License (First Time)";
+            this.Label_Variable_FormTitle.AutoSize = true;
+            this.Label_Variable_FormTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Variable_FormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Variable_FormTitle.Location = new System.Drawing.Point(164, 131);
+            this.Label_Variable_FormTitle.Name = "Label_Variable_FormTitle";
+            this.Label_Variable_FormTitle.Size = new System.Drawing.Size(419, 31);
+            this.Label_Variable_FormTitle.TabIndex = 23;
+            this.Label_Variable_FormTitle.Text = "Issue Driving License (First Time)";
             // 
             // pictureBox1
             // 
@@ -163,7 +163,7 @@
             this.ClientSize = new System.Drawing.Size(800, 752);
             this.Controls.Add(this.Label_Variable_LicensePrice);
             this.Controls.Add(this.Label_Const_LicensePrice);
-            this.Controls.Add(this.Label_Const_FormTitle);
+            this.Controls.Add(this.Label_Variable_FormTitle);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Btn_Issue);
             this.Controls.Add(this.Btn_Close);
@@ -191,7 +191,7 @@
         private System.Windows.Forms.PictureBox Pic_NewLocalDrivingLicense;
         private System.Windows.Forms.Button Btn_Issue;
         private System.Windows.Forms.Button Btn_Close;
-        private System.Windows.Forms.Label Label_Const_FormTitle;
+        private System.Windows.Forms.Label Label_Variable_FormTitle;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label Label_Const_LicensePrice;
         private System.Windows.Forms.Label Label_Variable_LicensePrice;

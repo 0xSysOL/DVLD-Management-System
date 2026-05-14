@@ -85,7 +85,19 @@ where Gendor = @ColumnValue
     }
     #endregion
 
+    #region Driver
 
+    internal static class clsQ_Driver
+    {
+
+        public const string GatDriver = @"select * from Drivers
+where DriverID = @Value";
+        public const string IsPersonDriver = "select Found=1 from Drivers where PersonID = @Value";
+        public const string GetDriverID = "select DriverID from Drivers where PersonID = @Value";
+
+    }
+
+    #endregion End
 
     #region Application Queries
 
@@ -339,15 +351,18 @@ where LicenseClassID = @Value";
 
     internal static class clsQWFSave_DLAPP
     {
-        public static string AddDriver = "";
-        public static string IssueLicense = "";
-        public static string ConvertApplicationToCompelated = "";
+        public static string AddDriver = "AddDriver";
+        public static string IssueLicense = "AddLicense";
+        public static string ConvertApplicationToCompleted = @"update Applications
+set ApplicationState = 3
+where ApplicationID = @Value";
     }
 
     #endregion End
 
 
     #endregion End
+
 
 
 

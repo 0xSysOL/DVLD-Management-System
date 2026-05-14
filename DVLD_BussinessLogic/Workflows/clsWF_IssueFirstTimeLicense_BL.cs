@@ -14,26 +14,43 @@ namespace DVLD_BussinessLogic.Workflows
     {
 
         clsNewLocalDriverLicenseApplication_BL LDLAPP;
-        clsDriver NewDriver;
-        clsLicense NewLicense;
+        public clsDriver_BL Ob_Driver;
+        public clsLicense NewLicense;
 
         public void SetNote(string Note)
         {
 
             NewLicense.SetNotes(Note);
         }
-        public void InitializeObjects(clsNewLocalDriverLicenseApplication_BL Ob)
+
+        public void InitializeDriverOB(clsNewLocalDriverLicenseApplication_BL Ob)
+        {
+
+            Ob_Driver = new clsDriver_BL();
+            Ob_Driver.SetPersonID(Ob.PersonID);
+            Ob_Driver.SetUserID(CurrentUser.GetUserID());
+            Ob_Driver.SetCreateDate(DateTime.Now);
+
+
+        }
+
+        public void InitializeDriverOB(int DriverID)
+        {
+
+            Ob_Driver = new clsDriver_BL(DriverID);
+          
+
+        }
+
+
+
+        public void InitializeLicenseOB(clsNewLocalDriverLicenseApplication_BL Ob)
         {
             if (Ob.GetLDLA() == -1)
                 return;
 
-            NewDriver = new clsDriver();
-            NewDriver.SetPersonID(Ob.PersonID);
-            NewDriver.SetUserID(CurrentUser.GetUserID());
-            NewDriver.SetCreateDate(DateTime.Now);
 
             NewLicense = new clsLicense();
-
             NewLicense.SetLicenseClassID(Ob.GetLicenseClassID());
             NewLicense.SetCreatedByUserID(CurrentUser.GetUserID());
             NewLicense.SetIsActive(true);
@@ -52,42 +69,23 @@ namespace DVLD_BussinessLogic.Workflows
         {
             LDLAPP = new clsNewLocalDriverLicenseApplication_BL(ApplicationID);
 
-            InitializeObjects(LDLAPP);
+            InitializeLicenseOB(LDLAPP);
+            InitializeDriverOB(LDLAPP);
 
         }
 
-        public bool Save()
+        public virtual bool Save()
         {
-            /*
-        int DriverID ;
-        DateTime CreateDate;
-        int PersonID;
-        int CreateByUserID;
-
-
-            
-         int _LicenseID;
-         int _LicenseClassID;
-         int _DriverID;
-         int _ApplicationID;
-         int _CreatedByUserID;
-         DateTime _IssueDate;
-         DateTime _ExpireDate;
-         string _Notes;
-         decimal _PaidFees;
-         bool _IsActive;
-         int _IssueReasonID;
-
-             */
+            // FIXME: Check If Person a Driver Or Not 
             int DriverID = -1; // Ref
             int LicenseID = -1; // Ref
-        
+
 
             return clsWF_IssueFirstTimeLicense_DL.
                 SaveNew_Driver_License_UPDAPP(ref DriverID,
-                NewDriver.GetPersonID(),
+                Ob_Driver.GetPersonID(),
                 CurrentUser.GetUserID(),
-                NewDriver.GetCreateDate(),
+                Ob_Driver.GetCreateDate(),
                 ref LicenseID,
                 NewLicense.GetLicenseClassID(),
                 NewLicense.GetApplicationID(),
@@ -100,6 +98,10 @@ namespace DVLD_BussinessLogic.Workflows
 
 
         }
+
+
+
+
 
     }
 

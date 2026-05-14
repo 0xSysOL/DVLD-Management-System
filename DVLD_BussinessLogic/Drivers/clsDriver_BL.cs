@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DVLD_DataLayer.Tables.Drivers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace DVLD_BussinessLogic.Drivers
 {
-    public class clsDriver
+    public class clsDriver_BL
     {
-        int DriverID { set; get; }
+     public   int DriverID { set; get; }
         DateTime CreateDate;
         int PersonID;
         int CreateByUserID;
@@ -39,9 +40,7 @@ namespace DVLD_BussinessLogic.Drivers
            return this.CreateDate;
         }
 
-        enum eMode { Add = 1,None =0 }
-
-        public clsDriver()
+        public clsDriver_BL()
         {
 
             DriverID = -1;
@@ -50,6 +49,28 @@ namespace DVLD_BussinessLogic.Drivers
             
 
         } 
+        public clsDriver_BL(int DriverID)
+        {
+
+            clsDriver_DL.GetDriver(DriverID,ref CreateDate,ref PersonID,ref CreateByUserID);
+            this.DriverID = DriverID;
+        }
+
+        public static bool IsPersonDriver(int PersonID)
+        {
+
+           return clsDriver_DL.IsPersonDriver(PersonID);
+        }
+
+        public static int GetDriverIDByPersonID(int PersonID)
+        {
+
+
+          return  clsDriver_DL.GetDriverIDByPersonID(PersonID);
+
+        }
+
+
 
 
     }

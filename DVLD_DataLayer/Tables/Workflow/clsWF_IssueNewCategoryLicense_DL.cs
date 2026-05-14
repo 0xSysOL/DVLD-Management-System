@@ -1,19 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DVLD_DataLayer.Tables.Workflow
 {
-    public class clsWF_IssueFirstTimeLicense_DL
+    public class clsWF_IssueNewCategoryLicense_DL
     {
 
 
-
-
-
-
-        public static bool SaveNew_Driver_License_UPDAPP(
-  ref int DriverID, int D_PersonID, int D_CreateByUserID, DateTime D_CreateDate,
+        public static bool Save_NewLicenseAndUpAPP(
+   int DriverID, int D_PersonID, int D_CreateByUserID, DateTime D_CreateDate,
    ref int L_LicenseID, int L_LicenseClassID, int L_ApplicationID,
     DateTime L_IssueDate, DateTime L_ExpireDate, string L_Notes, decimal L_PaidFees,
     bool L_IsActive, int L_IssueReasonID
@@ -30,22 +30,11 @@ namespace DVLD_DataLayer.Tables.Workflow
 
                 try
                 {
-                    // driver
-                    command = new SqlCommand(clsQWFSave_DLAPP.AddDriver, connection, transaction);
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@PersonID", D_PersonID);
-                    command.Parameters.AddWithValue("@CreateByUserID", D_CreateByUserID);
-                    command.Parameters.AddWithValue("@CreateDate", D_CreateDate);
-
-                    DriverID = Convert.ToInt32(command.ExecuteScalar());
-
-
+                 
 
                     // license 
                     command = new SqlCommand(clsQWFSave_DLAPP.IssueLicense, connection, transaction);
-                    /*(@LicenseClassID,@DriverID,@ApplicationID,
-                  @CreateByUserID,@IssueDate,@ExpireDate,
-                  @Notes,@PaidFees,@IsActive,@IssueReasonID)*/
+
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@LicenseClassID", L_LicenseClassID);
                     command.Parameters.AddWithValue("@DriverID", DriverID);
@@ -65,7 +54,7 @@ namespace DVLD_DataLayer.Tables.Workflow
 
                     // application
                     command = new SqlCommand(clsQWFSave_DLAPP.ConvertApplicationToCompleted, connection, transaction);
-                    command.Parameters.AddWithValue( "@Value",L_ApplicationID);
+                    command.Parameters.AddWithValue("@Value", L_ApplicationID);
 
                     command.ExecuteNonQuery();
 
@@ -90,8 +79,9 @@ namespace DVLD_DataLayer.Tables.Workflow
 
 
 
-
     }
+
+
 
 
 }

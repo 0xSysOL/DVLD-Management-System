@@ -122,6 +122,12 @@
     <Compile Include="Sub_Forms\Application\Tests Appointment\Schedule Tests\Frm_TakeTest.Designer.cs">
       <DependentUpon>Frm_TakeTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sub_Forms\Drivers\Frm_DrivingLicenseInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Drivers\Frm_DrivingLicenseInfo.Designer.cs">
+      <DependentUpon>Frm_DrivingLicenseInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sub_Forms\People Forms\Frm_Add_Edit_People.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,12 @@
     </Compile>
     <Compile Include="User_Controls\Filter.Designer.cs">
       <DependentUpon>Filter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\LicenseInfo\UC_LicenseInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User_Controls\LicenseInfo\UC_LicenseInfo.Designer.cs">
+      <DependentUpon>UC_LicenseInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\People User Control\UC_AddEditPerson.cs">
       <SubType>UserControl</SubType>
@@ -254,6 +266,9 @@
     <EmbeddedResource Include="Sub_Forms\Application\Tests Appointment\Schedule Tests\Frm_TakeTest.resx">
       <DependentUpon>Frm_TakeTest.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Drivers\Frm_DrivingLicenseInfo.resx">
+      <DependentUpon>Frm_DrivingLicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\People Forms\Frm_Add_Edit_People.resx">
       <DependentUpon>Frm_Add_Edit_People.cs</DependentUpon>
     </EmbeddedResource>
@@ -277,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User_Controls\Filter.resx">
       <DependentUpon>Filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_Controls\LicenseInfo\UC_LicenseInfo.resx">
+      <DependentUpon>UC_LicenseInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User_Controls\People User Control\UC_AddEditPerson.resx">
       <DependentUpon>UC_AddEditPerson.cs</DependentUpon>
@@ -476,6 +494,45 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\drivers-license.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License Info\FullName.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License Info\class.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License Info\driver-license.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License Info\united-nations.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License Info\gender.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License Info\Issue Date.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License Info\idea.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License Info\notes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License Info\active-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License Info\date-of-birth.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License Info\driverID.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License Info\Ex Date.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License Info\detained.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

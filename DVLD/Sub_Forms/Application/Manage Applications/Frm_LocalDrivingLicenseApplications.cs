@@ -1,5 +1,7 @@
 ﻿using DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_License;
 using DVLD.Sub_Forms.Application.Schedule_Tests;
+using DVLD.Sub_Forms.Drivers;
+
 
 //using DVLD.Sub_Forms.Application.Sechdule_Tests.Vision_Test_Appointment;
 using DVLD_BussinessLogic.Application_Classes;
@@ -171,6 +173,9 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
 
         private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Frm_DrivingLicenseInfo DLI = new Frm_DrivingLicenseInfo();
+
+            DLI.ShowDialog();
 
         }
 
@@ -229,10 +234,11 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
             sechduleWrittenTestToolStripMenuItem.Enabled = WrittenT;
             sechduleStreetTestToolStripMenuItem.Enabled = StreetT;
         }
-        private void EnabledFinalItemAfterCompleted_3_Schedules(bool IssDSMI, bool SLTMI)
+        private void EnabledFinalItemAfterCompleted_3_Schedules(bool IssDSMI, bool SLTMI,bool SAPP)
         {
             issueDLFT_ToolStripMenuItem.Enabled = IssDSMI;
             showLicenseToolStripMenuItem.Enabled = SLTMI;
+            showApplicationDetailsToolStripMenuItem.Enabled = SAPP;
         }
         private void EnabledMenuItems(bool Edit, bool Delete, bool Sechdule,bool Cancel)
         {
@@ -260,71 +266,86 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
             if (_DataGridView == null || _DataGridView.Rows.Count == 0)
             {
                 EnabledTestsMenuItem(false, false, false);
-                EnabledFinalItemAfterCompleted_3_Schedules(false, false);
-                EnabledMenuItems(false, false, false,false);
+                EnabledFinalItemAfterCompleted_3_Schedules(false, false,false);
+                EnabledMenuItems(false, false, false, false);
+            }
+            else 
+            {
+                EnabledTestsMenuItem(true, true, true);
+                EnabledFinalItemAfterCompleted_3_Schedules(true, true,true);
+                EnabledMenuItems(true, true, true, true);
+
             }
 
 
             int LDLA_ID = Convert.ToInt32(_DataGridView.CurrentRow.Cells[0].Value);
             eModeState status = clsApplication_BL.GetStatusBy_LDLAPP_ID(LDLA_ID);
-            if (status == eModeState.Cancel|| status == eModeState.Completed)
+            if (status == eModeState.Cancel)
             {
                 EnabledTestsMenuItem(false, false, false);
-                EnabledFinalItemAfterCompleted_3_Schedules(false, false);
+                EnabledFinalItemAfterCompleted_3_Schedules(false, false, false);
+                EnabledMenuItems(false, false, false, false);
+            }
+            if (status == eModeState.Completed)
+            {
+
+                EnabledTestsMenuItem(false, false, false);
+                EnabledFinalItemAfterCompleted_3_Schedules(false, true,true);
                 EnabledMenuItems(false, false, false, false);
                 return;
-            }
 
+            }
 
 
             if (!clsTestAppointment_BL.IsVisionTestPassed(LDLA_ID))
             {
                 EnabledTestsMenuItem(true, false, false);
-                EnabledFinalItemAfterCompleted_3_Schedules(false, false);
+                EnabledFinalItemAfterCompleted_3_Schedules(false, false, false);
                 EnabledMenuItems(true, true, true, true);
                 return;
             }
             else
             {
                 EnabledTestsMenuItem(false, true, false);
-                EnabledFinalItemAfterCompleted_3_Schedules(false, false);
+                EnabledFinalItemAfterCompleted_3_Schedules(false, false, false);
 
             }
 
             if (!clsTestAppointment_BL.IsWrittenTestPassed(LDLA_ID))
             {
                 EnabledTestsMenuItem(false, true, false);
-                EnabledFinalItemAfterCompleted_3_Schedules(false, false);
+                EnabledFinalItemAfterCompleted_3_Schedules(false, false, false);
                 return;
             }
             else
             {
                 EnabledTestsMenuItem(false, false, true);
-                EnabledFinalItemAfterCompleted_3_Schedules(false, false);
+                EnabledFinalItemAfterCompleted_3_Schedules(false, false, false);
             }
 
             if (!clsTestAppointment_BL.IsStreetTestPassed(LDLA_ID))
             {
                 EnabledTestsMenuItem(false, false, true);
-                EnabledFinalItemAfterCompleted_3_Schedules(false, false);
+                EnabledFinalItemAfterCompleted_3_Schedules(false, false, false);
 
                 return;
             }
             else if(status == eModeState.Completed)
             {
                 EnabledTestsMenuItem(false, false, false);
-                EnabledFinalItemAfterCompleted_3_Schedules(false, true);
+                EnabledFinalItemAfterCompleted_3_Schedules(false, true, true);
                 EnabledMenuItems(false, false, false, false);
             }else
             {
                 EnabledTestsMenuItem(false, false, false);
-                EnabledFinalItemAfterCompleted_3_Schedules(true, true);
+                EnabledFinalItemAfterCompleted_3_Schedules(true, true, true);
                 EnabledMenuItems(false, false, false, false);
             }
 
 
 
         }
+
         private void _DataGridView_SelectionChanged(object sender, EventArgs e)
         {
 

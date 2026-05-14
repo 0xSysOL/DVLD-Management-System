@@ -45,6 +45,7 @@
     <Compile Include="Tables\Application Classes\Application\clsApplication_DL.cs" />
     <Compile Include="Tables\Application Classes\New Local Driving License Application\clsNewLocalDrivingLicenseApp_DL.cs" />
     <Compile Include="Tables\Application Classes\Test Types\clsManageTestTypes_DL.cs" />
+    <Compile Include="Tables\Drivers\clsDriver_DL.cs" />
     <Compile Include="Tables\License Class\clsLicenseClass_DL.cs" />
     <Compile Include="Tables\Tests Appointment\clsTestAppointment_DL.cs" />
     <Compile Include="Tables\Tests Appointment\clsTests_DL.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Queries And System Settings\Queries.cs" />
     <Compile Include="Queries And System Settings\Setting.cs" />
     <Compile Include="Tables\Workflow\clsWF_IssueFirstTimeLicense_DL.cs" />
+    <Compile Include="Tables\Workflow\clsWF_IssueNewCategoryLicense_DL.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
