@@ -136,6 +136,7 @@
             this.Person_Card.TabIndex = 2;
             this.Person_Card.TabStop = false;
             this.Person_Card.Text = "Driving License Info";
+            this.Person_Card.Enter += new System.EventHandler(this.Person_Card_Enter);
             // 
             // Pic_IsDetained
             // 

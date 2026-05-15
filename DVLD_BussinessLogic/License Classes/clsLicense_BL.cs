@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DVLD_BussinessLogic.Application_Classes.Application;
+using DVLD_DataLayer.Tables.License_Class;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DVLD_BussinessLogic.License_Classes
 {
-    public class clsLicense
+    public class clsLicense_BL
     {
 
         private int _LicenseID;
@@ -61,7 +63,7 @@ namespace DVLD_BussinessLogic.License_Classes
         public int GetIssueReasonID() { return _IssueReasonID; }
         public void SetIssueReasonID(int value) { _IssueReasonID = value; }
 
-        public clsLicense()
+        public clsLicense_BL()
         {
             this._LicenseID = -1;
             this._LicenseClassID = -1;
@@ -75,7 +77,20 @@ namespace DVLD_BussinessLogic.License_Classes
 
         }
 
+        public static void GetLicenseInfoByApplicationID(int ApplicationID,ref string ClassName,ref string FullName,
+            ref int LicenseID,ref string NationalNo,ref string Gender,ref string Notes,ref string IsActive,ref DateTime IssueDate,
+            ref DateTime ExpireDate,ref DateTime DateOfBirth,ref string IssueReason,ref int DriverID, ref string IsDetained) 
+        
+        {
 
+            clsLicense_DL.GetLicenseInfoByApplicationID(ApplicationID, ref ClassName, ref FullName, ref LicenseID,
+                ref NationalNo, ref Gender, ref Notes, ref IsActive, ref IssueDate, ref ExpireDate, ref DateOfBirth,
+                ref IssueReason, ref DriverID, ref  IsDetained);
+
+
+
+
+        }
 
 
 

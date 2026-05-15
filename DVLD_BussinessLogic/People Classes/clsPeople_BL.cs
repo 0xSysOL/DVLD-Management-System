@@ -307,7 +307,7 @@ namespace DVLD_BusinessLogic
         }
         #region Delete Person
 
-        private static string _GetImagePath(int ID)
+        public static string GetImagePath(int ID)
         {
             return clsPeople_DL.GetImagePath(ID);
 
@@ -324,7 +324,7 @@ namespace DVLD_BusinessLogic
         }
         public static bool DeletePerson(int ID)
         {
-            string ImagePath = _GetImagePath(ID);
+            string ImagePath = GetImagePath(ID);
 
             if (clsPeople_DL.DeletePerson(ID) == -1)
             {

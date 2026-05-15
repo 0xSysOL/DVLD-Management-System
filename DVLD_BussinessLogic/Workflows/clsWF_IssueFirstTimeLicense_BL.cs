@@ -15,7 +15,7 @@ namespace DVLD_BussinessLogic.Workflows
 
         clsNewLocalDriverLicenseApplication_BL LDLAPP;
         public clsDriver_BL Ob_Driver;
-        public clsLicense NewLicense;
+        public clsLicense_BL NewLicense;
 
         public void SetNote(string Note)
         {
@@ -50,7 +50,7 @@ namespace DVLD_BussinessLogic.Workflows
                 return;
 
 
-            NewLicense = new clsLicense();
+            NewLicense = new clsLicense_BL();
             NewLicense.SetLicenseClassID(Ob.GetLicenseClassID());
             NewLicense.SetCreatedByUserID(CurrentUser.GetUserID());
             NewLicense.SetIsActive(true);

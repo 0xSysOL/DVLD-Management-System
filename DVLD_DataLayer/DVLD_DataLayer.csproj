@@ -47,6 +47,7 @@
     <Compile Include="Tables\Application Classes\Test Types\clsManageTestTypes_DL.cs" />
     <Compile Include="Tables\Drivers\clsDriver_DL.cs" />
     <Compile Include="Tables\License Class\clsLicenseClass_DL.cs" />
+    <Compile Include="Tables\License Class\clsLicense_DL.cs" />
     <Compile Include="Tables\Tests Appointment\clsTestAppointment_DL.cs" />
     <Compile Include="Tables\Tests Appointment\clsTests_DL.cs" />
     <Compile Include="Tables\Tests Appointment\RetakeTestApplication_DL.cs" />

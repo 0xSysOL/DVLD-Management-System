@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_DrivingLicenseInfo));
-            this.uC_LicenseInfo1 = new DVLD.User_Controls.LicenseInfo.UC_LicenseInfo();
+            this.UC_LicenseInfo = new DVLD.User_Controls.LicenseInfo.UC_LicenseInfo();
             this.Label_Const_FormTitle = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Btn_Close = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // uC_LicenseInfo1
+            // UC_LicenseInfo
             // 
-            this.uC_LicenseInfo1.Location = new System.Drawing.Point(12, 180);
-            this.uC_LicenseInfo1.Name = "uC_LicenseInfo1";
-            this.uC_LicenseInfo1.Size = new System.Drawing.Size(753, 361);
-            this.uC_LicenseInfo1.TabIndex = 0;
+            this.UC_LicenseInfo.Location = new System.Drawing.Point(12, 180);
+            this.UC_LicenseInfo.Name = "UC_LicenseInfo";
+            this.UC_LicenseInfo.Size = new System.Drawing.Size(753, 361);
+            this.UC_LicenseInfo.TabIndex = 0;
             // 
             // Label_Const_FormTitle
             // 
@@ -84,9 +84,10 @@
             this.Controls.Add(this.Btn_Close);
             this.Controls.Add(this.Label_Const_FormTitle);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.uC_LicenseInfo1);
+            this.Controls.Add(this.UC_LicenseInfo);
             this.Name = "Frm_DrivingLicenseInfo";
             this.Text = "License Info";
+            this.Load += new System.EventHandler(this.Frm_DrivingLicenseInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -95,7 +96,7 @@
 
         #endregion
 
-        private User_Controls.LicenseInfo.UC_LicenseInfo uC_LicenseInfo1;
+        private User_Controls.LicenseInfo.UC_LicenseInfo UC_LicenseInfo;
         private System.Windows.Forms.Label Label_Const_FormTitle;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button Btn_Close;

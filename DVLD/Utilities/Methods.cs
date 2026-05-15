@@ -1,12 +1,13 @@
 ﻿using DVLD.Properties;
 using DVLD.Sub_Forms.Users_Forms;
 using DVLD.User_Controls;
-using DVLD.User_Controls.Sechdule_Tests;
+using DVLD.User_Controls.LicenseInfo;
 using DVLD.User_Controls.Sechdule_Tests.Vision_Test_Appointment;
 using DVLD_BusinessLogic;
 using DVLD_BussinessLogic.Application_Classes;
 using DVLD_BussinessLogic.Application_Classes.Application;
 using DVLD_BussinessLogic.Application_Classes.New_Local_License_App;
+using DVLD_BussinessLogic.License_Classes;
 using System;
 using System.Data;
 using System.Drawing;
@@ -18,6 +19,68 @@ namespace DVLD.Utilities
     internal class Methods
     {
         public enum eTestTypes { VisionTest = 1, WrittenTest = 2, StreetTest = 3, None = 4 }
+
+        public static void Fill_UC_LicenseInfo(UC_LicenseInfo LI, int ApplicationID)
+        {
+            // 1. Declare variables to hold the returned data
+            string ClassName = "";
+            string FullName = "";
+            int LicenseID = -1;
+            string NationalNo = "";
+            string Gender = "";
+            string Notes = "";
+            string IsActive = "";
+            DateTime IssueDate = DateTime.Now;
+            DateTime ExpireDate = DateTime.Now;
+            DateTime DateOfBirth = DateTime.Now;
+            string IssueReason = "";
+            int DriverID = -1;
+            string IsDetained = "";
+            // 2. Call the BL method using the 'ref' keyword for each variable
+            clsLicense_BL.GetLicenseInfoByApplicationID(
+                ApplicationID,
+                ref ClassName,
+                ref FullName,
+                ref LicenseID,
+                ref NationalNo,
+                ref Gender,
+                ref Notes,
+                ref IsActive,
+                ref IssueDate,
+                ref ExpireDate,
+                ref DateOfBirth,
+                ref IssueReason,
+                ref DriverID,
+                ref IsDetained
+            );
+
+
+            // 3. Call the UI Setters to display the data
+            LI.SetLabelClass(ClassName);
+            LI.SetLabelName(FullName);
+            LI.SetLabelLicenseID(LicenseID);
+            LI.SetLabelGender(Gender);
+            LI.SetLabelIssueDate(IssueDate);
+            LI.SetLabelIssueReason(IssueReason);
+            LI.SetLabelNote(Notes);
+            LI.SetLabelDateOfBirth(DateOfBirth);
+            LI.SetLabelDriverID(DriverID);
+            LI.SetLabelExpireDate(ExpireDate);
+            LI.SetLabelIsDetained(IsDetained);
+            LI.SetLabelIsActive(IsActive);
+            LI.SetLabelNationalNo(NationalNo);
+
+            string ImageKey = clsPeople_BL.GetImagePath(clsApplication_BL.GetPersonID(ApplicationID));
+            if (!string.IsNullOrEmpty(ImageKey))
+            {
+                string ImagePath = clsPeople_BL.FindImagePath(ImageKey);
+                Image image = Image.FromFile(ImagePath);
+                LI.SetImage(image);
+            }
+
+
+
+        }
 
         public static bool IsDataTableEmpty(DataTable Data)
         {
@@ -191,7 +254,7 @@ string address)
         public static bool IsAgeValid(short AllowedAge, DateTime DateOfBirth)
         {
             DateTime date = DateTime.Now;
-           
+
             if (DateOfBirth.Year <= date.AddYears(-Convert.ToInt32(AllowedAge)).Year)
                 return true;
 
@@ -201,7 +264,7 @@ string address)
 
 
         public static void UC_FillDrivingLicenseApplicationInfo
-            (int LDLAPP_ID,UC_DrivingLicenseApplication_Info DLAPPI)
+            (int LDLAPP_ID, UC_DrivingLicenseApplication_Info DLAPPI)
         {
             string LicenseName = "";
             int PassedTests = 0;
@@ -218,10 +281,10 @@ string address)
         {
             string ApplicationStatus = "";
             int ApplicationID = -1;
-            decimal ApplicationFees  = -1;
+            decimal ApplicationFees = -1;
             string ApplicationTypeTitle = "";
             string FullName = "";
-            DateTime ApplicationDate =  new DateTime();
+            DateTime ApplicationDate = new DateTime();
             DateTime ApplicationDateStatus = new DateTime();
             string Username = "";
 
@@ -245,7 +308,7 @@ string address)
 
 
 
-        public static void InitializeTitlesForm(ref string TitleForm,ref string LabelTitleForm,eTestTypes eTestTypes,ref Image image)
+        public static void InitializeTitlesForm(ref string TitleForm, ref string LabelTitleForm, eTestTypes eTestTypes, ref Image image)
         {
 
             switch (eTestTypes)
@@ -253,7 +316,7 @@ string address)
 
                 case eTestTypes.VisionTest:
                     image = Resources.eye_scan__1_;
-                    TitleForm      = "Vision Test Appointment";
+                    TitleForm = "Vision Test Appointment";
                     LabelTitleForm = "Vision Test Appointment";
 
                     break;
@@ -261,7 +324,7 @@ string address)
                 case eTestTypes.WrittenTest:
                     image = Resources.writing;
                     TitleForm = "Written Test Appointment";
-                    LabelTitleForm  = "Written Test Appointment";
+                    LabelTitleForm = "Written Test Appointment";
 
                     break;
 
@@ -276,7 +339,7 @@ string address)
 
         }
 
-      
+
 
 
 

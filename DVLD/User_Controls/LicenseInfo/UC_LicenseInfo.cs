@@ -45,7 +45,7 @@ namespace DVLD.User_Controls.LicenseInfo
         // Method to set the Issue Date
         public void SetLabelIssueDate(DateTime value)
         {
-            Label_Variable_IssueDate.Text = value.ToShortDateString();
+            Label_Variable_IssueDate.Text = value.ToString("dd/MMM/yyyy");
         }
 
         // Method to set the Issue Reason
@@ -60,16 +60,18 @@ namespace DVLD.User_Controls.LicenseInfo
             Label_Variable_Note.Text = string.IsNullOrEmpty(value) ? "No Notes" : value;
         }
 
-        // Method to set IsActive (Boolean to Text)
-        public void SetLabelIsActive(bool isActive)
+        // Method to set IsActive string
+        public void SetLabelIsActive(string isActive)
         {
-            Label_Variable_IsActive.Text = isActive ? "Yes" : "No";
+            Label_Variable_IsActive.Text = isActive;
+
         }
 
         // Method to set Date of Birth
         public void SetLabelDateOfBirth(DateTime value)
         {
-            Label_Variable_DateOfBirth.Text = value.ToShortDateString();
+          
+            Label_Variable_DateOfBirth.Text = value.ToString("dd/MMM/yyyy");
         }
 
         // Method to set Driver ID
@@ -81,13 +83,18 @@ namespace DVLD.User_Controls.LicenseInfo
         // Method to set Expiry Date
         public void SetLabelExpireDate(DateTime value)
         {
-            Label_Variable_ExpireDate.Text = value.ToShortDateString();
+            Label_Variable_ExpireDate.Text = value.ToString("dd/MMM/yyyy");
+        }
+public void SetLabelNationalNo(string NationalNo)
+        {
+            Label_Variable_NationalNO.Text = NationalNo;
+
         }
 
-        // Method to set IsDetained (Boolean to Text)
-        public void SetLabelIsDetained(bool isDetained)
+        public void SetLabelIsDetained(string IsDetained)
         {
-            Label_Variable_IsDetained.Text = isDetained ? "Yes" : "No";
+
+            Label_Variable_IsDetained.Text = IsDetained;
         }
         #endregion End
 
@@ -99,10 +106,9 @@ namespace DVLD.User_Controls.LicenseInfo
 
         }
 
+        private void Person_Card_Enter(object sender, EventArgs e)
+        {
 
-
-
-
-
+        }
     }
 }

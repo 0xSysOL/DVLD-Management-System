@@ -6,6 +6,7 @@ using DVLD.Sub_Forms.Drivers;
 //using DVLD.Sub_Forms.Application.Sechdule_Tests.Vision_Test_Appointment;
 using DVLD_BussinessLogic.Application_Classes;
 using DVLD_BussinessLogic.Application_Classes.Application;
+using DVLD_BussinessLogic.Application_Classes.New_Local_License_App;
 using System;
 using System.Windows.Forms;
 using static DVLD_BussinessLogic.Application_Classes.Application.clsApplication_BL;
@@ -173,7 +174,8 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
 
         private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_DrivingLicenseInfo DLI = new Frm_DrivingLicenseInfo();
+          int ApplicationID =  GetApplicationID_ByLDLAPPID(GetLDLAPP_ID_FromDataGridV());
+            Frm_DrivingLicenseInfo DLI = new Frm_DrivingLicenseInfo(ApplicationID);
 
             DLI.ShowDialog();
 

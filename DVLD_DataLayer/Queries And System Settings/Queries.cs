@@ -344,6 +344,17 @@ where LicenseClassID = @Value";
 
     #endregion End
 
+    #region License
+
+    internal static class clsQ_License
+    {
+
+        public const string GetLicenseInfo = "GetLicenseInfo";
+
+    }
+
+    #endregion End
+
     #region Workflow
 
 

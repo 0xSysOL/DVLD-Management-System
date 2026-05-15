@@ -41,7 +41,7 @@
     <Compile Include="Countries Classes\clsCountries_BL.cs" />
     <Compile Include="Drivers\clsDriver_BL.cs" />
     <Compile Include="License Classes\clsLicenseClass_BL.cs" />
-    <Compile Include="License Classes\clsLicense.cs" />
+    <Compile Include="License Classes\clsLicense_BL.cs" />
     <Compile Include="People Classes\clsPeople_BL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users Classes\clsUsers_BL.cs" />

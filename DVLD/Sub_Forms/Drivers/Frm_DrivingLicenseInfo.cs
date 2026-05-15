@@ -15,6 +15,19 @@ namespace DVLD.Sub_Forms.Drivers
         public Frm_DrivingLicenseInfo(int ApplicationID)
         {
             InitializeComponent();
+            InitializeUC_LicenseInfo(ApplicationID);
+
+        }
+
+        private void InitializeUC_LicenseInfo(int ApplicationID)
+        {
+
+            Utilities.Methods.Fill_UC_LicenseInfo(UC_LicenseInfo, ApplicationID);
+
+        }
+
+        private void Frm_DrivingLicenseInfo_Load(object sender, EventArgs e)
+        {
 
         }
     }
