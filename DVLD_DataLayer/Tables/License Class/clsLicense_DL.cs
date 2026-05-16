@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DVLD_DataLayer.Tables.License_Class
 {
@@ -13,7 +16,7 @@ namespace DVLD_DataLayer.Tables.License_Class
 
 
 
-
+         
 
 
 
@@ -75,6 +78,80 @@ namespace DVLD_DataLayer.Tables.License_Class
 
 
 
+
+        }
+
+
+        public static DataTable GetAllPersonLocalLicense(int DriverID)
+        {
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQ_License.GetAllPersonLocalLicenseByDriverID, connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@DriverID", DriverID);
+            DataTable data = new DataTable();
+            try
+            {
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    data.Load(reader);
+                }
+
+
+
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+
+
+
+            return data;
+
+
+        }
+        public static DataTable GetAllPersonInternationalLicense(int DriverID)
+        {
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQ_License.GetAllPersonInternationalLicenseByDriver, connection);
+            command.Parameters.AddWithValue("@DriverID", DriverID);
+            command.CommandType = CommandType.StoredProcedure;
+
+            DataTable data = new DataTable();
+            try
+            {
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    data.Load(reader);
+                }
+
+
+
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+
+
+
+            return data;
 
         }
 

@@ -62,6 +62,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Sub_Forms\Application\Frm_ApplicationDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\Frm_ApplicationDetails.Designer.cs">
+      <DependentUpon>Frm_ApplicationDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sub_Forms\Application\Frm_IssueDriverLicenseForFirstTime.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,12 @@
     </Compile>
     <Compile Include="Sub_Forms\Drivers\Frm_DrivingLicenseInfo.Designer.cs">
       <DependentUpon>Frm_DrivingLicenseInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sub_Forms\License\Frm_ShowPersonLicenseHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\License\Frm_ShowPersonLicenseHistory.Designer.cs">
+      <DependentUpon>Frm_ShowPersonLicenseHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="Sub_Forms\People Forms\Frm_Add_Edit_People.cs">
       <SubType>Form</SubType>
@@ -236,6 +248,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Application\Frm_ApplicationDetails.resx">
+      <DependentUpon>Frm_ApplicationDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Application\Frm_IssueDriverLicenseForFirstTime.resx">
       <DependentUpon>Frm_IssueDriverLicenseForFirstTime.cs</DependentUpon>
     </EmbeddedResource>
@@ -268,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Drivers\Frm_DrivingLicenseInfo.resx">
       <DependentUpon>Frm_DrivingLicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\License\Frm_ShowPersonLicenseHistory.resx">
+      <DependentUpon>Frm_ShowPersonLicenseHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\People Forms\Frm_Add_Edit_People.resx">
       <DependentUpon>Frm_Add_Edit_People.cs</DependentUpon>
@@ -533,6 +551,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\License Info\detained.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\scroll.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

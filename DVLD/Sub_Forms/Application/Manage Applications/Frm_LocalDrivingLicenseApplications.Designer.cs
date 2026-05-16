@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_LocalDrivingLicenseApplications));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Label_Const_FormTitle = new System.Windows.Forms.Label();
             this._DataGridView = new System.Windows.Forms.DataGridView();
@@ -65,7 +67,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(313, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(596, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(184, 106);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -77,7 +79,7 @@
             this.Label_Const_FormTitle.AutoSize = true;
             this.Label_Const_FormTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Const_FormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Label_Const_FormTitle.Location = new System.Drawing.Point(187, 137);
+            this.Label_Const_FormTitle.Location = new System.Drawing.Point(470, 137);
             this.Label_Const_FormTitle.Name = "Label_Const_FormTitle";
             this.Label_Const_FormTitle.Size = new System.Drawing.Size(419, 31);
             this.Label_Const_FormTitle.TabIndex = 3;
@@ -88,30 +90,41 @@
             this._DataGridView.AllowUserToAddRows = false;
             this._DataGridView.AllowUserToDeleteRows = false;
             this._DataGridView.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this._DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this._DataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this._DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this._DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this._DataGridView.ContextMenuStrip = this._ContextMenuStrip;
-            this._DataGridView.Location = new System.Drawing.Point(12, 235);
-            this._DataGridView.Name = "_DataGridView";
-            this._DataGridView.ReadOnly = true;
+            this._DataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this._DataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this._DataGridView.Size = new System.Drawing.Size(776, 181);
+            this._DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this._DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this._DataGridView.ContextMenuStrip = this._ContextMenuStrip;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this._DataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            this._DataGridView.Location = new System.Drawing.Point(12, 235);
+            this._DataGridView.Name = "_DataGridView";
+            this._DataGridView.ReadOnly = true;
+            this._DataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this._DataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this._DataGridView.Size = new System.Drawing.Size(1325, 268);
             this._DataGridView.TabIndex = 4;
             this._DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._DataGridView_CellClick);
             this._DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._DataGridView_CellContentClick);
@@ -263,7 +276,7 @@
             // 
             this.Label_Variable_Records.AutoSize = true;
             this.Label_Variable_Records.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Variable_Records.Location = new System.Drawing.Point(104, 419);
+            this.Label_Variable_Records.Location = new System.Drawing.Point(104, 506);
             this.Label_Variable_Records.Name = "Label_Variable_Records";
             this.Label_Variable_Records.Size = new System.Drawing.Size(123, 24);
             this.Label_Variable_Records.TabIndex = 16;
@@ -273,7 +286,7 @@
             // 
             this.Label_Const_Records.AutoSize = true;
             this.Label_Const_Records.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Const_Records.Location = new System.Drawing.Point(12, 419);
+            this.Label_Const_Records.Location = new System.Drawing.Point(12, 506);
             this.Label_Const_Records.Name = "Label_Const_Records";
             this.Label_Const_Records.Size = new System.Drawing.Size(86, 24);
             this.Label_Const_Records.TabIndex = 15;
@@ -282,7 +295,7 @@
             // Pic_NewLocalDrivingLicense
             // 
             this.Pic_NewLocalDrivingLicense.Image = ((System.Drawing.Image)(resources.GetObject("Pic_NewLocalDrivingLicense.Image")));
-            this.Pic_NewLocalDrivingLicense.Location = new System.Drawing.Point(730, 184);
+            this.Pic_NewLocalDrivingLicense.Location = new System.Drawing.Point(1279, 184);
             this.Pic_NewLocalDrivingLicense.Name = "Pic_NewLocalDrivingLicense";
             this.Pic_NewLocalDrivingLicense.Size = new System.Drawing.Size(58, 50);
             this.Pic_NewLocalDrivingLicense.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -292,9 +305,11 @@
             // 
             // UC_Filter
             // 
-            this.UC_Filter.Location = new System.Drawing.Point(16, 184);
+            this.UC_Filter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UC_Filter.Location = new System.Drawing.Point(16, 171);
+            this.UC_Filter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UC_Filter.Name = "UC_Filter";
-            this.UC_Filter.Size = new System.Drawing.Size(481, 45);
+            this.UC_Filter.Size = new System.Drawing.Size(481, 58);
             this.UC_Filter.TabIndex = 17;
             this.UC_Filter.EvFilter += new System.Action<string, object>(this.UC_Filter_EvFilter);
             this.UC_Filter.Ev_IsInt += new System.Action<int>(this.UC_Filter_Ev_IsInt);
@@ -305,7 +320,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1349, 597);
             this.Controls.Add(this.Pic_NewLocalDrivingLicense);
             this.Controls.Add(this.UC_Filter);
             this.Controls.Add(this.Label_Variable_Records);

@@ -1,16 +1,16 @@
 ﻿using DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_License;
 using DVLD.Sub_Forms.Application.Schedule_Tests;
 using DVLD.Sub_Forms.Drivers;
+using DVLD.Sub_Forms.License;
+
 
 
 //using DVLD.Sub_Forms.Application.Sechdule_Tests.Vision_Test_Appointment;
 using DVLD_BussinessLogic.Application_Classes;
 using DVLD_BussinessLogic.Application_Classes.Application;
-using DVLD_BussinessLogic.Application_Classes.New_Local_License_App;
 using System;
 using System.Windows.Forms;
 using static DVLD_BussinessLogic.Application_Classes.Application.clsApplication_BL;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DVLD.Sub_Forms.Application.Manage_Applications
 {
@@ -98,6 +98,12 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
         #region Context Menu Strip
         private void showApplicationDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // FIXED: Add Application Details 
+
+            Frm_ApplicationDetails APPD = new Frm_ApplicationDetails(GetLDLAPP_ID_FromDataGridV());
+
+            APPD.ShowDialog();
+
 
         }
         private int GetLDLAPP_ID_FromDataGridV()
@@ -114,14 +120,24 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
         }
         private void editApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             int LDL_AppID = Convert.ToInt32(_DataGridView.CurrentRow.Cells[0].Value);
-            int ApplicationID = clsApplication_BL.GetApplicationID_ByLDLAPPID(LDL_AppID);
 
-            Frm_NewLocalLicense newLocalLicense = new Frm_NewLocalLicense(ApplicationID);
+            eModeState status = clsApplication_BL.GetStatusBy_LDLAPP_ID(LDL_AppID);
 
-            newLocalLicense.ShowDialog();
+            if (status != eModeState.Cancel)
+            {
 
-            RefreshDataGridView();
+                int ApplicationID = clsApplication_BL.GetApplicationID_ByLDLAPPID(LDL_AppID);
+
+                Frm_NewLocalLicense newLocalLicense = new Frm_NewLocalLicense(ApplicationID);
+
+                newLocalLicense.ShowDialog();
+
+                RefreshDataGridView();
+            }else
+                MessageBox.Show("Error Can't do this process", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
         }
 
         private void deleteApplicationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -160,22 +176,28 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
         {
 
         }
+        private int GetApplicationID()
+        {
 
+            return GetApplicationID_ByLDLAPPID(GetLDLAPP_ID_FromDataGridV());
+
+        }
         private void issueDateToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
 
-            Frm_IssueDriverLicenseForFirstTime IDLFFT 
+            Frm_IssueDriverLicenseForFirstTime IDLFFT
                 = new Frm_IssueDriverLicenseForFirstTime(GetApplicationID_FromDataGridV());
 
             IDLFFT.ShowDialog();
+
+            RefreshDataGridView();
 
         }
 
         private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          int ApplicationID =  GetApplicationID_ByLDLAPPID(GetLDLAPP_ID_FromDataGridV());
-            Frm_DrivingLicenseInfo DLI = new Frm_DrivingLicenseInfo(ApplicationID);
+            Frm_DrivingLicenseInfo DLI = new Frm_DrivingLicenseInfo(GetApplicationID());
 
             DLI.ShowDialog();
 
@@ -183,6 +205,11 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
 
         private void showToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Frm_ShowPersonLicenseHistory SPLH = new Frm_ShowPersonLicenseHistory(GetApplicationID());
+
+
+            SPLH.ShowDialog();
+
 
         }
 
@@ -236,13 +263,13 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
             sechduleWrittenTestToolStripMenuItem.Enabled = WrittenT;
             sechduleStreetTestToolStripMenuItem.Enabled = StreetT;
         }
-        private void EnabledFinalItemAfterCompleted_3_Schedules(bool IssDSMI, bool SLTMI,bool SAPP)
+        private void EnabledFinalItemAfterCompleted_3_Schedules(bool IssDSMI, bool SLTMI, bool SAPP)
         {
             issueDLFT_ToolStripMenuItem.Enabled = IssDSMI;
             showLicenseToolStripMenuItem.Enabled = SLTMI;
             showApplicationDetailsToolStripMenuItem.Enabled = SAPP;
         }
-        private void EnabledMenuItems(bool Edit, bool Delete, bool Sechdule,bool Cancel)
+        private void EnabledMenuItems(bool Edit, bool Delete, bool Sechdule, bool Cancel)
         {
             editApplicationToolStripMenuItem.Enabled = Edit;
             deleteApplicationToolStripMenuItem.Enabled = Delete;
@@ -268,13 +295,13 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
             if (_DataGridView == null || _DataGridView.Rows.Count == 0)
             {
                 EnabledTestsMenuItem(false, false, false);
-                EnabledFinalItemAfterCompleted_3_Schedules(false, false,false);
+                EnabledFinalItemAfterCompleted_3_Schedules(false, false, false);
                 EnabledMenuItems(false, false, false, false);
             }
-            else 
+            else
             {
                 EnabledTestsMenuItem(true, true, true);
-                EnabledFinalItemAfterCompleted_3_Schedules(true, true,true);
+                EnabledFinalItemAfterCompleted_3_Schedules(true, true, true);
                 EnabledMenuItems(true, true, true, true);
 
             }
@@ -292,7 +319,7 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
             {
 
                 EnabledTestsMenuItem(false, false, false);
-                EnabledFinalItemAfterCompleted_3_Schedules(false, true,true);
+                EnabledFinalItemAfterCompleted_3_Schedules(false, true, true);
                 EnabledMenuItems(false, false, false, false);
                 return;
 
@@ -332,12 +359,13 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
 
                 return;
             }
-            else if(status == eModeState.Completed)
+            else if (status == eModeState.Completed)
             {
                 EnabledTestsMenuItem(false, false, false);
                 EnabledFinalItemAfterCompleted_3_Schedules(false, true, true);
                 EnabledMenuItems(false, false, false, false);
-            }else
+            }
+            else
             {
                 EnabledTestsMenuItem(false, false, false);
                 EnabledFinalItemAfterCompleted_3_Schedules(true, true, true);

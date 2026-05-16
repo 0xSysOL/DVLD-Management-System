@@ -1,4 +1,6 @@
-﻿namespace DVLD_DataLayer
+﻿using System.ComponentModel;
+
+namespace DVLD_DataLayer
 {
 
 
@@ -325,7 +327,7 @@ where [Local Driving License Application ID] = @Value";
 
     #endregion End
 
-
+     
     #region License Class
 
     internal static class clsQ_LicenseClass
@@ -350,6 +352,10 @@ where LicenseClassID = @Value";
     {
 
         public const string GetLicenseInfo = "GetLicenseInfo";
+        public const string GetAllPersonLocalLicenseByDriverID = "GetAllPersonLocalLicenseByDriverID";
+        public const string GetAllPersonInternationalLicenseByDriver = "GetAllPersonInternationalLicenseByDriver";
+
+
 
     }
 

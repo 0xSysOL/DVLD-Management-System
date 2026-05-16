@@ -21,7 +21,7 @@ namespace DVLD.User_Controls.Sechdule_Tests.Vision_Test_Appointment
         
         protected void SendEvent()
         {
-            SendRequestToOpenLicenseInfo.Invoke();
+            SendRequestToOpenLicenseInfo?.Invoke();
         }
 
         public void SetLabel_AppliedForLicense(string LicenseName)

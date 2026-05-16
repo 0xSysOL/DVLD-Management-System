@@ -2,6 +2,7 @@
 using DVLD_DataLayer.Tables.License_Class;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -93,9 +94,17 @@ namespace DVLD_BussinessLogic.License_Classes
         }
 
 
+        public static DataTable GetAllPersonLocalLicense(int DriverID)
+        {
 
+            return clsLicense_DL.GetAllPersonLocalLicense(DriverID);
+        }
 
+        public static DataTable GetAllPersonInternationalLicense(int DriverID)
+        {
 
+            return clsLicense_DL.GetAllPersonInternationalLicense(DriverID);
+        }
 
     }
 }
