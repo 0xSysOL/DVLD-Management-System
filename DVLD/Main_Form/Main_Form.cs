@@ -3,6 +3,7 @@ using DVLD.Sub_Forms.Application;
 using DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_License;
 using DVLD.Sub_Forms.Application.Manage_Applications;
 using DVLD.Sub_Forms.Application.ManageTestTypes;
+using DVLD.Sub_Forms.Drivers;
 using DVLD.Sub_Forms.Users_Forms;
 using DVLD_BussinessLogic.Users_Classes.User_Setting;
 using System;
@@ -36,7 +37,14 @@ namespace DVLD
 
 
 
+        private void MS__Drivers_Click(object sender, EventArgs e)
+        {
+            Frm_ManageDrivers frm_ManageDrivers = new Frm_ManageDrivers();
 
+            frm_ManageDrivers.ShowDialog();
+
+
+        }
 
 
 
@@ -157,10 +165,7 @@ namespace DVLD
 
         #endregion End
 
-        private void MS__Drivers_Click(object sender, EventArgs e)
-        {
 
-        }
 
 
 

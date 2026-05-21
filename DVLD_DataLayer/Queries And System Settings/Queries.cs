@@ -92,6 +92,10 @@ where Gendor = @ColumnValue
 
         public const string GatDriver = @"select * from Drivers
 where DriverID = @Value";
+        public const string GetAllDrivers = @"select * from
+                           GetAllDrivers()
+                           where @Value is null or {@ColumnName} LIKE @Value+'%'";
+
         public const string IsPersonDriver = "select Found=1 from Drivers where PersonID = @Value";
         public const string GetDriverID = "select DriverID from Drivers where PersonID = @Value";
         public const string GetPersonID = @"select PersonID from Drivers

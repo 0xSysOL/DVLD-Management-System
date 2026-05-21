@@ -111,11 +111,12 @@ namespace DVLD.User_Controls
             {
                 TB_Search.Visible = false;
                 ComboBox_YesNo.Visible = false;
+          
+                TB_Search.Text = "";
             }
 
             IsColumnIntType(ComboBOX.SelectedIndex);
-
-
+            
         }
 
         public void SelectComboBox() 

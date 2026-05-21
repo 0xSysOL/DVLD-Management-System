@@ -93,5 +93,13 @@ namespace DVLD_BussinessLogic.Drivers
 
         }
 
+
+        public static DataTable GetAllDrivers(string Value = null, string ColumnName = null) 
+        {
+
+
+            return clsDriver_DL.GetAllDrivers(Value, ColumnName);
+        }
+
     }
 }

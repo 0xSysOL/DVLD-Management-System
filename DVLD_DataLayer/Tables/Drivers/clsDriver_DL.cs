@@ -160,7 +160,46 @@ namespace DVLD_DataLayer.Tables.Drivers
 
             return (IsH == null)?false:(int)IsH == 1 ? true : false;
         }
+        public static DataTable GetAllDrivers(string Value = null ,string ColumnName = null)
+        {
 
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+                string GetAllDrivers = @"select * from
+                               GetAllDrivers()
+                               where @Value is null or [" + (@ColumnName != null ? ColumnName:"PersonID") +"] LIKE @Value + '%'";
+
+            SqlCommand command = new SqlCommand(GetAllDrivers, connection);
+            DataTable data = new DataTable();
+
+            if (Value == null || ColumnName == null)
+            {
+                command.Parameters.AddWithValue("@Value", DBNull.Value);
+                command.Parameters.AddWithValue("@ColumnName", DBNull.Value);
+
+            }
+            else
+            {
+                command.Parameters.AddWithValue("@Value", Value);
+                command.Parameters.AddWithValue("@ColumnName", ColumnName);
+            }
+            try
+            {
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    data.Load(reader);
+                }
+
+
+
+            }
+            catch (Exception e) { }
+            finally { connection.Close(); }
+
+
+            return data;
+        }
 
     }
 
