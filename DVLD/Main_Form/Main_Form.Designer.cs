@@ -200,6 +200,7 @@
             this.MS__Drivers.Name = "MS__Drivers";
             this.MS__Drivers.Size = new System.Drawing.Size(147, 68);
             this.MS__Drivers.Text = "Drviers";
+            this.MS__Drivers.Click += new System.EventHandler(this.MS__Drivers_Click);
             // 
             // MS__Users
             // 

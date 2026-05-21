@@ -365,7 +365,7 @@ namespace DVLD_DataLayer
 
 
 
-            return result.ToString();
+            return (result != null)?result.ToString():"";
 
         }
 

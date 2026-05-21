@@ -80,6 +80,12 @@
     <Compile Include="Sub_Forms\Application\Manage Applications\Frm_LocalDrivingLicenseApplications.Designer.cs">
       <DependentUpon>Frm_LocalDrivingLicenseApplications.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sub_Forms\Application\Manage Applications\Frm_NewInternationalLicenseApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\Manage Applications\Frm_NewInternationalLicenseApplication.Designer.cs">
+      <DependentUpon>Frm_NewInternationalLicenseApplication.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sub_Forms\Application\ManageAppTypes\Frm_EditAppTypes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,12 @@
     </Compile>
     <Compile Include="Sub_Forms\Drivers\Frm_DrivingLicenseInfo.Designer.cs">
       <DependentUpon>Frm_DrivingLicenseInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sub_Forms\Drivers\Frm_ManageDrivers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Drivers\Frm_ManageDrivers.Designer.cs">
+      <DependentUpon>Frm_ManageDrivers.cs</DependentUpon>
     </Compile>
     <Compile Include="Sub_Forms\License\Frm_ShowPersonLicenseHistory.cs">
       <SubType>Form</SubType>
@@ -230,6 +242,18 @@
     <Compile Include="User_Controls\Sechdule Tests\Vision Test Appointment\UC_ApplicationBasic_Info.Designer.cs">
       <DependentUpon>UC_ApplicationBasic_Info.cs</DependentUpon>
     </Compile>
+    <Compile Include="User_Controls\UC_ApplicationInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User_Controls\UC_ApplicationInfo.Designer.cs">
+      <DependentUpon>UC_ApplicationInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\UC_LicenseFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User_Controls\UC_LicenseFilter.Designer.cs">
+      <DependentUpon>UC_LicenseFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="User_Controls\Users User Control\UC_LoginInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -257,6 +281,9 @@
     <EmbeddedResource Include="Sub_Forms\Application\Manage Applications\Frm_LocalDrivingLicenseApplications.resx">
       <DependentUpon>Frm_LocalDrivingLicenseApplications.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Application\Manage Applications\Frm_NewInternationalLicenseApplication.resx">
+      <DependentUpon>Frm_NewInternationalLicenseApplication.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Application\ManageAppTypes\Frm_EditAppTypes.resx">
       <DependentUpon>Frm_EditAppTypes.cs</DependentUpon>
     </EmbeddedResource>
@@ -283,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Drivers\Frm_DrivingLicenseInfo.resx">
       <DependentUpon>Frm_DrivingLicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Drivers\Frm_ManageDrivers.resx">
+      <DependentUpon>Frm_ManageDrivers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\License\Frm_ShowPersonLicenseHistory.resx">
       <DependentUpon>Frm_ShowPersonLicenseHistory.cs</DependentUpon>
@@ -328,6 +358,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User_Controls\Sechdule Tests\Vision Test Appointment\UC_ApplicationBasic_Info.resx">
       <DependentUpon>UC_ApplicationBasic_Info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_Controls\UC_ApplicationInfo.resx">
+      <DependentUpon>UC_ApplicationInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_Controls\UC_LicenseFilter.resx">
+      <DependentUpon>UC_LicenseFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User_Controls\Users User Control\UC_LoginInfo.resx">
       <DependentUpon>UC_LoginInfo.cs</DependentUpon>
@@ -554,6 +590,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\scroll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License Info\Drivers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License Info\International License.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Application\Vision Test\calendar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

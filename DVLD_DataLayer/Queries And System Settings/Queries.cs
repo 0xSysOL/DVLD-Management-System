@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace DVLD_DataLayer
+﻿namespace DVLD_DataLayer
 {
 
 
@@ -96,6 +94,10 @@ where Gendor = @ColumnValue
 where DriverID = @Value";
         public const string IsPersonDriver = "select Found=1 from Drivers where PersonID = @Value";
         public const string GetDriverID = "select DriverID from Drivers where PersonID = @Value";
+        public const string GetPersonID = @"select PersonID from Drivers
+where DriverID = @Value";
+        public const string IsDriverHaveInternationalLicense = @"select Found=1 from InternationalLicenses 
+where DriverID = @Value";
 
     }
 
@@ -327,7 +329,7 @@ where [Local Driving License Application ID] = @Value";
 
     #endregion End
 
-     
+
     #region License Class
 
     internal static class clsQ_LicenseClass
@@ -354,11 +356,17 @@ where LicenseClassID = @Value";
         public const string GetLicenseInfo = "GetLicenseInfo";
         public const string GetAllPersonLocalLicenseByDriverID = "GetAllPersonLocalLicenseByDriverID";
         public const string GetAllPersonInternationalLicenseByDriver = "GetAllPersonInternationalLicenseByDriver";
-
-
-
+        public const string IsLicenseActive = @"select IsActive from Licenses 
+where LicenseID = @Value";
+        public const string GetExpireDate = @"select ExpireDate from Licenses 
+where LicenseID = @Value";
     }
+    internal static class clsQ_InternationalLicense
+    {
 
+
+        public const string AddNewInternationalLicense = "AddNewInterNationalLicense";
+    }
     #endregion End
 
     #region Workflow

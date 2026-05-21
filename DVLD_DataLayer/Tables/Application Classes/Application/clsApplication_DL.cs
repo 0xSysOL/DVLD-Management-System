@@ -1,8 +1,6 @@
-﻿using DVLD_DataLayer.Tables.Tests_Appointment;
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DVLD_DataLayer.Tables.Application_Classes
 {
@@ -403,7 +401,7 @@ namespace DVLD_DataLayer.Tables.Application_Classes
         }
 
 
-        public static void GetApplicationBasicInfo(int LDLAPP_ID,ref string ApplicationStatus, ref int ApplicationID, ref decimal ApplicationFees,
+        public static void GetApplicationBasicInfo(int LDLAPP_ID, ref string ApplicationStatus, ref int ApplicationID, ref decimal ApplicationFees,
          ref string ApplicationTypeTitle, ref string FullName,
          ref DateTime ApplicationDate, ref DateTime ApplicationDateStatus,
          ref string Username)
@@ -417,7 +415,7 @@ namespace DVLD_DataLayer.Tables.Application_Classes
             {
                 connection.Open();
 
-                using(SqlDataReader reader = command.ExecuteReader())
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.HasRows && reader.Read())
                     {
@@ -433,7 +431,7 @@ namespace DVLD_DataLayer.Tables.Application_Classes
                 }
 
             }
-            catch(Exception e) { }
+            catch (Exception e) { }
             finally { connection.Close(); }
 
         }
@@ -495,7 +493,7 @@ namespace DVLD_DataLayer.Tables.Application_Classes
 
 
 
-            return (PersonID == null)? -1:Convert.ToInt32(PersonID);
+            return (PersonID == null) ? -1 : Convert.ToInt32(PersonID);
 
         }
 
@@ -533,7 +531,61 @@ namespace DVLD_DataLayer.Tables.Application_Classes
 
 
 
+        public static int CreateApplicationUnderProce(
+            DateTime ApplicationDate,
+            byte ApplicationState,
+            decimal PaidFees,
+            int ApplicationTypeID,
+            int UserID,
+            int PersonID,
+            DateTime LastStateDate,
+            SqlConnection connection,
+           ref  SqlTransaction transaction)
+        {
 
+
+            connection.Open();
+            transaction = connection.BeginTransaction();
+            int ApplicationID = -1;
+            try
+            {
+
+                SqlCommand command = new SqlCommand(clsQApplication.AddApplication, connection, transaction);
+
+
+
+                command.Parameters.AddWithValue("@Date", ApplicationDate);
+                command.Parameters.AddWithValue("@State", ApplicationState);
+                command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
+                command.Parameters.AddWithValue("@PaidFees", PaidFees);
+                command.Parameters.AddWithValue("@PersonID", PersonID);
+                command.Parameters.AddWithValue("@UserID", UserID);
+                command.Parameters.AddWithValue("@LastStateDate", LastStateDate);
+
+
+
+
+                ApplicationID = Convert.ToInt32(command.ExecuteScalar());
+
+
+
+            }
+            catch (Exception e)
+            {
+                ApplicationID = -1;
+                transaction.Rollback();
+                connection.Close();
+                return ApplicationID;
+            }
+
+
+            return ApplicationID;
+
+
+
+
+
+        }
 
 
 

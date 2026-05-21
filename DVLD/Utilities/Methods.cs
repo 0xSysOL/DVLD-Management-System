@@ -20,9 +20,11 @@ namespace DVLD.Utilities
     {
         public enum eTestTypes { VisionTest = 1, WrittenTest = 2, StreetTest = 3, None = 4 }
 
-        public static void Fill_UC_LicenseInfo(UC_LicenseInfo LI, int ApplicationID)
+        public static bool Fill_UC_LicenseInfo(UC_LicenseInfo LI, int Value, string ParameterName)
         {
+
             // 1. Declare variables to hold the returned data
+
             string ClassName = "";
             string FullName = "";
             int LicenseID = -1;
@@ -36,9 +38,11 @@ namespace DVLD.Utilities
             string IssueReason = "";
             int DriverID = -1;
             string IsDetained = "";
+
+
             // 2. Call the BL method using the 'ref' keyword for each variable
-            clsLicense_BL.GetLicenseInfoByApplicationID(
-                ApplicationID,
+            clsLicense_BL.GetLicenseInfo(
+                Value,
                 ref ClassName,
                 ref FullName,
                 ref LicenseID,
@@ -51,8 +55,11 @@ namespace DVLD.Utilities
                 ref DateOfBirth,
                 ref IssueReason,
                 ref DriverID,
-                ref IsDetained
+                ref IsDetained,
+                ParameterName
             );
+            if (LicenseID == -1) return false;
+
 
 
             // 3. Call the UI Setters to display the data
@@ -69,8 +76,7 @@ namespace DVLD.Utilities
             LI.SetLabelIsDetained(IsDetained);
             LI.SetLabelIsActive(IsActive);
             LI.SetLabelNationalNo(NationalNo);
-
-            string ImageKey = clsPeople_BL.GetImagePath(clsApplication_BL.GetPersonID(ApplicationID));
+            string ImageKey = clsPeople_BL.GetImagePath(clsApplication_BL.GetPersonID(Value));
             if (!string.IsNullOrEmpty(ImageKey))
             {
                 string ImagePath = clsPeople_BL.FindImagePath(ImageKey);
@@ -79,6 +85,8 @@ namespace DVLD.Utilities
             }
 
 
+
+            return true;
 
         }
 

@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DVLD_DataLayer.Tables.License_Class
 {
@@ -16,24 +10,30 @@ namespace DVLD_DataLayer.Tables.License_Class
 
 
 
-         
 
 
 
 
 
-        public static void GetLicenseInfoByApplicationID(int ApplicationID, ref string ClassName, ref string FullName,
-          ref int LicenseID, ref string NationalNo, ref string Gender, ref string Notes, ref string IsActive, ref DateTime IssueDate,
-          ref DateTime ExpireDate, ref DateTime DateOfBirth, ref string IssueReason, ref int DriverID,ref string IsDetained)
+
+        public static void GetLicenseInfo(int Value, ref string ClassName, ref string FullName,
+          ref int LicenseID, ref string NationalNo, ref string Gender, ref string Notes,
+          ref string IsActive, ref DateTime IssueDate,
+          ref DateTime ExpireDate, ref DateTime DateOfBirth,
+          ref string IssueReason, ref int DriverID, ref string IsDetained,
+          string ParameterName)
 
         {
             SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
-            SqlCommand command = new SqlCommand(clsQ_License.GetLicenseInfo,connection);
+
+            SqlCommand command = new SqlCommand(clsQ_License.GetLicenseInfo, connection);
+
             command.CommandType = System.Data.CommandType.StoredProcedure;
 
-            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+            command.Parameters.AddWithValue("@Value", Value);
+            command.Parameters.AddWithValue("@ParameterName", ParameterName);
 
-            try 
+            try
             {
                 connection.Open();
 
@@ -63,7 +63,7 @@ namespace DVLD_DataLayer.Tables.License_Class
 
                 }
                 else
-                    ApplicationID = -1;
+                    Value = -1;
 
                 reader.Close();
             }
@@ -75,12 +75,11 @@ namespace DVLD_DataLayer.Tables.License_Class
             {
                 connection.Close();
             }
-
+             
 
 
 
         }
-
 
         public static DataTable GetAllPersonLocalLicense(int DriverID)
         {
@@ -154,8 +153,62 @@ namespace DVLD_DataLayer.Tables.License_Class
             return data;
 
         }
+        public static bool IsLicenseActive(int LicenseID)
+        {
+
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQ_License.IsLicenseActive, connection);
+            command.Parameters.AddWithValue("@Value", LicenseID);
+            object IsActive = null;
+            try
+            {
+                connection.Open();
+
+                IsActive = command.ExecuteScalar();
+
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
 
 
+
+
+            return IsActive == null ? false: (bool)IsActive;
+        }
+        public static DateTime GetLicenseExpireDate(int LicenseID)
+        {
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQ_License.GetExpireDate, connection);
+            command.Parameters.AddWithValue("@Value", LicenseID);
+            object ExpireDate = null;
+            try
+            {
+                connection.Open();
+
+                ExpireDate = command.ExecuteScalar();
+
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+
+
+
+            return (DateTime)ExpireDate;
+        }
 
     }
 }

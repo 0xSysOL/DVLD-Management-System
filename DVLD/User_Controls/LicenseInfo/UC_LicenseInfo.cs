@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DVLD.User_Controls.LicenseInfo
@@ -18,6 +13,25 @@ namespace DVLD.User_Controls.LicenseInfo
         }
 
         #region Labels
+
+        public void RefreshLabels()
+        {
+            string Dots = "........................";
+            SetLabelClass(Dots);
+            SetLabelName(Dots);
+            Label_Variable_LicenseID.Text = Dots;
+            SetLabelGender(Dots);
+            Label_Variable_IssueDate.Text = Dots;
+            SetLabelIssueReason(Dots);
+            SetLabelNote(Dots);
+            Label_Variable_DateOfBirth.Text = Dots;
+            Label_Variable_DriverID.Text = Dots;
+            Label_Variable_ExpireDate.Text = Dots;
+            SetLabelIsDetained(Dots);
+            SetLabelIsActive(Dots);
+            SetLabelNationalNo(Dots);
+
+        }
         // Method to set the Class label
         public void SetLabelClass(string value)
         {
@@ -34,6 +48,12 @@ namespace DVLD.User_Controls.LicenseInfo
         public void SetLabelLicenseID(int value)
         {
             Label_Variable_LicenseID.Text = value.ToString();
+        }
+        public int GetLabelLicenseID()
+        {
+
+            return Convert.ToInt32(Label_Variable_LicenseID.Text);
+
         }
 
         // Method to set the Gender label
@@ -70,7 +90,7 @@ namespace DVLD.User_Controls.LicenseInfo
         // Method to set Date of Birth
         public void SetLabelDateOfBirth(DateTime value)
         {
-          
+
             Label_Variable_DateOfBirth.Text = value.ToString("dd/MMM/yyyy");
         }
 
@@ -79,13 +99,18 @@ namespace DVLD.User_Controls.LicenseInfo
         {
             Label_Variable_DriverID.Text = value.ToString();
         }
+        public int GetLabelDriverID()
+        {
 
+            return Convert.ToInt32(Label_Variable_DriverID.Text);
+
+        }
         // Method to set Expiry Date
         public void SetLabelExpireDate(DateTime value)
         {
             Label_Variable_ExpireDate.Text = value.ToString("dd/MMM/yyyy");
         }
-public void SetLabelNationalNo(string NationalNo)
+        public void SetLabelNationalNo(string NationalNo)
         {
             Label_Variable_NationalNO.Text = NationalNo;
 

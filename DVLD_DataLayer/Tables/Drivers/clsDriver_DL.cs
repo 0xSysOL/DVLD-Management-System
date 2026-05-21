@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Dynamic;
 using System.Linq;
@@ -102,6 +103,65 @@ namespace DVLD_DataLayer.Tables.Drivers
 
 
         }
+
+
+
+        public static DataTable GetDrivers()
+        {
+
+            return null;
+        }
+
+
+        public static int GetPersonIDByDriverID(int DriverID)
+        {
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQ_Driver.GetPersonID, connection);
+            command.Parameters.AddWithValue("@Value", DriverID);
+            object PersonID = null;
+
+            try
+            {
+                connection.Open();
+
+                PersonID = command.ExecuteScalar();
+
+            }
+            catch (Exception e) { }
+            finally { connection.Close(); }
+
+
+
+
+            return (PersonID == null) ? -1 : Convert.ToInt32(PersonID);
+        }
+
+
+
+
+        public static bool IsDriverHaveInternationalLicense(int DriverID)
+        {
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQ_Driver.IsDriverHaveInternationalLicense, connection);
+            command.Parameters.AddWithValue("@Value", DriverID);
+
+            object IsH = null;
+
+            try
+            {
+                connection.Open();
+
+                IsH = command.ExecuteScalar();
+
+            }
+            catch (Exception e) { }
+            finally { connection.Close(); }
+
+
+            return (IsH == null)?false:(int)IsH == 1 ? true : false;
+        }
+
+
     }
 
 

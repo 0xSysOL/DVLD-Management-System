@@ -1,6 +1,8 @@
 ﻿using DVLD_DataLayer.Tables.Drivers;
+using DVLD_DataLayer.Tables.License_Class;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,9 +71,27 @@ namespace DVLD_BussinessLogic.Drivers
           return  clsDriver_DL.GetDriverIDByPersonID(PersonID);
 
         }
+        public static DataTable GetDrivers()
+        {
+
+            return clsDriver_DL.GetDrivers();
 
 
+        }
+        public static int GetPersonIDByDriverID(int DriverID)
+        {
 
+            return clsDriver_DL.GetPersonIDByDriverID(DriverID);
+
+        }
+
+        public static bool IsDriverHaveInternationalLicense(int DriverID)
+        {
+
+            return clsDriver_DL.IsDriverHaveInternationalLicense(DriverID);
+
+
+        }
 
     }
 }

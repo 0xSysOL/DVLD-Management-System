@@ -1,11 +1,6 @@
-﻿using DVLD_BussinessLogic.Application_Classes.Application;
-using DVLD_DataLayer.Tables.License_Class;
+﻿using DVLD_DataLayer.Tables.License_Class;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DVLD_BussinessLogic.License_Classes
 {
@@ -47,7 +42,7 @@ namespace DVLD_BussinessLogic.License_Classes
         public void SetExpireDate(DateTime value) { _ExpireDate = value; }
 
         public string GetNotes() { return _Notes; }
-        public void SetNotes(string value) 
+        public void SetNotes(string value)
         {
             if (!string.IsNullOrWhiteSpace(value))
                 _Notes = value;
@@ -78,20 +73,22 @@ namespace DVLD_BussinessLogic.License_Classes
 
         }
 
-        public static void GetLicenseInfoByApplicationID(int ApplicationID,ref string ClassName,ref string FullName,
-            ref int LicenseID,ref string NationalNo,ref string Gender,ref string Notes,ref string IsActive,ref DateTime IssueDate,
-            ref DateTime ExpireDate,ref DateTime DateOfBirth,ref string IssueReason,ref int DriverID, ref string IsDetained) 
-        
+        public static void GetLicenseInfo(int Value, ref string ClassName, ref string FullName,
+            ref int LicenseID, ref string NationalNo, ref string Gender, ref string Notes, ref string IsActive, ref DateTime IssueDate,
+            ref DateTime ExpireDate, ref DateTime DateOfBirth, ref string IssueReason, ref int DriverID, ref string IsDetained,
+            string ParameterName)
+
         {
 
-            clsLicense_DL.GetLicenseInfoByApplicationID(ApplicationID, ref ClassName, ref FullName, ref LicenseID,
+            clsLicense_DL.GetLicenseInfo(Value, ref ClassName, ref FullName, ref LicenseID,
                 ref NationalNo, ref Gender, ref Notes, ref IsActive, ref IssueDate, ref ExpireDate, ref DateOfBirth,
-                ref IssueReason, ref DriverID, ref  IsDetained);
+                ref IssueReason, ref DriverID, ref IsDetained, ParameterName);
 
 
 
 
         }
+
 
 
         public static DataTable GetAllPersonLocalLicense(int DriverID)
@@ -104,6 +101,19 @@ namespace DVLD_BussinessLogic.License_Classes
         {
 
             return clsLicense_DL.GetAllPersonInternationalLicense(DriverID);
+        }
+
+
+        public static bool IsLicenseActive(int LicenseID)
+        {
+            return clsLicense_DL.IsLicenseActive(LicenseID);
+        }
+
+        public static bool IsLicenseExpired(int LicenseID)
+        {
+
+            return (DateTime.Now > clsLicense_DL.GetLicenseExpireDate(LicenseID)) ? true : false;
+
         }
 
     }
