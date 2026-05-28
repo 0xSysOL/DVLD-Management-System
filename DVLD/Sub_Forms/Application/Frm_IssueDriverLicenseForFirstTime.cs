@@ -122,5 +122,9 @@ namespace DVLD.Sub_Forms.Application
 
         }
 
+        private void UC_ApplicationBasic_Info_SendEventToOpenPersonInfo()
+        {
+
+        }
     }
 }

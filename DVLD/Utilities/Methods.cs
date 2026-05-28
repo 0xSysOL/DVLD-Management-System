@@ -20,6 +20,79 @@ namespace DVLD.Utilities
     {
         public enum eTestTypes { VisionTest = 1, WrittenTest = 2, StreetTest = 3, None = 4 }
 
+        public static Image FindImagePath(string ImageKey)
+        {
+
+            if (!string.IsNullOrEmpty(ImageKey))
+            {
+                string ImagePath = clsPeople_BL.FindImagePath(ImageKey);
+                Image image = Image.FromFile(ImagePath);
+                return image;
+            }
+           return null;
+        }
+        public static bool Fill_UC_IntDrivingLicenseInfo(Int_LicenseInfo int_LicenseInfo, int ApplicationID)
+        {
+
+
+
+
+            // 1. Declare variables to hold the returned data
+
+            string FullName = "";
+            int Int_LicenseID = -1;
+            int LicenseID = -1;
+            string NationalNo = "";
+            string Gender = "";
+            string IsActive = "";
+            DateTime IssueDate = DateTime.Now;
+            DateTime ExpireDate = DateTime.Now;
+            DateTime DateOfBirth = DateTime.Now;
+            int DriverID = -1;
+            string ImageKey = "";
+            // 2. Call the BL method using the 'ref' keyword for each variable
+            clsLicense_BL.GetInternationalLicenseByApplication
+
+                (
+                ApplicationID,
+                ref FullName,
+                ref Int_LicenseID,
+                ref LicenseID,
+                ref NationalNo,
+                ref Gender,
+                ref IssueDate,
+                ref IsActive,
+                ref DateOfBirth,
+                ref DriverID,
+                ref ExpireDate,
+                ref ImageKey
+                );
+
+
+            if (LicenseID == -1) return false;
+
+
+
+            // 3. Call the UI Setters to display the data
+
+            int_LicenseInfo.Set_Label_Variable_Name(FullName);
+            int_LicenseInfo.Set_Label_Variable_LicenseID(LicenseID.ToString());
+            int_LicenseInfo.Set_Label_Variable_Gender(Gender);
+            int_LicenseInfo.Set_Label_Variable_IssueDate(IssueDate.ToShortDateString());
+            int_LicenseInfo.Set_Label_Variable_DateOfBirth(DateOfBirth.ToShortDateString());
+            int_LicenseInfo.Set_Label_Variable_DriverID(DriverID.ToString());
+            int_LicenseInfo.Set_Label_Variable_ExpierDate(ExpireDate.ToShortDateString());
+            int_LicenseInfo.Set_Label_Variable_IsActive(IsActive);
+            int_LicenseInfo.Set_Label_Variable_NationalNo(NationalNo);
+            int_LicenseInfo.Set_Label_Variable_ApplicationID(ApplicationID.ToString());
+            int_LicenseInfo.Set_Label_Variable_IntLicenseID(Int_LicenseID.ToString());
+
+            int_LicenseInfo.Set_Pic_Person(FindImagePath(ImageKey));
+
+
+            return true;
+
+        }
         public static bool Fill_UC_LicenseInfo(UC_LicenseInfo LI, int Value, string ParameterName)
         {
 
@@ -77,13 +150,13 @@ namespace DVLD.Utilities
             LI.SetLabelIsActive(IsActive);
             LI.SetLabelNationalNo(NationalNo);
             string ImageKey = clsPeople_BL.GetImagePath(clsApplication_BL.GetPersonID(Value));
-            if (!string.IsNullOrEmpty(ImageKey))
-            {
-                string ImagePath = clsPeople_BL.FindImagePath(ImageKey);
-                Image image = Image.FromFile(ImagePath);
-                LI.SetImage(image);
-            }
-
+            //if (!string.IsNullOrEmpty(ImageKey))
+            //{
+            //    string ImagePath = clsPeople_BL.FindImagePath(ImageKey);
+            //    Image image = Image.FromFile(ImagePath);
+            //    LI.SetImage(image);
+            //}
+            LI.SetImage(FindImagePath(ImageKey));
 
 
             return true;

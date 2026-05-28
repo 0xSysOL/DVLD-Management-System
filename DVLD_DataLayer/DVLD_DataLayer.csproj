@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Structures\clsStructures.cs" />
     <Compile Include="Tables\Application Classes\Application Types\clsManageApplicationTypes_DL.cs" />
     <Compile Include="Tables\Application Classes\Application\clsApplication_DL.cs" />
     <Compile Include="Tables\Application Classes\New Local Driving License Application\clsNewLocalDrivingLicenseApp_DL.cs" />

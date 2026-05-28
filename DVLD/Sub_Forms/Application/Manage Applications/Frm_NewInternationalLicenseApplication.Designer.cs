@@ -35,6 +35,8 @@
             this.UC_ApplicationInfo = new DVLD.User_Controls.UC_ApplicationInfo();
             this.UC_LicenseInfo = new DVLD.User_Controls.LicenseInfo.UC_LicenseInfo();
             this.UC_LicenseFilter = new DVLD.User_Controls.UC_LicenseFilter();
+            this.LinkLabel_LicenseHistory = new System.Windows.Forms.LinkLabel();
+            this.LinkLabel_LicenseInfo = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // Label_Const_FormTitle
@@ -86,6 +88,7 @@
             this.UC_LicenseInfo.Name = "UC_LicenseInfo";
             this.UC_LicenseInfo.Size = new System.Drawing.Size(751, 372);
             this.UC_LicenseInfo.TabIndex = 6;
+            this.UC_LicenseInfo.Load += new System.EventHandler(this.UC_LicenseInfo_Load);
             // 
             // UC_LicenseFilter
             // 
@@ -96,12 +99,39 @@
             this.UC_LicenseFilter.Size = new System.Drawing.Size(367, 67);
             this.UC_LicenseFilter.TabIndex = 24;
             this.UC_LicenseFilter.evSendResult += new System.Action<int>(this.UC_LicenseFilter_evSendResult);
+            this.UC_LicenseFilter.Load += new System.EventHandler(this.UC_LicenseFilter_Load);
+            // 
+            // LinkLabel_LicenseHistory
+            // 
+            this.LinkLabel_LicenseHistory.AutoSize = true;
+            this.LinkLabel_LicenseHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LinkLabel_LicenseHistory.Location = new System.Drawing.Point(40, 749);
+            this.LinkLabel_LicenseHistory.Name = "LinkLabel_LicenseHistory";
+            this.LinkLabel_LicenseHistory.Size = new System.Drawing.Size(169, 20);
+            this.LinkLabel_LicenseHistory.TabIndex = 25;
+            this.LinkLabel_LicenseHistory.TabStop = true;
+            this.LinkLabel_LicenseHistory.Text = "Show Licenses History";
+            this.LinkLabel_LicenseHistory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LicenseHistory_LinkClicked);
+            // 
+            // LinkLabel_LicenseInfo
+            // 
+            this.LinkLabel_LicenseInfo.AutoSize = true;
+            this.LinkLabel_LicenseInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LinkLabel_LicenseInfo.Location = new System.Drawing.Point(225, 749);
+            this.LinkLabel_LicenseInfo.Name = "LinkLabel_LicenseInfo";
+            this.LinkLabel_LicenseInfo.Size = new System.Drawing.Size(140, 20);
+            this.LinkLabel_LicenseInfo.TabIndex = 26;
+            this.LinkLabel_LicenseInfo.TabStop = true;
+            this.LinkLabel_LicenseInfo.Text = "Show License Info";
+            this.LinkLabel_LicenseInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LicenseInfo_LinkClicked);
             // 
             // Frm_NewInternationalLicenseApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 801);
+            this.Controls.Add(this.LinkLabel_LicenseInfo);
+            this.Controls.Add(this.LinkLabel_LicenseHistory);
             this.Controls.Add(this.UC_LicenseFilter);
             this.Controls.Add(this.Btn_Issue);
             this.Controls.Add(this.Btn_Close);
@@ -124,5 +154,7 @@
         private System.Windows.Forms.Button Btn_Issue;
         private System.Windows.Forms.Button Btn_Close;
         private User_Controls.UC_LicenseFilter UC_LicenseFilter;
+        private System.Windows.Forms.LinkLabel LinkLabel_LicenseHistory;
+        private System.Windows.Forms.LinkLabel LinkLabel_LicenseInfo;
     }
 }

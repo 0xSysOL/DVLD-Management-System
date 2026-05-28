@@ -80,6 +80,12 @@
     <Compile Include="Sub_Forms\Application\Manage Applications\Frm_LocalDrivingLicenseApplications.Designer.cs">
       <DependentUpon>Frm_LocalDrivingLicenseApplications.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sub_Forms\Application\Manage Applications\Frm_ManageInternationalApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\Manage Applications\Frm_ManageInternationalApp.Designer.cs">
+      <DependentUpon>Frm_ManageInternationalApp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sub_Forms\Application\Manage Applications\Frm_NewInternationalLicenseApplication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +145,12 @@
     </Compile>
     <Compile Include="Sub_Forms\Drivers\Frm_DrivingLicenseInfo.Designer.cs">
       <DependentUpon>Frm_DrivingLicenseInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sub_Forms\Drivers\Frm_InternationalDrivingLicenseInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Drivers\Frm_InternationalDrivingLicenseInfo.Designer.cs">
+      <DependentUpon>Frm_InternationalDrivingLicenseInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Sub_Forms\Drivers\Frm_ManageDrivers.cs">
       <SubType>Form</SubType>
@@ -205,6 +217,12 @@
     </Compile>
     <Compile Include="User_Controls\Filter.Designer.cs">
       <DependentUpon>Filter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\LicenseInfo\Int_LicenseInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User_Controls\LicenseInfo\Int_LicenseInfo.Designer.cs">
+      <DependentUpon>Int_LicenseInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\LicenseInfo\UC_LicenseInfo.cs">
       <SubType>UserControl</SubType>
@@ -281,6 +299,9 @@
     <EmbeddedResource Include="Sub_Forms\Application\Manage Applications\Frm_LocalDrivingLicenseApplications.resx">
       <DependentUpon>Frm_LocalDrivingLicenseApplications.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Application\Manage Applications\Frm_ManageInternationalApp.resx">
+      <DependentUpon>Frm_ManageInternationalApp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Application\Manage Applications\Frm_NewInternationalLicenseApplication.resx">
       <DependentUpon>Frm_NewInternationalLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
@@ -311,6 +332,9 @@
     <EmbeddedResource Include="Sub_Forms\Drivers\Frm_DrivingLicenseInfo.resx">
       <DependentUpon>Frm_DrivingLicenseInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Drivers\Frm_InternationalDrivingLicenseInfo.resx">
+      <DependentUpon>Frm_InternationalDrivingLicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Drivers\Frm_ManageDrivers.resx">
       <DependentUpon>Frm_ManageDrivers.cs</DependentUpon>
     </EmbeddedResource>
@@ -340,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User_Controls\Filter.resx">
       <DependentUpon>Filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_Controls\LicenseInfo\Int_LicenseInfo.resx">
+      <DependentUpon>Int_LicenseInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User_Controls\LicenseInfo\UC_LicenseInfo.resx">
       <DependentUpon>UC_LicenseInfo.cs</DependentUpon>

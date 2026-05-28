@@ -60,6 +60,7 @@
             this.UC_ShowPersonInfo.Name = "UC_ShowPersonInfo";
             this.UC_ShowPersonInfo.Size = new System.Drawing.Size(751, 291);
             this.UC_ShowPersonInfo.TabIndex = 0;
+            this.UC_ShowPersonInfo.SendRequestToGetImage += new System.Action<bool, string>(this.UC_ShowPersonInfo_SendRequestToGetImage);
             // 
             // Label_Variable_Local_Records
             // 

@@ -51,6 +51,7 @@
             this.changeCurrUserPassdTSM = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.signOut_SM = new System.Windows.Forms.ToolStripMenuItem();
+            this.internationalLicenseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.MS_Main.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -140,7 +141,8 @@
             // manageApplicationToolStripMenuItem
             // 
             this.manageApplicationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.localDrivingLicenseApplicationToolStripMenuItem});
+            this.localDrivingLicenseApplicationToolStripMenuItem,
+            this.internationalLicenseToolStripMenuItem1});
             this.manageApplicationToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("manageApplicationToolStripMenuItem.Image")));
             this.manageApplicationToolStripMenuItem.Name = "manageApplicationToolStripMenuItem";
             this.manageApplicationToolStripMenuItem.Size = new System.Drawing.Size(354, 70);
@@ -251,6 +253,14 @@
             this.signOut_SM.Text = "Sign Out";
             this.signOut_SM.Click += new System.EventHandler(this.signOut_SM_Click);
             // 
+            // internationalLicenseToolStripMenuItem1
+            // 
+            this.internationalLicenseToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("internationalLicenseToolStripMenuItem1.Image")));
+            this.internationalLicenseToolStripMenuItem1.Name = "internationalLicenseToolStripMenuItem1";
+            this.internationalLicenseToolStripMenuItem1.Size = new System.Drawing.Size(410, 70);
+            this.internationalLicenseToolStripMenuItem1.Text = "International License Application";
+            this.internationalLicenseToolStripMenuItem1.Click += new System.EventHandler(this.internationalLicenseToolStripMenuItem1_Click);
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,6 +276,7 @@
             this.MainMenuStrip = this.MS_Main;
             this.Name = "Main_Form";
             this.Text = "Main";
+            this.Load += new System.EventHandler(this.Main_Form_Load);
             this.MS_Main.ResumeLayout(false);
             this.MS_Main.PerformLayout();
             this.ResumeLayout(false);
@@ -297,6 +308,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem internationalLicenseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem localDrivingLicenseApplicationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem internationalLicenseToolStripMenuItem1;
     }
 }
 

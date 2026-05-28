@@ -75,7 +75,7 @@ namespace DVLD_DataLayer.Tables.License_Class
             {
                 connection.Close();
             }
-             
+
 
 
 
@@ -117,12 +117,15 @@ namespace DVLD_DataLayer.Tables.License_Class
 
 
         }
-        public static DataTable GetAllPersonInternationalLicense(int DriverID)
+        public static DataTable GetAllPersonInternationalLicense(int DriverID = -1)
         {
             SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
             SqlCommand command = new SqlCommand(clsQ_License.GetAllPersonInternationalLicenseByDriver, connection);
-            command.Parameters.AddWithValue("@DriverID", DriverID);
             command.CommandType = CommandType.StoredProcedure;
+
+            if (DriverID != -1)
+                command.Parameters.AddWithValue("@DriverID", DriverID);
+
 
             DataTable data = new DataTable();
             try
@@ -179,7 +182,7 @@ namespace DVLD_DataLayer.Tables.License_Class
 
 
 
-            return IsActive == null ? false: (bool)IsActive;
+            return IsActive == null ? false : (bool)IsActive;
         }
         public static DateTime GetLicenseExpireDate(int LicenseID)
         {
@@ -208,6 +211,67 @@ namespace DVLD_DataLayer.Tables.License_Class
 
 
             return (DateTime)ExpireDate;
+        }
+
+
+
+        public static void GetInternationalLicenseByApplication(int ApplicationID,
+            ref string FullName,
+            ref int InternationalLicenseID,
+            ref int LicenseID,
+            ref string NationalNo,
+            ref string Gendor,
+            ref DateTime IssueDate,
+            ref string IsActive,
+            ref DateTime DateOfBirth,
+            ref int DriverID,
+            ref DateTime ExpirationDate,
+            ref string ImagePath)
+        {
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQ_InternationalLicense.GetIntLicenseInfo, connection);
+
+            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+
+                    // Keeping the [] indexer format and converting to string/types
+                    FullName = reader["FullName"].ToString();
+                    InternationalLicenseID = (int)reader["InternationalLicenseID"];
+                    LicenseID = (int)reader["LicenseID"];
+                    NationalNo = reader["NationalNo"].ToString();
+                    Gendor = reader["Gendor"].ToString();
+
+                    IsActive = reader["IsActive"].ToString(); // Usually "True"/"False" or "1"/"0"
+                    IssueDate = (DateTime)reader["IssueDate"];
+                    ExpirationDate = (DateTime)reader["ExpirationDate"];
+                    DateOfBirth = (DateTime)reader["DateOfBirth"];
+                    DriverID = (int)reader["DriverID"];
+                    ImagePath = (string)reader["ImagePath"];
+
+                }
+               
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+
+
         }
 
     }

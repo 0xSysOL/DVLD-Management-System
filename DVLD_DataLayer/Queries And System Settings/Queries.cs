@@ -370,6 +370,7 @@ where LicenseID = @Value";
 
 
         public const string AddNewInternationalLicense = "AddNewInterNationalLicense";
+        public const string GetIntLicenseInfo = "select * from InternationalInfo(@ApplicationID)";
     }
     #endregion End
 

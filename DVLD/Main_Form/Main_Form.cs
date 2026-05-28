@@ -126,7 +126,13 @@ namespace DVLD
 
 
 
+        private void internationalLicenseToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+Frm_ManageInternationalApp _ManageInternationalApp = new Frm_ManageInternationalApp();
 
+            _ManageInternationalApp.ShowDialog();
+
+        }
 
 
 
@@ -161,13 +167,19 @@ namespace DVLD
 
 
 
+
+
+
+
+
         #endregion End
 
         #endregion End
 
+        private void Main_Form_Load(object sender, EventArgs e)
+        {
+            
 
-
-
-
+        }
     }
 }

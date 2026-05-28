@@ -8,9 +8,9 @@ namespace DVLD_BussinessLogic.Application_Classes.New_International_License_App
     public class clsWF_NewInternationalDriverLicenseApp_BL
     {
 
-
-        clsWF_IssueInternationalLicense_DL.cls_APP_And_IL_Variables.Application clsApplication;
-        clsWF_IssueInternationalLicense_DL.cls_APP_And_IL_Variables.InternationalLicense clsInternational;
+        DVLD_DataLayer.Structures_DL.Application clsApplication;
+        //clsWF_IssueInternationalLicense_DL.cls_APP_And_IL_Variables.Application clsApplication;
+        DVLD_DataLayer.Structures_DL.InternationalLicense clsInternational;
 
 
         public int GetILicenseID()
@@ -22,29 +22,37 @@ namespace DVLD_BussinessLogic.Application_Classes.New_International_License_App
             return clsApplication.ApplicationID;
         }
 
-        private void InitializeOb_IIL_APP(int DriverID)
+        private void InitializeOb_SAPP(int DriverID)
         {
-            clsApplication =
-   new clsWF_IssueInternationalLicense_DL.cls_APP_And_IL_Variables.Application
-   (clsWF_IssueInternationalLicense_DL.cls_APP_And_IL_Variables.Application.enApplicationType.NewInternationalLicense,
-   clsDriver_BL.GetPersonIDByDriverID(DriverID),
-   CurrentUser.GetUserID(),
-   clsWF_IssueInternationalLicense_DL.cls_APP_And_IL_Variables.Application.eModeStatus.Completed);
+            //         clsApplication =
+            //new clsWF_IssueInternationalLicense_DL.cls_APP_And_IL_Variables.Application
+            //(DVLD_DataLayer.Structures_DL.Application.enApplicationType.,
+            //clsDriver_BL.GetPersonIDByDriverID(DriverID),
+            //CurrentUser.GetUserID(),
+            //clsWF_IssueInternationalLicense_DL.cls_APP_And_IL_Variables.Application.eModeStatus.Completed);
+            clsApplication = new DVLD_DataLayer.Structures_DL.Application
+                     (DVLD_DataLayer.Structures_DL.Application.enApplicationType.NewInternationalLicense,
+                     clsDriver_BL.GetPersonIDByDriverID(DriverID),
+                     CurrentUser.GetUserID(),
+                     DVLD_DataLayer.Structures_DL.Application.eModeStatus.Completed);
+
 
         }
-        private void InitializeOb_IIL_IL(int DriverID,int DriverLicenseID)
+        private void InitializeOb_SIL(int DriverID,int DriverLicenseID)
         {
 
-            clsInternational =
-                new clsWF_IssueInternationalLicense_DL.cls_APP_And_IL_Variables.InternationalLicense(
-                    DriverID, CurrentUser.GetUserID(), DriverLicenseID);
+            //clsInternational =
+            //    new clsWF_IssueInternationalLicense_DL.cls_APP_And_IL_Variables.InternationalLicense(
+            //        DriverID, CurrentUser.GetUserID(), DriverLicenseID);
 
+            clsInternational = new DVLD_DataLayer.Structures_DL.InternationalLicense
+                (DriverID, CurrentUser.GetUserID(), DriverLicenseID);
         }
         public clsWF_NewInternationalDriverLicenseApp_BL(int DriverID, int DriverLicenseID)
         {
 
-            InitializeOb_IIL_APP(DriverID);
-            InitializeOb_IIL_IL(DriverID,DriverLicenseID);
+            InitializeOb_SAPP(DriverID);
+            InitializeOb_SIL(DriverID,DriverLicenseID);
 
 
          

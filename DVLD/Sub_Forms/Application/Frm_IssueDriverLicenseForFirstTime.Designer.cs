@@ -88,6 +88,7 @@
             this.UC_ApplicationBasic_Info.Name = "UC_ApplicationBasic_Info";
             this.UC_ApplicationBasic_Info.Size = new System.Drawing.Size(764, 229);
             this.UC_ApplicationBasic_Info.TabIndex = 0;
+            this.UC_ApplicationBasic_Info.SendEventToOpenPersonInfo += new System.Action(this.UC_ApplicationBasic_Info_SendEventToOpenPersonInfo);
             this.UC_ApplicationBasic_Info.Load += new System.EventHandler(this.UC_ApplicationBasic_Info_Load);
             // 
             // Label_Variable_FormTitle

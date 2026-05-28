@@ -97,11 +97,44 @@ namespace DVLD_BussinessLogic.License_Classes
             return clsLicense_DL.GetAllPersonLocalLicense(DriverID);
         }
 
-        public static DataTable GetAllPersonInternationalLicense(int DriverID)
+        public static DataTable GetAllPersonInternationalLicense(int DriverID = -1)
         {
 
             return clsLicense_DL.GetAllPersonInternationalLicense(DriverID);
         }
+
+        public static void  GetInternationalLicenseByApplication
+            (
+             int ApplicationID,
+            ref string FullName,
+            ref int InternationalID,
+            ref int LicenseID,
+            ref string NationalNo,
+            ref string Gendor,
+            ref DateTime IssueDate,
+            ref string IsActive,
+            ref DateTime DateOfBirth,
+            ref int DriverID,
+            ref DateTime ExpirationDate,
+            ref string ImagePath
+            )
+        {
+            clsLicense_DL.GetInternationalLicenseByApplication
+                (ApplicationID,
+                ref FullName,
+                ref InternationalID,
+                ref LicenseID,
+                ref NationalNo,
+                ref Gendor,
+                ref IssueDate,
+                ref IsActive,
+                ref DateOfBirth,
+                ref DriverID,
+                ref ExpirationDate,
+                ref ImagePath);
+
+        }
+
 
 
         public static bool IsLicenseActive(int LicenseID)
