@@ -10,7 +10,7 @@ namespace DVLD_BussinessLogic.License_Classes
         private int _LicenseID;
         private int _LicenseClassID;
         private int _DriverID;
-        private int _ApplicationID;
+        private int _ApplicationID; 
         private int _CreatedByUserID;
         private DateTime _IssueDate;
         private DateTime _ExpireDate;
@@ -72,17 +72,21 @@ namespace DVLD_BussinessLogic.License_Classes
             this._IssueReasonID = -1;
 
         }
+        public clsLicense_BL(int LicenseID) : this()
+        {
 
+
+        }
         public static void GetLicenseInfo(int Value, ref string ClassName, ref string FullName,
             ref int LicenseID, ref string NationalNo, ref string Gender, ref string Notes, ref string IsActive, ref DateTime IssueDate,
             ref DateTime ExpireDate, ref DateTime DateOfBirth, ref string IssueReason, ref int DriverID, ref string IsDetained,
-            string ParameterName)
+            ref string ImagePath,string ParameterName)
 
         {
 
             clsLicense_DL.GetLicenseInfo(Value, ref ClassName, ref FullName, ref LicenseID,
                 ref NationalNo, ref Gender, ref Notes, ref IsActive, ref IssueDate, ref ExpireDate, ref DateOfBirth,
-                ref IssueReason, ref DriverID, ref IsDetained, ParameterName);
+                ref IssueReason, ref DriverID, ref IsDetained,ref ImagePath, ParameterName);
 
 
 
@@ -102,7 +106,11 @@ namespace DVLD_BussinessLogic.License_Classes
 
             return clsLicense_DL.GetAllPersonInternationalLicense(DriverID);
         }
+        public static DateTime GetExpirationDate(int LicenseID)
+        {
 
+            return clsLicense_DL.GetLicenseExpireDate(LicenseID);
+        }
         public static void  GetInternationalLicenseByApplication
             (
              int ApplicationID,
@@ -148,6 +156,41 @@ namespace DVLD_BussinessLogic.License_Classes
             return (DateTime.Now > clsLicense_DL.GetLicenseExpireDate(LicenseID)) ? true : false;
 
         }
+
+        public static int GetLicenseClassIDByLicenseID(int LicenseID)
+        {
+
+            return clsLicense_DL.GetLicenseClassIDByLicenseID(LicenseID);
+
+        }
+
+        public static int GetPersonIDByLicenseID(int LicenseID)
+        {
+
+           return clsLicense_DL.GetPersonIDByLicenseID(LicenseID);
+        }
+
+
+
+        public static void AddDataToLicense_DL_Structure
+            (DVLD_DataLayer.Structures_DL.clsLicense License_DL,int LicenseID)
+        {
+            clsLicense_BL License_BL = new clsLicense_BL(LicenseID);
+
+            License_DL.SetApplicationID(License_BL.GetApplicationID());
+            License_DL.SetLicenseID(License_BL.GetLicenseID());
+            License_DL.SetDriverID(License_BL.GetDriverID());
+            License_DL.SetCreatedByUserID(License_BL.GetCreatedByUserID());
+            License_DL.SetIssueDate(License_BL.GetIssueDate());
+            License_DL.SetExpireDate(License_BL.GetExpireDate());
+            License_DL.SetNotes(License_BL.GetNotes());
+            License_DL.SetPaidFees(License_BL.GetPaidFees());
+            License_DL.SetIsActive(License_BL.GetIsActive());
+            License_DL.SetIssueReasonID(License_BL.GetIssueReasonID());
+
+
+        } 
+
 
     }
 }

@@ -11,16 +11,90 @@ namespace DVLD_DataLayer.Tables.License_Class
 
 
 
+      public enum LicenseStatus {Active=1,UnActive=0}
+        public static bool ChangeActiveStatusForLicense(int LicenseID,LicenseStatus LicenseStatus,
+             SqlConnection connection, SqlTransaction transaction)
+        {
+            int Result = 0;
+            try 
+            {
+                SqlCommand command = new SqlCommand(clsQ_License.UpdateStatus,connection,transaction);
+
+                command.Parameters.AddWithValue("@Value",LicenseID);
+                command.Parameters.AddWithValue("@Status", ((int)LicenseStatus));
+
+
+                Result = command.ExecuteNonQuery();
+
+            }
+            catch(Exception e)
+            {
+                transaction.Rollback();
+            }
+        
+
+            return (Result > 0) ? true : false;
+
+        }
+        public static void GetLicenseInfo(int LicenseID,ref Structures_DL.clsLicense License)
+        {
+
+
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+
+            SqlCommand command = new SqlCommand(clsQ_License.GetLicenseInformation, connection);
+
+          
+            command.Parameters.AddWithValue("@Value", LicenseID);
+            
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+
+
+                    License.SetLicenseID((int)reader["LicenseID"]);
+                    License.SetLicenseClassID((int)reader["LicenseClassID"]);
+                    License.SetDriverID((int)reader["DriverID"]);
+                    License.SetApplicationID((int)reader["ApplicationID"]);
+                    License.SetCreatedByUserID((int)reader["CreateByUserID"]);
+                    License.SetIssueDate((DateTime)reader["IssueDate"]);
+                    License.SetExpireDate((DateTime)reader["ExpireDate"]);
+                    License.SetNotes(reader["Notes"] == DBNull.Value ? "" : (string)reader["Notes"]);
+                    License.SetPaidFees((decimal)reader["PaidFees"]);
+                    License.SetIsActive((bool)reader["IsActive"]);
+                    License.SetIssueReasonID((int)reader["IssueReasonID"]);
+
+
+
+                }
+                else
+                  
+               reader.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
 
 
 
 
+        }
 
         public static void GetLicenseInfo(int Value, ref string ClassName, ref string FullName,
           ref int LicenseID, ref string NationalNo, ref string Gender, ref string Notes,
           ref string IsActive, ref DateTime IssueDate,
           ref DateTime ExpireDate, ref DateTime DateOfBirth,
-          ref string IssueReason, ref int DriverID, ref string IsDetained,
+          ref string IssueReason, ref int DriverID, ref string IsDetained, ref string ImagePath,
           string ParameterName)
 
         {
@@ -59,6 +133,7 @@ namespace DVLD_DataLayer.Tables.License_Class
                     IssueReason = reader["IssueReason"].ToString();
                     DriverID = (int)reader["DriverID"];
                     IsDetained = reader["IsDetained"].ToString();
+                    ImagePath = reader["ImagePath"].ToString();
 
 
                 }
@@ -184,6 +259,7 @@ namespace DVLD_DataLayer.Tables.License_Class
 
             return IsActive == null ? false : (bool)IsActive;
         }
+
         public static DateTime GetLicenseExpireDate(int LicenseID)
         {
             SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
@@ -257,7 +333,7 @@ namespace DVLD_DataLayer.Tables.License_Class
                     ImagePath = (string)reader["ImagePath"];
 
                 }
-               
+
                 reader.Close();
             }
             catch (Exception e)
@@ -273,6 +349,104 @@ namespace DVLD_DataLayer.Tables.License_Class
 
 
         }
+        public static int GetLicenseClassIDByLicenseID(int LicenseID)
+        {
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQ_License.GetLicenseClassIDByLicenseID, connection);
+            int LicenseClassID = -1;
+
+            command.Parameters.AddWithValue("@Value", LicenseID);
+
+            try
+            {
+                connection.Open();
+                LicenseClassID = (int)command.ExecuteScalar();
+            }
+            catch (Exception e)
+            { }
+            finally { connection.Close(); }
+            return LicenseClassID;
+        }
+
+
+
+        public static int GetPersonIDByLicenseID(int LicenseID)
+        {
+
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQ_License.GetPersonIDByLicenseID, connection);
+
+
+            int PersonID = -1;
+
+            command.Parameters.AddWithValue("@LicenseID", LicenseID);
+
+            try
+            {
+                connection.Open();
+                PersonID = (int)command.ExecuteScalar();
+            }
+            catch (Exception e)
+            { }
+            finally { connection.Close(); }
+            return PersonID;
+
+
+        }
+
+        public static int IssueLicenseUnderProce(Structures_DL.clsLicense License,
+            SqlConnection connection,ref SqlTransaction transaction)
+        {
+
+            try
+            {
+                SqlCommand command = new SqlCommand(clsQWFSave_DLAPP.IssueLicense
+                            , connection, transaction);
+
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@LicenseClassID", License.GetLicenseClassID());
+                command.Parameters.AddWithValue("@DriverID", License.GetDriverID());
+                command.Parameters.AddWithValue("@CreateByUserID", License.GetCreatedByUserID());
+                command.Parameters.AddWithValue("@IssueDate", License.GetIssueDate());
+                command.Parameters.AddWithValue("@ExpireDate", License.GetExpireDate());
+                command.Parameters.AddWithValue("@PaidFees", License.GetPaidFees());
+                command.Parameters.AddWithValue("@IsActive", License.GetIsActive());
+                command.Parameters.AddWithValue("@IssueReasonID", License.GetIssueReasonID());
+
+
+                command.Parameters.AddWithValue("@ApplicationID", License.GetApplicationID());
+                
+                
+                
+                
+                
+                
+                if (License.GetNotes() != null)
+                    command.Parameters.AddWithValue("@Notes", License.GetNotes());
+                else
+                    command.Parameters.AddWithValue("@Notes", DBNull.Value);
+
+                License.SetLicenseID(Convert.ToInt32(command.ExecuteScalar()));
+
+            }catch(Exception e) 
+            { 
+                transaction.Rollback();
+                License.SetLicenseID(-1);
+            }
+            
+
+
+            return License.GetLicenseID();
+
+
+
+        }
+
+
+
+
 
     }
 }

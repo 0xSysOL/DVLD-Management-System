@@ -1,5 +1,4 @@
-﻿using DVLD_DataLayer.Application_Classes;
-using DVLD_DataLayer.Tables.Application_Classes;
+﻿using DVLD_DataLayer.Tables.Application_Classes;
 using System;
 using System.Data.SqlClient;
 
@@ -8,7 +7,7 @@ namespace DVLD_DataLayer.Tables.Workflow
     public class clsWF_IssueInternationalLicense_DL
     {
 
-        
+
         public static bool CreateIssueInternationalLicense(
             Structures_DL.Application ApplicationV,
             Structures_DL.InternationalLicense internationalV)
@@ -16,16 +15,21 @@ namespace DVLD_DataLayer.Tables.Workflow
 
             using (SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString))
             {
-                SqlTransaction transaction = null;
+                connection.Open();
+                SqlTransaction transaction = connection.BeginTransaction();
 
 
-                ApplicationV.ApplicationID = clsApplication_DL.CreateApplicationUnderProce(
-                        ApplicationV.ApplicationDate, (byte)ApplicationV.modeStatus,
-                        ApplicationV.PaidFees, (int)ApplicationV.eAppTypeID, ApplicationV.UserID,
-                        ApplicationV.PersonID, ApplicationV.LastStateDate, connection, ref transaction);
 
                 try
                 {
+
+                    ApplicationV.ApplicationID = clsApplication_DL.CreateApplicationUnderProce(
+                                        ApplicationV.ApplicationDate, (byte)ApplicationV.modeStatus,
+                                        ApplicationV.PaidFees, (int)ApplicationV.eAppTypeID, ApplicationV.UserID,
+                                        ApplicationV.PersonID, ApplicationV.LastStateDate, connection, ref transaction);
+
+
+
                     // Here We Will Issue InternationalLicense license
                     SqlCommand command = new SqlCommand(clsQ_InternationalLicense.AddNewInternationalLicense
                         , connection, transaction);

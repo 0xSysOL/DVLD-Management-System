@@ -544,8 +544,6 @@ namespace DVLD_DataLayer.Tables.Application_Classes
         {
 
 
-            connection.Open();
-            transaction = connection.BeginTransaction();
             int ApplicationID = -1;
             try
             {

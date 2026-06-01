@@ -42,7 +42,34 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
         public DateTime LastStateDate { get; set; }
 
         
+        private void  SetStatusAlongTheApplicationType(enApplicationType eAppTypeID)
+        {
+            switch (eAppTypeID)
+            {
+                case enApplicationType.None:
+                    modeState = eModeState.None;
+                    break;
 
+                // Grouping all types that result in "New"
+                case enApplicationType.LocalDrivingLicense:
+                case enApplicationType.ReplacementLost:
+                case enApplicationType.ReplacementDamaged:
+                case enApplicationType.ReleaseDetained:
+                    modeState = eModeState.New;
+                    break;
+
+                // Grouping all types that result in "Completed"
+                case enApplicationType.RenewDrivingLicense:
+                case enApplicationType.NewInternationalLicense:
+                case enApplicationType.RetakeTest:
+                    modeState = eModeState.Completed;
+                    break;
+
+                default:
+                    modeState = eModeState.None;
+                    break;
+            }
+        }
         public clsApplication_BL(enApplicationType eAppTypeID)
         {
             Base_ApplicationID = -1;
@@ -51,7 +78,7 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
             UserID = -1;
             PersonID = -1;
             mode = eMode.Add;
-            modeState = eModeState.None;
+            SetStatusAlongTheApplicationType(eAppTypeID);
             this.eAppTypeID = eAppTypeID;
            
         }

@@ -19,30 +19,33 @@ namespace DVLD_DataLayer.Tables.Application_Classes.New_Local_Driving_License_Ap
                 connection.Open();
 
                 SqlTransaction transaction = connection.BeginTransaction();
-                SqlCommand command = connection.CreateCommand();
 
 
                 try
                 {
 
+                    LocalApplicationID = clsApplication_DL.CreateApplicationUnderProce(ApplicationDate,
+                                     ApplicationState, PaidFees, ApplicationTypeID, UserID, PersonID,
+                                     LastStateDate, connection, ref transaction);
 
-                    command.Transaction = transaction;
+                    if (LocalApplicationID == -1)
+                        return -1;
 
-                    command.CommandText = clsQApplication.AddApplication;
-                    //new SqlCommand(clsQApplication.AddApplication, connection)
-                    command.Parameters.AddWithValue("@Date", ApplicationDate);
-                    command.Parameters.AddWithValue("@State", ApplicationState);
-                    command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
-                    command.Parameters.AddWithValue("@PaidFees", PaidFees);
-                    command.Parameters.AddWithValue("@PersonID", PersonID);
-                    command.Parameters.AddWithValue("@UserID", UserID);
-                    command.Parameters.AddWithValue("@LastStateDate", LastStateDate);
+                    //command.Transaction = transaction;
 
-                    LocalApplicationID = Convert.ToInt32(command.ExecuteScalar());
+                    //command.CommandText = clsQApplication.AddApplication;
+                    ////new SqlCommand(clsQApplication.AddApplication, connection)
+                    //command.Parameters.AddWithValue("@Date", ApplicationDate);
+                    //command.Parameters.AddWithValue("@State", ApplicationState);
+                    //command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
+                    //command.Parameters.AddWithValue("@PaidFees", PaidFees);
+                    //command.Parameters.AddWithValue("@PersonID", PersonID);
+                    //command.Parameters.AddWithValue("@UserID", UserID);
+                    //command.Parameters.AddWithValue("@LastStateDate", LastStateDate);
 
-                    command.Parameters.Clear();
+                    //LocalApplicationID = Convert.ToInt32(command.ExecuteScalar());
+                    SqlCommand command = new SqlCommand(clsQLocalDrivingLicenseApp.AddNew_LDLA, connection, transaction);
 
-                    command.CommandText = clsQLocalDrivingLicenseApp.AddNew_LDLA;
 
                     command.Parameters.AddWithValue("@ApplicationID", LocalApplicationID);
                     command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
@@ -68,6 +71,7 @@ namespace DVLD_DataLayer.Tables.Application_Classes.New_Local_Driving_License_Ap
 
             // this Will return Local Driving License ID
             return (Result != null) ? Convert.ToInt32(Result) : -1;
+
         }
 
         public static bool Update_Application_LDLA(int ID, int LicenseClassID, int ApplicationID, DateTime LastDateUpdate)

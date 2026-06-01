@@ -111,7 +111,7 @@ namespace DVLD.Utilities
             string IssueReason = "";
             int DriverID = -1;
             string IsDetained = "";
-
+            string ImagePath = "";
 
             // 2. Call the BL method using the 'ref' keyword for each variable
             clsLicense_BL.GetLicenseInfo(
@@ -129,9 +129,14 @@ namespace DVLD.Utilities
                 ref IssueReason,
                 ref DriverID,
                 ref IsDetained,
+                ref ImagePath,
                 ParameterName
             );
-            if (LicenseID == -1) return false;
+            if (LicenseID == -1)
+            {
+                LI.RefreshLabels();
+                return false;
+            }
 
 
 
@@ -149,13 +154,8 @@ namespace DVLD.Utilities
             LI.SetLabelIsDetained(IsDetained);
             LI.SetLabelIsActive(IsActive);
             LI.SetLabelNationalNo(NationalNo);
-            string ImageKey = clsPeople_BL.GetImagePath(clsApplication_BL.GetPersonID(Value));
-            //if (!string.IsNullOrEmpty(ImageKey))
-            //{
-            //    string ImagePath = clsPeople_BL.FindImagePath(ImageKey);
-            //    Image image = Image.FromFile(ImagePath);
-            //    LI.SetImage(image);
-            //}
+            string ImageKey = ImagePath;
+        
             LI.SetImage(FindImagePath(ImageKey));
 
 

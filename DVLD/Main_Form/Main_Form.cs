@@ -86,7 +86,14 @@ namespace DVLD
         {
 
         }
+        private void RenewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_RenewLocalDrivingLicenseApp renewLocalDriving = new Frm_RenewLocalDrivingLicenseApp();
 
+            renewLocalDriving.ShowDialog();
+
+
+        }
 
         #region New Driving License
         private void newDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -181,5 +188,7 @@ Frm_ManageInternationalApp _ManageInternationalApp = new Frm_ManageInternational
             
 
         }
+
+        
     }
 }

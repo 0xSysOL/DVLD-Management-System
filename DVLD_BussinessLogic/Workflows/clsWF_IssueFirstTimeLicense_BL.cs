@@ -33,7 +33,7 @@ namespace DVLD_BussinessLogic.Workflows
 
 
         }
-
+         
         public void InitializeDriverOB(int DriverID)
         {
 
@@ -70,7 +70,7 @@ namespace DVLD_BussinessLogic.Workflows
             LDLAPP = new clsNewLocalDriverLicenseApplication_BL(ApplicationID);
 
             InitializeLicenseOB(LDLAPP);
-            InitializeDriverOB(LDLAPP);
+            InitializeDriverOB(LDLAPP); 
 
         }
 

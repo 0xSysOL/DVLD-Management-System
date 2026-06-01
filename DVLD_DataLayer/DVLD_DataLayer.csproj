@@ -61,6 +61,7 @@
     <Compile Include="Tables\Workflow\clsWF_IssueFirstTimeLicense_DL.cs" />
     <Compile Include="Tables\Workflow\clsWF_IssueInternationalLicense_DL.cs" />
     <Compile Include="Tables\Workflow\clsWF_IssueNewCategoryLicense_DL.cs" />
+    <Compile Include="Tables\Workflow\clsWF_RenewLicense_DL.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DVLD.Properties;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -30,6 +31,8 @@ namespace DVLD.User_Controls.LicenseInfo
             SetLabelIsDetained(Dots);
             SetLabelIsActive(Dots);
             SetLabelNationalNo(Dots);
+            Image image = Resources.driver_2481816;
+            SetImage(image);
 
         }
         // Method to set the Class label
@@ -126,7 +129,7 @@ namespace DVLD.User_Controls.LicenseInfo
 
         public void SetImage(Image image)
         {
-
+            if(image != null)
             Pic_PersonImage.Image = image;
 
         }

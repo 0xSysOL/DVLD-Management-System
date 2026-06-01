@@ -92,6 +92,12 @@
     <Compile Include="Sub_Forms\Application\Manage Applications\Frm_NewInternationalLicenseApplication.Designer.cs">
       <DependentUpon>Frm_NewInternationalLicenseApplication.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sub_Forms\Application\Manage Applications\Frm_RenewLocalDrivingLicenseApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\Manage Applications\Frm_RenewLocalDrivingLicenseApp.Designer.cs">
+      <DependentUpon>Frm_RenewLocalDrivingLicenseApp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sub_Forms\Application\ManageAppTypes\Frm_EditAppTypes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -304,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Application\Manage Applications\Frm_NewInternationalLicenseApplication.resx">
       <DependentUpon>Frm_NewInternationalLicenseApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Application\Manage Applications\Frm_RenewLocalDrivingLicenseApp.resx">
+      <DependentUpon>Frm_RenewLocalDrivingLicenseApp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Application\ManageAppTypes\Frm_EditAppTypes.resx">
       <DependentUpon>Frm_EditAppTypes.cs</DependentUpon>
@@ -626,6 +635,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Application\Vision Test\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\licensing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\driver_24818161.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -356,14 +356,22 @@ where LicenseClassID = @Value";
 
     internal static class clsQ_License
     {
-
+        public const string GetLicenseInformation = "select * from Licenses where LicenseID = @Value";
         public const string GetLicenseInfo = "GetLicenseInfo";
         public const string GetAllPersonLocalLicenseByDriverID = "GetAllPersonLocalLicenseByDriverID";
         public const string GetAllPersonInternationalLicenseByDriver = "GetAllPersonInternationalLicenseByDriver";
         public const string IsLicenseActive = @"select IsActive from Licenses 
 where LicenseID = @Value";
+        public const string UpdateStatus = @"update Licenses set IsActive = @Status
+where LicenseID = @Value";
         public const string GetExpireDate = @"select ExpireDate from Licenses 
 where LicenseID = @Value";
+        public const string GetLicenseClassIDByLicenseID = @"select LicenseClassID from Licenses
+where LicenseID = @Value";
+
+        public const string GetPersonIDByLicenseID = "select * from GetPersonIDByLicenseID(@LicenseID)";
+
+
     }
     internal static class clsQ_InternationalLicense
     {
