@@ -1,4 +1,5 @@
-﻿using DVLD.Sub_Forms.License;
+﻿using DVLD.Sub_Forms.Drivers;
+using DVLD.Sub_Forms.License;
 using DVLD_BussinessLogic.Application_Classes;
 using DVLD_BussinessLogic.Application_Classes.Application;
 using DVLD_BussinessLogic.License_Class;
@@ -15,10 +16,10 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
         public Frm_RenewLocalDrivingLicenseApp()
         {
             InitializeComponent();
-            LinkLabel_LicenseInfo.Enabled = false;
-            LinkLabel_LicenseHistory.Enabled = false;
-
+            EnabliationLinkLabel_LicenseInfo(false);
+            EnabliationLinkLabel_LicenseHistory(false);
         }
+        int _ApplicationID = -1;
         decimal _ApplicationFees = -1;
         decimal _LicensePrice = -1;
         int _LicenseID = -1;
@@ -68,7 +69,7 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
                     MessageBox.Show("Your License Not Active!!", "Info",
            MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     Btn_Renew.Enabled = false;
-                    LinkLabel_LicenseHistory.Enabled = true;
+                    EnabliationLinkLabel_LicenseHistory(true);
                     _LicenseID = LicenseID;
                     return;
                 }
@@ -77,27 +78,36 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
                     MessageBox.Show("Your License Is Not Expired!!", "Info",
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     Btn_Renew.Enabled = false;
-                    LinkLabel_LicenseHistory.Enabled = true;
+                    EnabliationLinkLabel_LicenseHistory(true);
                     _LicenseID = LicenseID;
                     return;
                 }
                 _LicenseID = LicenseID;
                 AddValuesToLabels(LicenseID);
                 Btn_Renew.Enabled = true;
-                LinkLabel_LicenseHistory.Enabled = true;
+                EnabliationLinkLabel_LicenseHistory(true);
 
                 return;
             }
             else
             {
                 DeleteLabelsValue();
-                LinkLabel_LicenseHistory.Enabled = false;
+                EnabliationLinkLabel_LicenseHistory(false);
                 _LicenseID = -1;
+                MessageBox.Show("We Didn't Find License!!", "Info",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             }
 
         }
-
+        private void EnabliationLinkLabel_LicenseInfo(bool Key)
+        {
+            LinkLabel_LicenseInfo.Enabled = Key;
+        }
+        private void EnabliationLinkLabel_LicenseHistory(bool Key)
+        {
+            LinkLabel_LicenseHistory.Enabled = Key;
+        }
         private void Btn_Renew_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are Sure You Want To Do This Process??", "Confirmation",
@@ -117,13 +127,16 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Btn_Renew.Enabled = false;
                 UC_LicenseFilter.Enabled = false;
-
+                _ApplicationID = RLDL.GetApplicationID();
+                EnabliationLinkLabel_LicenseInfo(true);
             }
             else
             {
                 MessageBox.Show("Something Wrong Please Talk with your Admin ):", "Error",
          MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Btn_Renew.Enabled = false;
+                _ApplicationID = -1;
+                EnabliationLinkLabel_LicenseInfo(false);
             }
 
 
@@ -141,6 +154,10 @@ namespace DVLD.Sub_Forms.Application.Manage_Applications
 
         private void LinkLabel_LicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+
+            Frm_DrivingLicenseInfo DLI = new Frm_DrivingLicenseInfo(_ApplicationID);
+
+            DLI.ShowDialog();
 
         }
 
