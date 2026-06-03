@@ -9,6 +9,7 @@ using DVLD_BussinessLogic.Application_Classes.Application;
 using DVLD_BussinessLogic.Application_Classes.New_Local_License_App;
 using DVLD_BussinessLogic.License_Classes;
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -162,7 +163,18 @@ namespace DVLD.Utilities
             return true;
 
         }
+        public static bool IsLicenseActive_M(int LicenseID)
+        {
 
+            if (!clsLicense_BL.IsLicenseActive(LicenseID))
+            {
+                MessageBox.Show("Your License Not Active!!", "Info",
+       MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            
+                return false;
+            }
+            return true;
+        }
         public static bool IsDataTableEmpty(DataTable Data)
         {
             if (Data.Rows.Count == 0)

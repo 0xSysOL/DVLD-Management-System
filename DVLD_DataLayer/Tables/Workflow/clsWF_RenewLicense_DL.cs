@@ -72,7 +72,7 @@ namespace DVLD_DataLayer.Tables.Workflow
 
 
 
-        public static bool RenewLicense(
+        public static bool IssueLicenseForLostOrRenewOrDamage(
             Application Application,
             clsLicense License,
             int OldLicense

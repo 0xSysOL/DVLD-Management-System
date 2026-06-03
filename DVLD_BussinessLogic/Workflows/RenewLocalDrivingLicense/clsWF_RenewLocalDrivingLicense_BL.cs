@@ -35,6 +35,21 @@ namespace DVLD_BussinessLogic.RenewLocalDrivingLicense
 
 
         }
+        private void InitializeOb_SAPP(int PersonID,int ApplicationTypeID)
+        {
+
+            DVLD_DataLayer.Structures_DL.Application.enApplicationType eAppType = 
+                (DVLD_DataLayer.Structures_DL.Application.enApplicationType)ApplicationTypeID;
+
+            Application = new DVLD_DataLayer.Structures_DL.Application
+                     (eAppType,
+                     PersonID,
+                     CurrentUser.GetUserID(),
+                     DVLD_DataLayer.Structures_DL.Application.eModeStatus.Completed);
+
+
+        }
+
         private void FillLicense(int LicenseID, string Notes)
         {
             License = new DVLD_DataLayer.Structures_DL.clsLicense();
@@ -56,6 +71,15 @@ namespace DVLD_BussinessLogic.RenewLocalDrivingLicense
             _LicenseID = LicenseID;
             int PersonID = clsLicense_BL.GetPersonIDByLicenseID(LicenseID);
             InitializeOb_SAPP(PersonID);
+            FillLicense(LicenseID, Notes);
+
+        }
+        public clsWF_RenewLocalDrivingLicense_BL(int LicenseID, string Notes,int ApplicationTypeID)
+        {
+
+            _LicenseID = LicenseID;
+            int PersonID = clsLicense_BL.GetPersonIDByLicenseID(LicenseID);
+            InitializeOb_SAPP(PersonID, ApplicationTypeID);
             FillLicense(LicenseID, Notes);
 
         }
@@ -85,7 +109,7 @@ namespace DVLD_BussinessLogic.RenewLocalDrivingLicense
 
 
 
-            return clsWF_RenewLicense_DL.RenewLicense(Application, License, _LicenseID);
+            return clsWF_RenewLicense_DL.IssueLicenseForLostOrRenewOrDamage(Application, License, _LicenseID);
 
         }
 

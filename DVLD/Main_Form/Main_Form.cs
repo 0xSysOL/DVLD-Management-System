@@ -94,7 +94,13 @@ namespace DVLD
 
 
         }
+        private void ReplacementForLostOrDamagedLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_ReplacementFor_L_OR_D _ReplacementFor_L_OR_D = new Frm_ReplacementFor_L_OR_D();
 
+            _ReplacementFor_L_OR_D.ShowDialog();
+
+        }
         #region New Driving License
         private void newDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -189,6 +195,6 @@ Frm_ManageInternationalApp _ManageInternationalApp = new Frm_ManageInternational
 
         }
 
-        
+  
     }
 }

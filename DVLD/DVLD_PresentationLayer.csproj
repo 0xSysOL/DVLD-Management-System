@@ -74,6 +74,12 @@
     <Compile Include="Sub_Forms\Application\Frm_IssueDriverLicenseForFirstTime.Designer.cs">
       <DependentUpon>Frm_IssueDriverLicenseForFirstTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sub_Forms\Application\Manage Applications\Frm_ReplacementFor_L_OR_D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\Manage Applications\Frm_ReplacementFor_L_OR_D.Designer.cs">
+      <DependentUpon>Frm_ReplacementFor_L_OR_D.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sub_Forms\Application\Manage Applications\Frm_LocalDrivingLicenseApplications.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Application\Frm_IssueDriverLicenseForFirstTime.resx">
       <DependentUpon>Frm_IssueDriverLicenseForFirstTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Application\Manage Applications\Frm_ReplacementFor_L_OR_D.resx">
+      <DependentUpon>Frm_ReplacementFor_L_OR_D.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Application\Manage Applications\Frm_LocalDrivingLicenseApplications.resx">
       <DependentUpon>Frm_LocalDrivingLicenseApplications.cs</DependentUpon>

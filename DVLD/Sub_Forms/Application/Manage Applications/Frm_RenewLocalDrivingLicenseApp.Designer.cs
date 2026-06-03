@@ -520,7 +520,7 @@
             // UC_LicenseFilter
             // 
             this.UC_LicenseFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UC_LicenseFilter.Location = new System.Drawing.Point(201, 22);
+            this.UC_LicenseFilter.Location = new System.Drawing.Point(197, 22);
             this.UC_LicenseFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.UC_LicenseFilter.Name = "UC_LicenseFilter";
             this.UC_LicenseFilter.Size = new System.Drawing.Size(361, 84);

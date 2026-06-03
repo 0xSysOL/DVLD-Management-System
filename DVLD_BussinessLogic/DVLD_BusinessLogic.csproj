@@ -51,6 +51,7 @@
     <Compile Include="Utilities\Methods.cs" />
     <Compile Include="Workflows\clsWF_IssueFirstTimeLicense_BL.cs" />
     <Compile Include="Workflows\clsWF_IssueNewCategoryLicense_BL.cs" />
+    <Compile Include="Workflows\ReplacementLocalDrivingLicense\clsWF_ReplacementLocalDrivingLicense.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DVLD_DataLayer\DVLD_DataLayer.csproj">
