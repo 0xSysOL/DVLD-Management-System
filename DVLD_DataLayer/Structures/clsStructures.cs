@@ -1,7 +1,6 @@
 ﻿using DVLD_DataLayer.Application_Classes;
-using DVLD_DataLayer.Tables.License_Class;
 using System;
-using System.Data;
+using System.ComponentModel;
 
 namespace DVLD_DataLayer.Structures_DL
 {
@@ -12,7 +11,7 @@ namespace DVLD_DataLayer.Structures_DL
         public int ApplicationID { get; internal set; }
         public DateTime ApplicationDate { get; set; }
         public decimal PaidFees { get; set; }
-        public  enum enApplicationType
+        public enum enApplicationType
         {
             None,
             LocalDrivingLicense = 1,
@@ -162,17 +161,68 @@ namespace DVLD_DataLayer.Structures_DL
             this._PaidFees = 0;
             this._IsActive = false;
             this._IssueReasonID = -1;
-                _IssueDate = DateTime.Now;
-           
-            
+            _IssueDate = DateTime.Now;
+
+
+
+        }
+
+
+
+
+
+
 
     }
 
-     
+    public class clsDetainLicense
+    {
+
+        public int DetainID { get;internal set; }
+        public DateTime DetainDate { get; set; }
+        public decimal FineFees { get; set; }
+        public bool IsReleased { get; set; }
+
+        // Nullable fields
+        public DateTime? ReleaseDate { get; set; }
+        public int? ReleasedByUserID { get; set; }
+
+        public int LicenseID { get; set; }
+        public int CreatedByUserID { get; set; }
+        public int? ReleaseApplicationID { get; set; }
+
+        public clsDetainLicense()
+        {
+            DetainID = -1;                     // -1 commonly indicates a new, unsaved record
+            DetainDate = DateTime.Now;         // Defaults to the current time of detention
+            IsReleased = false;                // Freshly detained, so not yet released
+            LicenseID = -1;
+            this.FineFees = -1;
+            CreatedByUserID = -1;
+
+            // Nullable fields are explicitly set to null by default
+            ReleaseDate = null;
+            ReleasedByUserID = null;
+            ReleaseApplicationID = null;
+
+        }
+        public clsDetainLicense(int License, decimal FineFees, int UserID)
+        {
+            DetainID = -1;                     // -1 commonly indicates a new, unsaved record
+            DetainDate = DateTime.Now;         // Defaults to the current time of detention
+            IsReleased = false;                // Freshly detained, so not yet released
+            LicenseID = License;
+            this.FineFees = FineFees;
+            CreatedByUserID = UserID;
+
+            // Nullable fields are explicitly set to null by default
+            ReleaseDate = null;
+            ReleasedByUserID = null;
+            ReleaseApplicationID = null;
 
 
+        }
 
-       
 
     }
 

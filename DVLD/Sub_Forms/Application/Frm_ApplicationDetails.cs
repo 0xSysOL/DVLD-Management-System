@@ -30,7 +30,14 @@ namespace DVLD.Sub_Forms.Application
             Initialize_UC_APPBI(LDLAPPID);
             Initialize_UC_DLAPPI(LDLAPPID);
         }
+        public Frm_ApplicationDetails(int ApplicationID,bool Application)
+        {
+            InitializeComponent();
+            Utilities.Methods.GetApplicationBasicInfoByApplicationID(ApplicationID, UC_ApplicationBasic_Info);
+            UC_DrivingLicenseApplication_Info.Visible = false;
+            Pic_Form.Visible = true;
 
+        }
         private void uC_ApplicationBasic_Info1_SendEventToOpenPersonInfo()
         {
 

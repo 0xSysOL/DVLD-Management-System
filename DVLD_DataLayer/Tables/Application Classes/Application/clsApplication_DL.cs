@@ -437,6 +437,40 @@ namespace DVLD_DataLayer.Tables.Application_Classes
         }
 
 
+        public static void GetApplicationBasicInfoByApplicationID(int ApplicationID, ref string ApplicationStatus, ref decimal ApplicationFees,
+          ref string ApplicationTypeTitle, ref string FullName,
+          ref DateTime ApplicationDate, ref DateTime ApplicationDateStatus,
+          ref string Username)
+        {
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQApplication.GetApplicationBasicInfoByApplicationID, connection);
+
+            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+
+            try
+            {
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows && reader.Read())
+                    {
+                        ApplicationStatus = (string)reader["ApplicationStatusName"];
+                        ApplicationFees = (decimal)reader["ApplicationFees"];
+                        ApplicationTypeTitle = (string)reader["ApplicationTypeTitle"];
+                        FullName = (string)reader["FullName"];
+                        ApplicationDate = (DateTime)reader["ApplicationDate"];
+                        ApplicationDateStatus = (DateTime)reader["LastDateApplication"];
+                        Username = (string)reader["UserName"];
+                    }
+                }
+
+            }
+            catch (Exception e) { }
+            finally { connection.Close(); }
+
+        }
+
 
         public static bool IsPersonPassedTest(int LDLAPP_ID, int TestType)
         {

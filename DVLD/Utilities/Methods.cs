@@ -7,6 +7,7 @@ using DVLD_BusinessLogic;
 using DVLD_BussinessLogic.Application_Classes;
 using DVLD_BussinessLogic.Application_Classes.Application;
 using DVLD_BussinessLogic.Application_Classes.New_Local_License_App;
+using DVLD_BussinessLogic.Detained;
 using DVLD_BussinessLogic.License_Classes;
 using System;
 using System.ComponentModel;
@@ -163,6 +164,35 @@ namespace DVLD.Utilities
             return true;
 
         }
+        public static bool IsLicenseDetain(int LicenseID)
+        {
+
+            if (clsDetained_BL.IsLicenseDetain(LicenseID))
+            {
+                MessageBox.Show("Your License Already Detain!!", "Info",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return true;
+
+            }
+
+
+           return false;
+        }
+        public static bool IsLicenseReleasedFromDetain(int LicenseID)
+        {
+
+            if (!clsDetained_BL.IsDetainReleased(LicenseID))
+            {
+                MessageBox.Show("Your License Already Released!!", "Info",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return true;
+
+            }
+
+
+            return false;
+        }
+
         public static bool IsLicenseActive_M(int LicenseID)
         {
 
@@ -399,6 +429,33 @@ string address)
 
         }
 
+        public static int GetApplicationBasicInfoByApplicationID(int ApplicationID, UC_ApplicationBasic_Info APPBI)
+        {
+            string ApplicationStatus = "";
+            decimal ApplicationFees = -1;
+            string ApplicationTypeTitle = "";
+            string FullName = "";
+            DateTime ApplicationDate = new DateTime();
+            DateTime ApplicationDateStatus = new DateTime();
+            string Username = "";
+
+
+            clsApplication_BL.GetApplicationBasicInfoByApplicationID(ApplicationID, ref ApplicationStatus,
+                ref ApplicationFees,
+               ref ApplicationTypeTitle, ref FullName, ref ApplicationDate, ref ApplicationDateStatus, ref Username);
+
+            APPBI.SetLabel_AppID(ApplicationID);
+            APPBI.SetLabel_Applicant(FullName);
+            APPBI.SetLabel_Fees(ApplicationFees);
+            APPBI.SetLabel_Date(ApplicationDate);
+            APPBI.SetLabel_DateStatus(ApplicationDateStatus);
+            APPBI.SetLabel_CreatedByUser(Username);
+            APPBI.SetLabel_Type(ApplicationTypeTitle);
+            APPBI.SetLabel_Status(ApplicationStatus);
+
+            return ApplicationID;
+
+        }
 
 
         public static void InitializeTitlesForm(ref string TitleForm, ref string LabelTitleForm, eTestTypes eTestTypes, ref Image image)

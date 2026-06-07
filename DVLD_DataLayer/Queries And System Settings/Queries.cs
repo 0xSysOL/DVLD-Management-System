@@ -295,6 +295,8 @@ Select top 1 case when Islocked = 0 then Sum(1) end as Result from TestAppointme
  having LocalDrivingLicenseApplicationID = @LDLAPPID
 ";
         public const string GetApplicationBasicInfo = "select * from ApplicationBasicInfo(@LDLAPP_ID)";
+        public const string GetApplicationBasicInfoByApplicationID = 
+            @"select * from GetApplicationBasicInfoByApplicationID(@ApplicationID)";
 
         public const string GetPersonID = @"select ApplicationPersonID from Applications
                                         where ApplicationID	= @Value";
@@ -333,7 +335,26 @@ where [Local Driving License Application ID] = @Value";
 
     #endregion End
 
+    #region Detained Queries
 
+    internal static class clsQ_Detained
+    {
+        public const string IsDetain = @"select Found=1 from DetainedLicenses
+where LicenseID = @LicenseID and IsReleased = 0";
+        public const string AddNewDetain = @"AddNewDetain";
+        public const string ReleaseDetain = "ReleaseDetain";
+        public const string GetDetainedList = "select * from GetDetainedList(@Value,@ColumnName)";
+        public const string GetDetain = @"select DetainID,DetainDate,DetainedLicenses.LicenseID,Username,FineFees from DetainedLicenses
+join Licenses on DetainedLicenses.LicenseID = Licenses.LicenseID
+join Users on Users.UserID = CreateByUserID
+where DetainedLicenses.LicenseID = @Value and IsReleased = 0
+";
+        public const string GetDetainID = @"select DetainID from DetainedLicenses
+Where LicenseID = @LicenseID and IsReleased = 0";
+
+    }
+
+    #endregion End
     #region License Class
 
     internal static class clsQ_LicenseClass

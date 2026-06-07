@@ -227,10 +227,22 @@ namespace DVLD_BussinessLogic.Application_Classes.Application
             clsApplication_DL.GetApplicationBasicInfo(LDLAPP_ID, ref ApplicationStatus, ref ApplicationID, ref ApplicationFees,
                ref ApplicationTypeTitle, ref FullName, ref ApplicationDate, ref ApplicationDateStatus, ref Username);
 
+             
+        }
+
+
+        public static void GetApplicationBasicInfoByApplicationID(int ApplicationID, ref string ApplicationStatus, ref decimal ApplicationFees,
+         ref string ApplicationTypeTitle, ref string FullName,
+         ref DateTime ApplicationDate, ref DateTime ApplicationDateStatus,
+         ref string Username)
+        {
+
+            clsApplication_DL.GetApplicationBasicInfoByApplicationID(ApplicationID, ref ApplicationStatus, ref ApplicationFees,
+               ref ApplicationTypeTitle, ref FullName, ref ApplicationDate, ref ApplicationDateStatus, ref Username);
+
 
 
         }
-
 
         public static int GetPersonID(int ApplicationID)
         {

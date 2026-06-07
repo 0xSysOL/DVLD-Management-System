@@ -1,5 +1,6 @@
 ﻿using DVLD.Sub_Forms;
 using DVLD.Sub_Forms.Application;
+using DVLD.Sub_Forms.Application.Detained_License;
 using DVLD.Sub_Forms.Application.Drving_Licenses_Services.New_Driving_License;
 using DVLD.Sub_Forms.Application.Manage_Applications;
 using DVLD.Sub_Forms.Application.ManageTestTypes;
@@ -141,13 +142,25 @@ namespace DVLD
 
         private void internationalLicenseToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-Frm_ManageInternationalApp _ManageInternationalApp = new Frm_ManageInternationalApp();
+            Frm_ManageInternationalApp _ManageInternationalApp = new Frm_ManageInternationalApp();
 
             _ManageInternationalApp.ShowDialog();
 
         }
 
+        private void releaseDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_ReleaseDetainLicense _ReleaseDetainLicense = new Frm_ReleaseDetainLicense();
 
+            _ReleaseDetainLicense.ShowDialog();
+        }
+
+        private void retakeTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_LocalDrivingLicenseApplications frm_Local = new Frm_LocalDrivingLicenseApplications();
+
+            frm_Local.ShowDialog();
+        }
 
 
         #endregion End
@@ -187,14 +200,49 @@ Frm_ManageInternationalApp _ManageInternationalApp = new Frm_ManageInternational
 
         #endregion End
 
+        #region Detained License
+
+        private void ManageDetainedLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_ListDetainedLicense frm_ListDetained = new Frm_ListDetainedLicense();
+
+            frm_ListDetained.ShowDialog();
+        }
+        private void DetainedLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_DetainLicense DL = new Frm_DetainLicense();
+
+            DL.ShowDialog();
+
+        }
+        private void ReleaseDetainedLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_ReleaseDetainLicense _ReleaseDetainLicense = new Frm_ReleaseDetainLicense();
+
+            _ReleaseDetainLicense.ShowDialog();
+
+        }
+
+
+        #endregion End
+
         #endregion End
 
         private void Main_Form_Load(object sender, EventArgs e)
         {
-            
+
 
         }
 
-  
+    
+
+        private void MS__Application_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+
     }
 }

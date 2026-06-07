@@ -62,6 +62,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Sub_Forms\Application\Detained License\Frm_DetainLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\Detained License\Frm_DetainLicense.Designer.cs">
+      <DependentUpon>Frm_DetainLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\Detained License\Frm_RelaeseDetainLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\Detained License\Frm_RelaeseDetainLicense.Designer.cs">
+      <DependentUpon>Frm_RelaeseDetainLicense.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sub_Forms\Application\Frm_ApplicationDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +85,12 @@
     </Compile>
     <Compile Include="Sub_Forms\Application\Frm_IssueDriverLicenseForFirstTime.Designer.cs">
       <DependentUpon>Frm_IssueDriverLicenseForFirstTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\Manage Applications\Frm_ListDetainedLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sub_Forms\Application\Manage Applications\Frm_ListDetainedLicense.Designer.cs">
+      <DependentUpon>Frm_ListDetainedLicense.cs</DependentUpon>
     </Compile>
     <Compile Include="Sub_Forms\Application\Manage Applications\Frm_ReplacementFor_L_OR_D.cs">
       <SubType>Form</SubType>
@@ -224,6 +242,18 @@
     <Compile Include="Sub_Forms\Users Forms\Frm_UserInformation.Designer.cs">
       <DependentUpon>Frm_UserInformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="User_Controls\Detain\UC_DetainInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User_Controls\Detain\UC_DetainInfo.Designer.cs">
+      <DependentUpon>UC_DetainInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\Detain\UC_ShowDetainInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User_Controls\Detain\UC_ShowDetainInfo.Designer.cs">
+      <DependentUpon>UC_ShowDetainInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="User_Controls\Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -302,11 +332,20 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Application\Detained License\Frm_DetainLicense.resx">
+      <DependentUpon>Frm_DetainLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Application\Detained License\Frm_RelaeseDetainLicense.resx">
+      <DependentUpon>Frm_RelaeseDetainLicense.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Application\Frm_ApplicationDetails.resx">
       <DependentUpon>Frm_ApplicationDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Application\Frm_IssueDriverLicenseForFirstTime.resx">
       <DependentUpon>Frm_IssueDriverLicenseForFirstTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sub_Forms\Application\Manage Applications\Frm_ListDetainedLicense.resx">
+      <DependentUpon>Frm_ListDetainedLicense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Application\Manage Applications\Frm_ReplacementFor_L_OR_D.resx">
       <DependentUpon>Frm_ReplacementFor_L_OR_D.cs</DependentUpon>
@@ -379,6 +418,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sub_Forms\Users Forms\Frm_UserInformation.resx">
       <DependentUpon>Frm_UserInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_Controls\Detain\UC_DetainInfo.resx">
+      <DependentUpon>UC_DetainInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_Controls\Detain\UC_ShowDetainInfo.resx">
+      <DependentUpon>UC_ShowDetainInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User_Controls\Filter.resx">
       <DependentUpon>Filter.cs</DependentUpon>
@@ -651,5 +696,6 @@
   <ItemGroup>
     <None Include="Resources\driver_24818161.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

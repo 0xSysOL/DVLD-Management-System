@@ -46,6 +46,7 @@
     <Compile Include="Tables\Application Classes\Application\clsApplication_DL.cs" />
     <Compile Include="Tables\Application Classes\New Local Driving License Application\clsNewLocalDrivingLicenseApp_DL.cs" />
     <Compile Include="Tables\Application Classes\Test Types\clsManageTestTypes_DL.cs" />
+    <Compile Include="Tables\Detained\clsDetained_DL.cs" />
     <Compile Include="Tables\Drivers\clsDriver_DL.cs" />
     <Compile Include="Tables\License Class\clsLicenseClass_DL.cs" />
     <Compile Include="Tables\License Class\clsLicense_DL.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Tables\Workflow\clsWF_IssueFirstTimeLicense_DL.cs" />
     <Compile Include="Tables\Workflow\clsWF_IssueInternationalLicense_DL.cs" />
     <Compile Include="Tables\Workflow\clsWF_IssueNewCategoryLicense_DL.cs" />
+    <Compile Include="Tables\Workflow\clsWF_ReleaseDetain_DL.cs" />
     <Compile Include="Tables\Workflow\clsWF_RenewLicense_DL.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

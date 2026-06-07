@@ -84,8 +84,6 @@ namespace DVLD_DataLayer.Tables.Workflow
                 connection.Open();
                 SqlTransaction transaction = connection.BeginTransaction();
 
-
-
                 try
                 {
 
@@ -102,11 +100,8 @@ namespace DVLD_DataLayer.Tables.Workflow
                     if (clsLicense_DL.IssueLicenseUnderProce(License, connection,ref transaction) == -1)
                         throw new Exception();
 
-
-
                     if (!clsLicense_DL.ChangeActiveStatusForLicense(OldLicense,clsLicense_DL.LicenseStatus.UnActive,connection, transaction))
                         throw new Exception();
-                    
                     
                     transaction.Commit();
                     return true;

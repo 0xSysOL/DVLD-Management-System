@@ -12,17 +12,17 @@ namespace DVLD.Sub_Forms.Drivers
 {
     public partial class Frm_DrivingLicenseInfo : Form
     {
-        public Frm_DrivingLicenseInfo(int ApplicationID)
+        public Frm_DrivingLicenseInfo(int ApplicationID,string ParametersName = "ApplicationID")
         {
             InitializeComponent();
-            InitializeUC_LicenseInfo(ApplicationID);
+            InitializeUC_LicenseInfo(ApplicationID,ParametersName);
 
         }
 
-        private void InitializeUC_LicenseInfo(int ApplicationID)
+        private void InitializeUC_LicenseInfo(int ApplicationID,string ParametersName = "ApplicationID")
         {
 
-            Utilities.Methods.Fill_UC_LicenseInfo(UC_LicenseInfo, ApplicationID, "ApplicationID");
+            Utilities.Methods.Fill_UC_LicenseInfo(UC_LicenseInfo, ApplicationID, ParametersName);
 
         }
 
