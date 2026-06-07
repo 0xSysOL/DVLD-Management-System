@@ -35,12 +35,13 @@ Now, financial and administrative operations (booking, unbooking, issuing a lice
 * Handling errors and edge cases.
 * And most importantly: Patience. Some problems took hours of thinking, but they were worth it.
 
-## 📸 Screenshots
 
 ## 📸 Screenshots
 
 ![Log In](![Login Screen](Image/Log%20in.PNG)
-![Main](Image/Main.png)
+![Main Screen](Image/Main.PNG)
+![People Management](Image/People.PNG)
+![Users Management](Image/Users.PNG)
 
 ## 📌 Final Note
 
