@@ -39,8 +39,8 @@ Now, financial and administrative operations (booking, unbooking, issuing a lice
 
 ## 📸 Screenshots
 
-![Login Screen](images/login.png)
-![Main Dashboard](images/main-dashboard.png)
+![Login](Image/login.png)
+![Main](Image/Main.png)
 
 ## 📌 Final Note
 
