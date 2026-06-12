@@ -166,8 +166,9 @@ namespace DVLD_BussinessLogic.Users_Classes
         {
             int ID = -1;
             bool IsActive = false;
+            int PermissionID = -1;
             Password = HashPassword(Password);
-            if (clsUsers_DL.GetUserByUserName(ref ID, Username, Password, ref IsActive))
+            if (clsUsers_DL.GetUserByUserName(ref ID, Username, Password, ref IsActive,ref PermissionID))
             {
 
                 if (!IsActive) return "Not Active";
@@ -175,7 +176,7 @@ namespace DVLD_BussinessLogic.Users_Classes
                 CurrentUser.Set_IsActive(IsActive);
                 CurrentUser.SetUserID(ID);
                 CurrentUser.SetUserName(Username);
-
+                CurrentUser.SetPermission(PermissionID);
 
                 return "Success";
             }
@@ -244,7 +245,12 @@ namespace DVLD_BussinessLogic.Users_Classes
 
         }
 
+        public static int GetPermissionValue(int PermissionID)
+        {
 
+            return clsUsers_DL.GetPermissionValue(PermissionID);
+
+        }
 
 
 

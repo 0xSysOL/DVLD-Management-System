@@ -34,6 +34,7 @@
     <Compile Include="Application Classes\Application Types\clsManageApplicationTypes_BL.cs" />
     <Compile Include="Application Classes\Application\clsApplication_BL.cs" />
     <Compile Include="Detained\clsDetained_BL.cs" />
+    <Compile Include="Users Classes\User Setting\clsPermission.cs" />
     <Compile Include="Workflows\ReleaseDetain\clsWF_ReleaseDetain_BL.cs" />
     <Compile Include="Workflows\RenewLocalDrivingLicense\clsWF_RenewLocalDrivingLicense_BL.cs" />
     <Compile Include="Workflows\New International License App\clsWF_NewInternationalDriverLicenseApp_BL.cs" />

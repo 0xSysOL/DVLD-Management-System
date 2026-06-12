@@ -8,11 +8,36 @@ using System.Data;
 namespace DVLD_DataLayer.Tables
 {
     public class clsUsers_DL
-    { 
+    {
 
 
+        public static int GetPermissionValue(int PermissionID)
+        {
+            SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
+            SqlCommand command = new SqlCommand(clsQ_User.GetPermissionValue, connection);
 
-        public static bool GetUserByUserName(ref int UserID, string Username, string Password, ref bool IsActive)
+            command.Parameters.AddWithValue("P_ID", PermissionID);
+
+            object Value = -3;
+            try
+            {
+                connection.Open();
+                Value = command.ExecuteScalar();
+
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return Value == null ? -3 : Convert.ToInt32(Value);
+
+        }
+        public static bool GetUserByUserName(ref int UserID, string Username, string Password, ref bool IsActive,ref int PermissionID)
         {
             SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
             SqlCommand command = new SqlCommand(clsQ_User.QueryIsUserExists, connection);
@@ -29,6 +54,8 @@ namespace DVLD_DataLayer.Tables
 
                     UserID = (int)dataReader["UserID"];
                     IsActive = (bool)dataReader["IsActive"];
+                    PermissionID = (int)dataReader["PermissionID"];
+
                     dataReader.Close();
                     return true;
                 }

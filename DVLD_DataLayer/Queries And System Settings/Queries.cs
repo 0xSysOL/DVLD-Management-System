@@ -68,6 +68,9 @@ where Gendor = @ColumnValue
     internal static class clsQ_User
     {
         public const string GetAll = "SELECT * FROM ShowUsers";
+        public const string GetPermissionValue = @"select Value from Users
+join Permissions on Users.PermissionID = Permissions.PermissionID
+where Permissions.PermissionID = @P_ID";
         public const string QueryIsUserExists = "select * from Users where Username= @username AND Password = @password";
         public const string GetAllUsers = "SELECT * FROM GetAllUsersWithFullName";
         public const string GetOneUser = "SELECT * FROM Users where UserID = @value";

@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DVLD_BussinessLogic.Users_Classes.User_Setting
+﻿namespace DVLD_BussinessLogic.Users_Classes.User_Setting
 {
-   public static class CurrentUser
+    public static class CurrentUser
     {
         static string _Username = null;
         static int _UserID = -1;
         static bool _IsUserActive = false;
-    
-
-        public static void SetUserName(string UserName) 
+        static int PermissionID = -1;
+        static int PermissionValue = -3;
+        public static void SetUserName(string UserName)
         {
             _Username = UserName;
         }
@@ -23,22 +17,36 @@ namespace DVLD_BussinessLogic.Users_Classes.User_Setting
         }
         public static void Set_IsActive(bool IsUserActive)
         {
-            _IsUserActive = IsUserActive; 
+            _IsUserActive = IsUserActive;
         }
         public static bool IsActive(bool IsUserActive)
         {
-           return _IsUserActive;
+            return _IsUserActive;
         }
         public static string GetUserName()
         {
-          return   _Username;
+            return _Username;
         }
         public static int GetUserID()
         {
             return _UserID;
         }
+        public static void SetPermission(int _PermissionID)
+        {
 
-        public static void _Reset() 
+            PermissionID = _PermissionID;
+
+        }
+
+        public static int GetPermissionValue()
+        {
+            if (PermissionID == -1)
+                return -3;
+
+            return clsUsers_BL.GetPermissionValue(PermissionID);
+
+        }
+        public static void _Reset()
         {
 
             _UserID = -1;

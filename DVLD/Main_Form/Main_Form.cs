@@ -227,11 +227,36 @@ namespace DVLD
         #endregion End
 
         #endregion End
+        private void SetMS()
+        {
 
+            if (clsPermission.IsUserHavePermissionToThisProce((int)clsPermission.ePermissions.All))
+                return;
+
+
+            if (!clsPermission.IsUserHavePermissionToThisProce((int)clsPermission.ePermissions.ManagePeople))
+                MS__People.Enabled = false;
+
+            if (!clsPermission.IsUserHavePermissionToThisProce((int)clsPermission.ePermissions.ManageApplications))
+                MS__Application.Enabled = false;
+
+            if (!clsPermission.IsUserHavePermissionToThisProce((int)clsPermission.ePermissions.NormalSetting))
+                MS__AccountSetting.Enabled = false;
+
+            if (!clsPermission.IsUserHavePermissionToThisProce((int)clsPermission.ePermissions.ManageUsers))
+                MS__Users.Enabled = false;
+
+            if (!clsPermission.IsUserHavePermissionToThisProce((int)clsPermission.ePermissions.ListDrivers))
+               MS__Drivers.Enabled = false;
+
+      
+
+
+        }
         private void Main_Form_Load(object sender, EventArgs e)
         {
 
-
+            SetMS();
         }
 
     
