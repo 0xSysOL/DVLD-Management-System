@@ -3,6 +3,9 @@ using DVLD_DataLayer.Tables;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Policy;
+using System.Text;
 //using static System.Net.WebRequestMethods;
 namespace DVLD_BussinessLogic.Users_Classes
 { 
@@ -30,7 +33,31 @@ namespace DVLD_BussinessLogic.Users_Classes
         public string Username { get; set; }
         private string CurrentUsername = null;
         public bool IsActive { get; set; }
-        public string Password { get; set; }
+        string _password;
+        public string Password 
+        {   get { return _password; }
+            set {_password = HashPassword(value); }
+        }
+        static string HashPassword(string Value)
+        {
+            byte[] Values = Encoding.UTF8.GetBytes(Value);
+            SHA256 Hash = SHA256.Create();
+            byte[] HBValues = Hash.ComputeHash(Values);
+
+            string HashValue = "";
+
+            for (int i = 0; i < HBValues.Length; i++)
+
+            {
+
+                HashValue += HBValues[i].ToString("x2");
+
+
+
+            }
+
+            return HashValue;
+        }
 
         public clsUsers_BL()
         {
@@ -139,8 +166,8 @@ namespace DVLD_BussinessLogic.Users_Classes
         {
             int ID = -1;
             bool IsActive = false;
-
-            if (clsUsers_DL.GetUserByUserName(ref ID, ref Username, Password, ref IsActive))
+            Password = HashPassword(Password);
+            if (clsUsers_DL.GetUserByUserName(ref ID, Username, Password, ref IsActive))
             {
 
                 if (!IsActive) return "Not Active";

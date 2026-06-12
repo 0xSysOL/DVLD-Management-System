@@ -12,7 +12,7 @@ namespace DVLD_DataLayer.Tables
 
 
 
-        public static bool GetUserByUserName(ref int UserID, ref string Username, string Password, ref bool IsActive)
+        public static bool GetUserByUserName(ref int UserID, string Username, string Password, ref bool IsActive)
         {
             SqlConnection connection = new SqlConnection(clsSetting_DL.ConnectionString);
             SqlCommand command = new SqlCommand(clsQ_User.QueryIsUserExists, connection);

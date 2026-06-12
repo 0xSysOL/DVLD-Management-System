@@ -47,3 +47,6 @@ Now, financial and administrative operations (booking, unbooking, issuing a lice
 ## 📌 Final Note
 
 This project is not perfect, and it is not a competitor to commercial systems. It is a first step in a long journey. However, I am proud of it because it represents everything I learned during these months.
+## Login Info
+Username: User5
+Password: 1234
